@@ -77,11 +77,25 @@ function Home() {
           {todayMatches.map((m) => (
             <li key={m.id} className="rounded-3xl bg-card p-5 ring-1 ring-black/5">
               <div className="flex items-start gap-4">
-                <Avatar initials={m.kid.initials} color={m.kid.color} size={48} />
+                {/* Paired avatars: my kid + their kid */}
+                <div className="flex -space-x-3 shrink-0">
+                  <Avatar
+                    initials={m.myKid.initials}
+                    color={m.myKid.color}
+                    size={44}
+                    className="ring-2 ring-card"
+                  />
+                  <Avatar
+                    initials={m.theirKid.initials}
+                    color={m.theirKid.color}
+                    size={44}
+                    className="ring-2 ring-card"
+                  />
+                </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
                     <p className="text-xs font-medium text-zinc-400">
-                      {m.family.parentName.split(" ")[0]} &amp; {m.kid.name}
+                      {m.myKid.name} &amp; {m.theirKid.name}
                     </p>
                     <span className="text-[10px] font-bold text-success">
                       {m.matchPct}% MATCH
@@ -91,7 +105,7 @@ function Home() {
                     {m.fullLabel}
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    {m.family.distanceMi} mi · {m.windowLabel}
+                    via {m.family.parentName.split(" ")[0]} · {m.family.distanceMi} mi · {m.windowLabel}
                   </p>
                 </div>
               </div>
