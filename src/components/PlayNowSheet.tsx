@@ -131,84 +131,97 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
         <div className="px-6 pt-5">
           {isLive ? (
             <>
-              {/* Mode switch: Now vs Later today */}
-              <div className="flex rounded-2xl bg-zinc-100 p-1 text-xs font-semibold">
-                <button
-                  onClick={() => setMode("now")}
-                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2 transition ${
-                    mode === "now" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
-                  }`}
-                >
-                  <Clock className="size-3.5" /> Right now
-                </button>
-                <button
-                  onClick={() => setMode("today")}
-                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2 transition ${
-                    mode === "today" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
-                  }`}
-                >
-                  <Sun className="size-3.5" /> Later today
-                </button>
+              {/* Per-kid availability cards */}
+              <div className="space-y-3">
+                {activeKids.map((k) => {
+                  const a = getAvail(k.id);
+                  return (
+                    <div
+                      key={k.id}
+                      className="rounded-2xl bg-card p-4 ring-1 ring-black/5"
+                      style={{ borderLeft: `4px solid ${k.color}` }}
+                    >
+                      <div className="mb-3 flex items-center gap-2">
+                        <Avatar initials={k.initials} color={k.color} size={28} />
+                        <p className="text-sm font-semibold">{k.name}</p>
+                      </div>
+
+                      <div className="flex rounded-xl bg-zinc-100 p-1 text-[11px] font-semibold">
+                        <button
+                          onClick={() => updateAvail(k.id, { mode: "now" })}
+                          className={`flex flex-1 items-center justify-center gap-1 rounded-lg py-1.5 transition ${
+                            a.mode === "now"
+                              ? "bg-white text-zinc-900 shadow-sm"
+                              : "text-zinc-500"
+                          }`}
+                        >
+                          <Clock className="size-3" /> Right now
+                        </button>
+                        <button
+                          onClick={() => updateAvail(k.id, { mode: "today" })}
+                          className={`flex flex-1 items-center justify-center gap-1 rounded-lg py-1.5 transition ${
+                            a.mode === "today"
+                              ? "bg-white text-zinc-900 shadow-sm"
+                              : "text-zinc-500"
+                          }`}
+                        >
+                          <Sun className="size-3" /> Later today
+                        </button>
+                      </div>
+
+                      {a.mode === "now" ? (
+                        <div className="mt-3 flex gap-1.5">
+                          {HOUR_OPTIONS.map((h) => {
+                            const active = a.hours === h;
+                            return (
+                              <button
+                                key={h}
+                                onClick={() => updateAvail(k.id, { hours: h })}
+                                className={`flex-1 rounded-xl py-2 text-xs font-semibold ring-1 transition ${
+                                  active
+                                    ? "text-white ring-transparent"
+                                    : "bg-page text-zinc-700 ring-black/5"
+                                }`}
+                                style={active ? { background: k.color } : undefined}
+                              >
+                                {h}h
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className="mt-3 grid grid-cols-3 gap-1.5">
+                          {DAYPARTS.map(({ id, label, range, icon: Icon }) => {
+                            const active = a.dayParts.includes(id);
+                            return (
+                              <button
+                                key={id}
+                                onClick={() => toggleDayPart(k.id, id)}
+                                className={`flex flex-col items-center gap-0.5 rounded-xl py-2 ring-1 transition ${
+                                  active
+                                    ? "text-white ring-transparent"
+                                    : "bg-page text-zinc-700 ring-black/5"
+                                }`}
+                                style={active ? { background: k.color } : undefined}
+                              >
+                                <Icon className="size-3.5" />
+                                <span className="text-[11px] font-semibold">{label}</span>
+                                <span
+                                  className={`text-[9px] ${active ? "text-white/80" : "text-muted-foreground"}`}
+                                >
+                                  {range}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Mode-specific controls */}
-              {mode === "now" ? (
-                <div className="mt-3">
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-                    Free for the next…
-                  </p>
-                  <div className="flex gap-2">
-                    {HOUR_OPTIONS.map((h) => {
-                      const active = hours === h;
-                      return (
-                        <button
-                          key={h}
-                          onClick={() => setHours(h)}
-                          className={`flex-1 rounded-2xl py-3 text-sm font-semibold ring-1 transition ${
-                            active
-                              ? "bg-zinc-900 text-white ring-zinc-900"
-                              : "bg-card text-zinc-700 ring-black/5"
-                          }`}
-                        >
-                          {h}h
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : (
-                <div className="mt-3">
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-                    When today?
-                  </p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {DAYPARTS.map(({ id, label, range, icon: Icon }) => {
-                      const active = dayParts.includes(id);
-                      return (
-                        <button
-                          key={id}
-                          onClick={() => toggleDayPart(id)}
-                          className={`flex flex-col items-center gap-1 rounded-2xl py-3 ring-1 transition ${
-                            active
-                              ? "bg-zinc-900 text-white ring-zinc-900"
-                              : "bg-card text-zinc-700 ring-black/5"
-                          }`}
-                        >
-                          <Icon className="size-4" />
-                          <span className="text-xs font-semibold">{label}</span>
-                          <span
-                            className={`text-[10px] ${active ? "text-white/70" : "text-muted-foreground"}`}
-                          >
-                            {range}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              <p className="mt-4 mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+              <p className="mt-5 mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                 Friends who match
               </p>
               <ul className="space-y-3">
