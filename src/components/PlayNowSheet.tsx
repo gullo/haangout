@@ -174,11 +174,11 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                   </p>
                   <div className="grid grid-cols-3 gap-2">
                     {DAYPARTS.map(({ id, label, range, icon: Icon }) => {
-                      const active = dayPart === id;
+                      const active = dayParts.includes(id);
                       return (
                         <button
                           key={id}
-                          onClick={() => setDayPart(id)}
+                          onClick={() => toggleDayPart(id)}
                           className={`flex flex-col items-center gap-1 rounded-2xl py-3 ring-1 transition ${
                             active
                               ? "bg-zinc-900 text-white ring-zinc-900"
