@@ -39,10 +39,13 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
   const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
   const headerBg = kidsBackground(activeKids);
   const isLive = activeKids.length > 0;
+  const selectedParts = DAYPARTS.filter((d) => dayParts.includes(d.id));
   const windowLabel =
     mode === "now"
       ? `Active for the next ${hours} hour${hours > 1 ? "s" : ""}`
-      : `Available this ${dayPart} (${DAYPARTS.find((d) => d.id === dayPart)?.range})`;
+      : selectedParts.length === 0
+        ? "Pick when today"
+        : `Available ${selectedParts.map((p) => p.label.toLowerCase()).join(" + ")}`;
 
   return (
     <>
