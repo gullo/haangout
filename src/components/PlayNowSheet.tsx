@@ -24,7 +24,9 @@ const DAYPARTS: { id: DayPart; label: string; range: string; icon: typeof Sunris
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
   const [mode, setMode] = useState<Mode>("now");
   const [hours, setHours] = useState<number>(2);
-  const [dayPart, setDayPart] = useState<DayPart>("afternoon");
+  const [dayParts, setDayParts] = useState<DayPart[]>(["afternoon"]);
+  const toggleDayPart = (id: DayPart) =>
+    setDayParts((cur) => (cur.includes(id) ? cur.filter((d) => d !== id) : [...cur, id]));
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
