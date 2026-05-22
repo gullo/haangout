@@ -5,6 +5,7 @@ import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
 import { me, todayMatches } from "@/lib/mockData";
+import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -12,6 +13,14 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const [playNowOpen, setPlayNowOpen] = useState(false);
+  const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
+  const activeKids = me.kids.filter((k) => activeKidIds.includes(k.id));
+  const isLive = activeKids.length > 0;
+  const ctaBg = isLive ? kidsBackground(activeKids) : "var(--accent)";
+  const toggleKid = (kidId: string) =>
+    setActiveKidIds((ids) =>
+      ids.includes(kidId) ? ids.filter((id) => id !== kidId) : [...ids, kidId],
+    );
 
   return (
     <PhoneFrame>
@@ -30,11 +39,21 @@ function Home() {
       <section className="px-6 pt-7">
         <button
           onClick={() => setPlayNowOpen(true)}
-          className="group relative flex w-full items-center justify-between overflow-hidden rounded-3xl bg-accent px-6 py-5 text-accent-foreground shadow-[var(--shadow-pop)] transition-transform active:scale-[0.98]"
+          style={{ background: ctaBg }}
+          className="group relative flex w-full items-center justify-between overflow-hidden rounded-3xl px-6 py-5 text-white shadow-[var(--shadow-pop)] transition-[background] duration-500 active:scale-[0.98]"
         >
           <div className="flex flex-col items-start">
             <span className="flex items-center gap-1.5 text-xs font-medium opacity-90">
-              <Sparkles className="size-3.5" /> Spontaneous play
+              {isLive ? (
+                <>
+                  <span className="size-2 animate-pulse rounded-full bg-white" /> Live ·{" "}
+                  {activeKids.map((k) => k.name).join(" & ")}
+                </>
+              ) : (
+                <>
+                  <Sparkles className="size-3.5" /> Spontaneous play
+                </>
+              )}
             </span>
             <span className="mt-0.5 text-xl font-semibold">Play Now</span>
           </div>
@@ -122,7 +141,12 @@ function Home() {
         </ul>
       </section>
 
-      <PlayNowSheet open={playNowOpen} onClose={() => setPlayNowOpen(false)} />
+      <PlayNowSheet
+        open={playNowOpen}
+        onClose={() => setPlayNowOpen(false)}
+        activeKidIds={activeKidIds}
+        onToggleKid={toggleKid}
+      />
     </PhoneFrame>
   );
 }
