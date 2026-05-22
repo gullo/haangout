@@ -21,12 +21,20 @@ const DAYPARTS: { id: DayPart; label: string; range: string; icon: typeof Sunris
   { id: "evening", label: "Evening", range: "5p–8p", icon: Sunset },
 ];
 
+type KidAvail = { mode: Mode; hours: number; dayParts: DayPart[] };
+const DEFAULT_AVAIL: KidAvail = { mode: "now", hours: 2, dayParts: ["afternoon"] };
+
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
-  const [mode, setMode] = useState<Mode>("now");
-  const [hours, setHours] = useState<number>(2);
-  const [dayParts, setDayParts] = useState<DayPart[]>(["afternoon"]);
-  const toggleDayPart = (id: DayPart) =>
-    setDayParts((cur) => (cur.includes(id) ? cur.filter((d) => d !== id) : [...cur, id]));
+  const [avail, setAvail] = useState<Record<string, KidAvail>>({});
+  const getAvail = (id: string): KidAvail => avail[id] ?? DEFAULT_AVAIL;
+  const updateAvail = (id: string, patch: Partial<KidAvail>) =>
+    setAvail((cur) => ({ ...cur, [id]: { ...getAvail(id), ...patch } }));
+  const toggleDayPart = (id: string, dp: DayPart) => {
+    const cur = getAvail(id).dayParts;
+    updateAvail(id, {
+      dayParts: cur.includes(dp) ? cur.filter((d) => d !== dp) : [...cur, dp],
+    });
+  };
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -39,13 +47,14 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
   const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
   const headerBg = kidsBackground(activeKids);
   const isLive = activeKids.length > 0;
-  const selectedParts = DAYPARTS.filter((d) => dayParts.includes(d.id));
-  const windowLabel =
-    mode === "now"
-      ? `Active for the next ${hours} hour${hours > 1 ? "s" : ""}`
-      : selectedParts.length === 0
-        ? "Pick when today"
-        : `Available ${selectedParts.map((p) => p.label.toLowerCase()).join(" + ")}`;
+
+  const summarizeKid = (k: Kid) => {
+    const a = getAvail(k.id);
+    if (a.mode === "now") return `${k.name} · ${a.hours}h`;
+    if (a.dayParts.length === 0) return `${k.name} · pick time`;
+    return `${k.name} · ${a.dayParts.map((d) => d.slice(0, 3)).join("+")}`;
+  };
+  const windowLabel = isLive ? activeKids.map(summarizeKid).join(" • ") : "";
 
   return (
     <>
