@@ -5,6 +5,7 @@ import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
 import { me, todayMatches } from "@/lib/mockData";
+import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
   component: Home,
