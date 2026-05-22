@@ -24,7 +24,9 @@ const DAYPARTS: { id: DayPart; label: string; range: string; icon: typeof Sunris
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
   const [mode, setMode] = useState<Mode>("now");
   const [hours, setHours] = useState<number>(2);
-  const [dayPart, setDayPart] = useState<DayPart>("afternoon");
+  const [dayParts, setDayParts] = useState<DayPart[]>(["afternoon"]);
+  const toggleDayPart = (id: DayPart) =>
+    setDayParts((cur) => (cur.includes(id) ? cur.filter((d) => d !== id) : [...cur, id]));
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -37,10 +39,13 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
   const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
   const headerBg = kidsBackground(activeKids);
   const isLive = activeKids.length > 0;
+  const selectedParts = DAYPARTS.filter((d) => dayParts.includes(d.id));
   const windowLabel =
     mode === "now"
       ? `Active for the next ${hours} hour${hours > 1 ? "s" : ""}`
-      : `Available this ${dayPart} (${DAYPARTS.find((d) => d.id === dayPart)?.range})`;
+      : selectedParts.length === 0
+        ? "Pick when today"
+        : `Available ${selectedParts.map((p) => p.label.toLowerCase()).join(" + ")}`;
 
   return (
     <>
@@ -169,11 +174,11 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                   </p>
                   <div className="grid grid-cols-3 gap-2">
                     {DAYPARTS.map(({ id, label, range, icon: Icon }) => {
-                      const active = dayPart === id;
+                      const active = dayParts.includes(id);
                       return (
                         <button
                           key={id}
-                          onClick={() => setDayPart(id)}
+                          onClick={() => toggleDayPart(id)}
                           className={`flex flex-col items-center gap-1 rounded-2xl py-3 ring-1 transition ${
                             active
                               ? "bg-zinc-900 text-white ring-zinc-900"
