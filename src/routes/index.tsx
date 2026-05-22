@@ -141,7 +141,12 @@ function Home() {
         </ul>
       </section>
 
-      <PlayNowSheet open={playNowOpen} onClose={() => setPlayNowOpen(false)} />
+      <PlayNowSheet
+        open={playNowOpen}
+        onClose={() => setPlayNowOpen(false)}
+        activeKidIds={activeKidIds}
+        onToggleKid={toggleKid}
+      />
     </PhoneFrame>
   );
 }
