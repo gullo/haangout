@@ -1,14 +1,17 @@
 import { useEffect } from "react";
-import { X, MapPin, Phone, MessageCircle } from "lucide-react";
+import { X, MapPin, Phone, MessageCircle, Check } from "lucide-react";
 import { Avatar } from "./Avatar";
-import { playNowFamilies } from "@/lib/mockData";
+import { me, playNowFamilies, type Kid } from "@/lib/mockData";
+import { kidsBackground } from "@/lib/kidColors";
 
 type Props = {
   open: boolean;
   onClose: () => void;
+  activeKidIds: string[];
+  onToggleKid: (kidId: string) => void;
 };
 
-export function PlayNowSheet({ open, onClose }: Props) {
+export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -16,6 +19,10 @@ export function PlayNowSheet({ open, onClose }: Props) {
     if (open) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
+  const headerBg = kidsBackground(activeKids);
+  const isLive = activeKids.length > 0;
 
   return (
     <>
@@ -28,83 +35,131 @@ export function PlayNowSheet({ open, onClose }: Props) {
       />
       {/* Sheet */}
       <div
-        className={`absolute inset-x-0 bottom-0 z-30 rounded-t-[2rem] bg-page px-6 pt-3 pb-10 shadow-2xl transition-transform duration-300 ease-out ${
+        className={`absolute inset-x-0 bottom-0 z-30 overflow-hidden rounded-t-[2rem] bg-page pb-10 shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-y-0" : "translate-y-full"
         }`}
-        style={{ maxHeight: "82%" }}
+        style={{ maxHeight: "88%" }}
       >
-        <div className="mx-auto mb-5 h-1.5 w-10 rounded-full bg-zinc-200" />
-
-        <div className="mb-6 flex items-start justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="size-2 animate-pulse rounded-full bg-success" />
-              <span className="text-[11px] font-bold uppercase tracking-wider text-success">
-                You're live
-              </span>
-            </div>
-            <h2 className="mt-1 text-2xl font-semibold tracking-tight">Who's free now?</h2>
-            <p className="text-sm text-muted-foreground">Active for the next 2 hours</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="grid size-9 place-items-center rounded-full bg-zinc-100 text-zinc-600"
-            aria-label="Close"
-          >
-            <X className="size-4" />
-          </button>
-        </div>
-
-        <ul className="space-y-3">
-          {playNowFamilies.map(({ kid, family, status, detail }) => (
-            <li
-              key={kid.id}
-              className={`flex items-center gap-4 rounded-2xl bg-card p-4 ring-1 ring-black/5 ${
-                status === "soon-busy" ? "opacity-60" : ""
-              }`}
-            >
-              <div className="relative">
-                <Avatar initials={kid.initials} color={kid.color} size={48} />
-                {status === "free" && (
-                  <span className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full bg-success ring-2 ring-card" />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold">
-                  {kid.name} <span className="font-normal text-zinc-400">({kid.age}y)</span>
-                </p>
-                <p className="flex items-center gap-1 truncate text-xs text-muted-foreground">
-                  <MapPin className="size-3" /> {detail}
-                </p>
-              </div>
-              {status === "free" ? (
-                <button className="rounded-full bg-accent-soft px-3.5 py-2 text-[11px] font-bold uppercase tracking-wider text-accent">
-                  Ping
-                </button>
-              ) : (
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
-                  Soon
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 flex gap-2">
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold">
-            <MessageCircle className="size-4" /> Group text
-          </button>
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold">
-            <Phone className="size-4" /> Call first
-          </button>
-        </div>
-
-        <button
-          onClick={onClose}
-          className="mt-3 w-full rounded-2xl border border-accent/20 bg-accent-soft py-3 text-sm font-bold text-accent"
+        {/* Colored header reflecting active kids */}
+        <div
+          className="relative px-6 pt-3 pb-5 text-white transition-[background] duration-500"
+          style={{ background: headerBg }}
         >
-          End Play Now
-        </button>
+          <div className="mx-auto mb-4 h-1.5 w-10 rounded-full bg-white/40" />
+
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`size-2 rounded-full bg-white ${isLive ? "animate-pulse" : "opacity-50"}`}
+                />
+                <span className="text-[11px] font-bold uppercase tracking-wider">
+                  {isLive ? "You're live" : "Not live"}
+                </span>
+              </div>
+              <h2 className="mt-1 text-2xl font-semibold tracking-tight">
+                {isLive ? "Who's free now?" : "Activate Play Now"}
+              </h2>
+              <p className="text-sm text-white/80">
+                {isLive ? "Active for the next 2 hours" : "Pick which kids are free to play"}
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="grid size-9 place-items-center rounded-full bg-white/20 text-white"
+              aria-label="Close"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+
+          {/* Kid toggle chips */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {me.kids.map((k) => {
+              const active = activeKidIds.includes(k.id);
+              return (
+                <button
+                  key={k.id}
+                  onClick={() => onToggleKid(k.id)}
+                  className={`flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3 text-xs font-semibold transition ${
+                    active
+                      ? "bg-white text-zinc-900 shadow-sm"
+                      : "bg-white/15 text-white ring-1 ring-white/30"
+                  }`}
+                >
+                  <Avatar initials={k.initials} color={k.color} size={22} />
+                  {k.name}
+                  {active && <Check className="size-3.5" />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="px-6 pt-5">
+          {isLive ? (
+            <>
+              <ul className="space-y-3">
+                {playNowFamilies.map(({ kid, family, status, detail }) => (
+                  <li
+                    key={kid.id}
+                    className={`flex items-center gap-4 rounded-2xl bg-card p-4 ring-1 ring-black/5 ${
+                      status === "soon-busy" ? "opacity-60" : ""
+                    }`}
+                  >
+                    <div className="relative">
+                      <Avatar initials={kid.initials} color={kid.color} size={48} />
+                      {status === "free" && (
+                        <span className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full bg-success ring-2 ring-card" />
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-semibold">
+                        {kid.name}{" "}
+                        <span className="font-normal text-zinc-400">({kid.age}y)</span>
+                      </p>
+                      <p className="flex items-center gap-1 truncate text-xs text-muted-foreground">
+                        <MapPin className="size-3" /> {detail}
+                      </p>
+                    </div>
+                    {status === "free" ? (
+                      <button className="rounded-full bg-accent-soft px-3.5 py-2 text-[11px] font-bold uppercase tracking-wider text-accent">
+                        Ping
+                      </button>
+                    ) : (
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                        Soon
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 flex gap-2">
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold">
+                  <MessageCircle className="size-4" /> Group text
+                </button>
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold">
+                  <Phone className="size-4" /> Call first
+                </button>
+              </div>
+
+              <button
+                onClick={() => {
+                  // End Play Now: clear all active kids
+                  activeKidIds.forEach(onToggleKid);
+                }}
+                className="mt-3 w-full rounded-2xl border border-accent/20 bg-accent-soft py-3 text-sm font-bold text-accent"
+              >
+                End Play Now
+              </button>
+            </>
+          ) : (
+            <div className="rounded-2xl bg-card p-5 text-center text-sm text-muted-foreground ring-1 ring-black/5">
+              Tap a kid above to mark them as free to play right now.
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
