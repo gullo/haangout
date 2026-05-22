@@ -13,6 +13,14 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const [playNowOpen, setPlayNowOpen] = useState(false);
+  const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
+  const activeKids = me.kids.filter((k) => activeKidIds.includes(k.id));
+  const isLive = activeKids.length > 0;
+  const ctaBg = isLive ? kidsBackground(activeKids) : "var(--accent)";
+  const toggleKid = (kidId: string) =>
+    setActiveKidIds((ids) =>
+      ids.includes(kidId) ? ids.filter((id) => id !== kidId) : [...ids, kidId],
+    );
 
   return (
     <PhoneFrame>
