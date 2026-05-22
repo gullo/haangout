@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { X, MapPin, Phone, MessageCircle, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, MapPin, Phone, MessageCircle, Check, Clock, Sunrise, Sun, Sunset } from "lucide-react";
 import { Avatar } from "./Avatar";
 import { me, playNowFamilies, type Kid } from "@/lib/mockData";
 import { kidsBackground } from "@/lib/kidColors";
@@ -11,7 +11,21 @@ type Props = {
   onToggleKid: (kidId: string) => void;
 };
 
+type Mode = "now" | "today";
+type DayPart = "morning" | "afternoon" | "evening";
+
+const HOUR_OPTIONS = [1, 2, 3, 4];
+const DAYPARTS: { id: DayPart; label: string; range: string; icon: typeof Sunrise }[] = [
+  { id: "morning", label: "Morning", range: "8a–12p", icon: Sunrise },
+  { id: "afternoon", label: "Afternoon", range: "12p–5p", icon: Sun },
+  { id: "evening", label: "Evening", range: "5p–8p", icon: Sunset },
+];
+
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
+  const [mode, setMode] = useState<Mode>("now");
+  const [hours, setHours] = useState<number>(2);
+  const [dayPart, setDayPart] = useState<DayPart>("afternoon");
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -23,6 +37,10 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
   const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
   const headerBg = kidsBackground(activeKids);
   const isLive = activeKids.length > 0;
+  const windowLabel =
+    mode === "now"
+      ? `Active for the next ${hours} hour${hours > 1 ? "s" : ""}`
+      : `Available this ${dayPart} (${DAYPARTS.find((d) => d.id === dayPart)?.range})`;
 
   return (
     <>
@@ -38,7 +56,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
         className={`absolute inset-x-0 bottom-0 z-30 overflow-hidden rounded-t-[2rem] bg-page pb-10 shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-y-0" : "translate-y-full"
         }`}
-        style={{ maxHeight: "88%" }}
+        style={{ maxHeight: "92%" }}
       >
         {/* Colored header reflecting active kids */}
         <div
@@ -61,7 +79,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                 {isLive ? "Who's free now?" : "Activate Play Now"}
               </h2>
               <p className="text-sm text-white/80">
-                {isLive ? "Active for the next 2 hours" : "Pick which kids are free to play"}
+                {isLive ? windowLabel : "Pick which kids are free to play"}
               </p>
             </div>
             <button
@@ -99,6 +117,86 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
         <div className="px-6 pt-5">
           {isLive ? (
             <>
+              {/* Mode switch: Now vs Later today */}
+              <div className="flex rounded-2xl bg-zinc-100 p-1 text-xs font-semibold">
+                <button
+                  onClick={() => setMode("now")}
+                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2 transition ${
+                    mode === "now" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+                  }`}
+                >
+                  <Clock className="size-3.5" /> Right now
+                </button>
+                <button
+                  onClick={() => setMode("today")}
+                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2 transition ${
+                    mode === "today" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+                  }`}
+                >
+                  <Sun className="size-3.5" /> Later today
+                </button>
+              </div>
+
+              {/* Mode-specific controls */}
+              {mode === "now" ? (
+                <div className="mt-3">
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Free for the next…
+                  </p>
+                  <div className="flex gap-2">
+                    {HOUR_OPTIONS.map((h) => {
+                      const active = hours === h;
+                      return (
+                        <button
+                          key={h}
+                          onClick={() => setHours(h)}
+                          className={`flex-1 rounded-2xl py-3 text-sm font-semibold ring-1 transition ${
+                            active
+                              ? "bg-zinc-900 text-white ring-zinc-900"
+                              : "bg-card text-zinc-700 ring-black/5"
+                          }`}
+                        >
+                          {h}h
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-3">
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                    When today?
+                  </p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {DAYPARTS.map(({ id, label, range, icon: Icon }) => {
+                      const active = dayPart === id;
+                      return (
+                        <button
+                          key={id}
+                          onClick={() => setDayPart(id)}
+                          className={`flex flex-col items-center gap-1 rounded-2xl py-3 ring-1 transition ${
+                            active
+                              ? "bg-zinc-900 text-white ring-zinc-900"
+                              : "bg-card text-zinc-700 ring-black/5"
+                          }`}
+                        >
+                          <Icon className="size-4" />
+                          <span className="text-xs font-semibold">{label}</span>
+                          <span
+                            className={`text-[10px] ${active ? "text-white/70" : "text-muted-foreground"}`}
+                          >
+                            {range}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <p className="mt-4 mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                Friends who match
+              </p>
               <ul className="space-y-3">
                 {playNowFamilies.map(({ kid, family, status, detail }) => (
                   <li
