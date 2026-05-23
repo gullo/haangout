@@ -5,6 +5,7 @@ import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
 import { me, todayMatches } from "@/lib/mockData";
+import { useKids } from "@/lib/kidsContext";
 import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
@@ -12,9 +13,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { kids } = useKids();
   const [playNowOpen, setPlayNowOpen] = useState(false);
   const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
-  const activeKids = me.kids.filter((k) => activeKidIds.includes(k.id));
+  const activeKids = kids.filter((k) => activeKidIds.includes(k.id));
   const isLive = activeKids.length > 0;
   const ctaBg = isLive ? kidsBackground(activeKids) : "var(--accent)";
   const toggleKid = (kidId: string) =>
@@ -58,7 +60,7 @@ function Home() {
             <span className="mt-0.5 text-xl font-semibold">Play Now</span>
           </div>
           <div className="flex -space-x-3">
-            {me.kids.map((k) => (
+            {kids.map((k) => (
               <Avatar
                 key={k.id}
                 initials={k.initials}

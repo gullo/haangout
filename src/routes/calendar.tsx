@@ -3,22 +3,21 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
-import { me, blockLabels, dayLabels, initialSchedules } from "@/lib/mockData";
+import { blockLabels, dayLabels } from "@/lib/mockData";
+import { useKids } from "@/lib/kidsContext";
 
 export const Route = createFileRoute("/calendar")({
   component: CalendarPage,
 });
 
 function CalendarPage() {
-  const [activeKidIdx, setActiveKidIdx] = useState(0);
-  const [schedules, setSchedules] = useState<Record<string, number[][]>>(() =>
-    Object.fromEntries(
-      Object.entries(initialSchedules).map(([k, v]) => [k, v.map((r) => [...r])])
-    )
-  );
+  const { kids, schedules, setSchedules } = useKids();
+  const [activeKidId, setActiveKidId] = useState<string>(kids[0]?.id ?? "");
 
-  const activeKid = me.kids[activeKidIdx];
-  const grid = schedules[activeKid.id] ?? blockLabels.map(() => dayLabels.map(() => 0));
+  const activeKid = kids.find((k) => k.id === activeKidId) ?? kids[0];
+  const grid =
+    (activeKid && schedules[activeKid.id]) ??
+    blockLabels.map(() => dayLabels.map(() => 0));
 
   function cycleCell(row: number, col: number) {
     setSchedules((prev) => ({
@@ -59,13 +58,13 @@ function CalendarPage() {
         </div>
 
         {/* Kid switcher */}
-        <div className="mt-5 flex gap-2">
-          {me.kids.map((k, i) => {
-            const active = i === activeKidIdx;
+        <div className="mt-5 flex flex-wrap gap-2">
+          {kids.map((k) => {
+            const active = k.id === activeKid?.id;
             return (
               <button
                 key={k.id}
-                onClick={() => setActiveKidIdx(i)}
+                onClick={() => setActiveKidId(k.id)}
                 className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors"
                 style={
                   active

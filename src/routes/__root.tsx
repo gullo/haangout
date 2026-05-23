@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { KidsProvider } from "@/lib/kidsContext";
 
 import appCss from "../styles.css?url";
 
@@ -113,7 +114,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <KidsProvider>
+        <Outlet />
+      </KidsProvider>
     </QueryClientProvider>
   );
 }

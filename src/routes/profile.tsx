@@ -7,7 +7,8 @@ import {
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { KidsManagerSheet } from "@/components/KidsManagerSheet";
-import { me, kidColorPalette, type Kid } from "@/lib/mockData";
+import { me, kidColorPalette } from "@/lib/mockData";
+import { useKids } from "@/lib/kidsContext";
 
 export const Route = createFileRoute("/profile")({
   component: ProfilePage,
@@ -24,7 +25,7 @@ const INVITE_LINK = "playdate.app/i/sarah-2X9F";
 
 function ProfilePage() {
   const [copied, setCopied] = useState(false);
-  const [kids, setKids] = useState<Kid[]>(me.kids);
+  const { kids, setKids } = useKids();
   const [managerOpen, setManagerOpen] = useState(false);
 
   function copyLink() {
