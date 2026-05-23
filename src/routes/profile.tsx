@@ -193,6 +193,13 @@ function ProfilePage() {
           <LogOut className="size-4" /> Sign out
         </button>
       </section>
+
+      <KidsManagerSheet
+        open={managerOpen}
+        onClose={() => setManagerOpen(false)}
+        kids={kids}
+        onChange={setKids}
+      />
     </PhoneFrame>
   );
 }
