@@ -6,7 +6,8 @@ import {
 } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
-import { me, kidColorPalette } from "@/lib/mockData";
+import { KidsManagerSheet } from "@/components/KidsManagerSheet";
+import { me, kidColorPalette, type Kid } from "@/lib/mockData";
 
 export const Route = createFileRoute("/profile")({
   component: ProfilePage,
@@ -23,6 +24,8 @@ const INVITE_LINK = "playdate.app/i/sarah-2X9F";
 
 function ProfilePage() {
   const [copied, setCopied] = useState(false);
+  const [kids, setKids] = useState<Kid[]>(me.kids);
+  const [managerOpen, setManagerOpen] = useState(false);
 
   function copyLink() {
     navigator.clipboard?.writeText(`https://${INVITE_LINK}`);
