@@ -1,11 +1,19 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import { me, initialSchedules, type Kid } from "@/lib/mockData";
 
 type KidsContextValue = {
   kids: Kid[];
   setKids: (kids: Kid[]) => void;
   schedules: Record<string, number[][]>;
-  setSchedules: (s: Record<string, number[][]>) => void;
+  setSchedules: Dispatch<SetStateAction<Record<string, number[][]>>>;
 };
 
 const KidsContext = createContext<KidsContextValue | null>(null);
