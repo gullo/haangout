@@ -58,13 +58,13 @@ function CalendarPage() {
         </div>
 
         {/* Kid switcher */}
-        <div className="mt-5 flex gap-2">
-          {me.kids.map((k, i) => {
-            const active = i === activeKidIdx;
+        <div className="mt-5 flex flex-wrap gap-2">
+          {kids.map((k) => {
+            const active = k.id === activeKid?.id;
             return (
               <button
                 key={k.id}
-                onClick={() => setActiveKidIdx(i)}
+                onClick={() => setActiveKidId(k.id)}
                 className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors"
                 style={
                   active
