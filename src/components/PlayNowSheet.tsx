@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { X, MapPin, Phone, MessageCircle, Check, Clock, Sunrise, Sun, Sunset } from "lucide-react";
 import { Avatar } from "./Avatar";
-import { me, playNowFamilies, type Kid } from "@/lib/mockData";
+import { playNowFamilies, type Kid } from "@/lib/mockData";
 import { kidsBackground } from "@/lib/kidColors";
+import { useKids } from "@/lib/kidsContext";
 
 type Props = {
   open: boolean;
@@ -25,6 +26,7 @@ type KidAvail = { mode: Mode; hours: number; dayParts: DayPart[] };
 const DEFAULT_AVAIL: KidAvail = { mode: "now", hours: 2, dayParts: ["afternoon"] };
 
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
+  const { kids } = useKids();
   const [avail, setAvail] = useState<Record<string, KidAvail>>({});
   const getAvail = (id: string): KidAvail => avail[id] ?? DEFAULT_AVAIL;
   const updateAvail = (id: string, patch: Partial<KidAvail>) =>
@@ -44,7 +46,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  const activeKids: Kid[] = me.kids.filter((k) => activeKidIds.includes(k.id));
+  const activeKids: Kid[] = kids.filter((k) => activeKidIds.includes(k.id));
   const headerBg = kidsBackground(activeKids);
   const isLive = activeKids.length > 0;
 
@@ -107,7 +109,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
 
           {/* Kid toggle chips */}
           <div className="mt-4 flex flex-wrap gap-2">
-            {me.kids.map((k) => {
+            {kids.map((k) => {
               const active = activeKidIds.includes(k.id);
               return (
                 <button
