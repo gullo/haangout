@@ -81,6 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Playdate — easy playdate coordination for parents" },
+      { name: "twitter:description", content: "Show when your kids are free, see who's around, and tap Play Now for spontaneous playdates." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7f4e28c3-635d-43cc-acdf-a8e8ce0adfc7/id-preview-3e90f0f8--1db9ef5e-ad6a-4b99-b714-782083259fcd.lovable.app-1779410558523.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7f4e28c3-635d-43cc-acdf-a8e8ce0adfc7/id-preview-3e90f0f8--1db9ef5e-ad6a-4b99-b714-782083259fcd.lovable.app-1779410558523.png" },
     ],
     links: [
       {
