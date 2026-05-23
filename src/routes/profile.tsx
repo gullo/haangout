@@ -114,10 +114,15 @@ function ProfilePage() {
       <section className="mt-6 px-5">
         <div className="mb-3 flex items-center justify-between px-1">
           <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-400">My kids</h2>
-          <button className="text-xs font-semibold text-accent">Manage</button>
+          <button
+            onClick={() => setManagerOpen(true)}
+            className="text-xs font-semibold text-accent"
+          >
+            Manage
+          </button>
         </div>
         <ul className="space-y-2">
-          {me.kids.map((k) => (
+          {kids.map((k) => (
             <li
               key={k.id}
               className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
@@ -136,7 +141,10 @@ function ProfilePage() {
             </li>
           ))}
           <li>
-            <button className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-zinc-200 p-3 text-left">
+            <button
+              onClick={() => setManagerOpen(true)}
+              className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-zinc-200 p-3 text-left"
+            >
               <div className="grid size-10 place-items-center rounded-full bg-zinc-50">
                 <Plus className="size-4" />
               </div>
