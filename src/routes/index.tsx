@@ -133,7 +133,7 @@ function Home() {
                   Message
                 </button>
                 <button className="flex-1 rounded-xl bg-accent py-2.5 text-xs font-semibold text-accent-foreground ring-1 ring-accent-ring">
-                  Invite
+                  Call
                 </button>
               </div>
             </li>
