@@ -4,6 +4,8 @@ import { Sparkles, ChevronRight } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
+import { FakeMessageSheet } from "@/components/FakeMessageSheet";
+import { FakeCallSheet } from "@/components/FakeCallSheet";
 import { me, type Family, type Kid, type Match } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
 import { useFamilies } from "@/lib/familiesContext";
