@@ -113,7 +113,7 @@ function Home() {
           <p className="text-xs text-muted-foreground">Matches today</p>
         </div>
         <div className="rounded-2xl bg-card p-4 ring-1 ring-black/5">
-          <p className="text-2xl font-semibold tracking-tight">4</p>
+          <p className="text-2xl font-semibold tracking-tight">{families.length}</p>
           <p className="text-xs text-muted-foreground">Trusted families</p>
         </div>
       </section>
