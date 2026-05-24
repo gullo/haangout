@@ -49,6 +49,8 @@ function Home() {
   const { kids } = useKids();
   const { families } = useFamilies();
   const [playNowOpen, setPlayNowOpen] = useState(false);
+  const [messageMatch, setMessageMatch] = useState<Match | null>(null);
+  const [callMatch, setCallMatch] = useState<Match | null>(null);
   const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
   const activeKids = kids.filter((k) => activeKidIds.includes(k.id));
   const todayMatches = useMemo(() => buildMatches(kids, families), [kids, families]);
@@ -175,10 +177,16 @@ function Home() {
                 </div>
               </div>
               <div className="mt-4 flex gap-2">
-                <button className="flex-1 rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5">
+                <button
+                  onClick={() => setMessageMatch(m)}
+                  className="flex-1 rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5"
+                >
                   Message
                 </button>
-                <button className="flex-1 rounded-xl bg-transparent py-2.5 text-xs font-semibold text-accent ring-1 ring-accent/60 hover:bg-accent/5">
+                <button
+                  onClick={() => setCallMatch(m)}
+                  className="flex-1 rounded-xl bg-transparent py-2.5 text-xs font-semibold text-accent ring-1 ring-accent/60 hover:bg-accent/5"
+                >
                   Call
                 </button>
               </div>
@@ -193,6 +201,41 @@ function Home() {
         activeKidIds={activeKidIds}
         onToggleKid={toggleKid}
       />
+
+      <FakeMessageSheet
+        open={messageMatch !== null}
+        onClose={() => setMessageMatch(null)}
+        contactName={
+          messageMatch
+            ? `${messageMatch.family.parentName}${
+                messageMatch.family.partnerName ? ` & ${messageMatch.family.partnerName}` : ""
+              }`
+            : ""
+        }
+        contactInitials={messageMatch?.family.initials ?? ""}
+        contactColor={messageMatch?.family.color ?? "var(--accent)"}
+        prefill={
+          messageMatch
+            ? `Hey ${messageMatch.family.parentName}! ${messageMatch.myKid.name} and ${messageMatch.theirKid.name} are both free ${messageMatch.windowLabel.toLowerCase()}. Want to set up a hangout?`
+            : ""
+        }
+      />
+
+      <FakeCallSheet
+        open={callMatch !== null}
+        onClose={() => setCallMatch(null)}
+        contactName={
+          callMatch
+            ? `${callMatch.family.parentName}${
+                callMatch.family.partnerName ? ` & ${callMatch.family.partnerName}` : ""
+              }`
+            : ""
+        }
+        contactInitials={callMatch?.family.initials ?? ""}
+        contactColor={callMatch?.family.color ?? "var(--accent)"}
+        phone={callMatch?.family.phone ?? ""}
+      />
     </PhoneFrame>
   );
 }
+
