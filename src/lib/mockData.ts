@@ -59,9 +59,11 @@ export const me = {
 
   color: "oklch(0.72 0.13 250)",
   kids: [
-    { id: "k-ava", name: "Ava", age: 4, initials: "A", color: kidColorPalette[0] },
-    { id: "k-theo", name: "Theo", age: 6, initials: "T", color: kidColorPalette[1] },
+    { id: "k-avery", name: "Avery", age: 11, initials: "A", color: kidColorPalette[0] },
+    { id: "k-emmy", name: "Emmy", age: 9, initials: "E", color: kidColorPalette[1] },
+    { id: "k-nick", name: "Nick", age: 7, initials: "N", color: kidColorPalette[2] },
   ] as Kid[],
+
 };
 
 export const families: Family[] = [
@@ -76,7 +78,7 @@ export const families: Family[] = [
     color: "oklch(0.78 0.13 30)",
     kids: [{ id: "k-liam", name: "Liam", age: 4, initials: "L", color: "oklch(0.78 0.13 30)" }],
     // Ava ↔ Liam
-    friendships: [{ myKidId: "k-ava", theirKidId: "k-liam" }],
+    friendships: [{ myKidId: "k-avery", theirKidId: "k-liam" }],
   },
   {
     id: "f-elena",
@@ -89,7 +91,7 @@ export const families: Family[] = [
     color: "oklch(0.78 0.14 330)",
     kids: [{ id: "k-sophie", name: "Sophie", age: 5, initials: "S", color: "oklch(0.78 0.14 330)" }],
     // Ava ↔ Sophie
-    friendships: [{ myKidId: "k-ava", theirKidId: "k-sophie" }],
+    friendships: [{ myKidId: "k-avery", theirKidId: "k-sophie" }],
   },
   {
     id: "f-henderson",
@@ -105,7 +107,7 @@ export const families: Family[] = [
       { id: "k-maya", name: "Maya", age: 6, initials: "M", color: "oklch(0.76 0.13 250)" },
     ],
     // Theo ↔ Maya only
-    friendships: [{ myKidId: "k-theo", theirKidId: "k-maya" }],
+    friendships: [{ myKidId: "k-emmy", theirKidId: "k-maya" }],
   },
   {
     id: "f-jisoo",
@@ -117,15 +119,15 @@ export const families: Family[] = [
     color: "oklch(0.74 0.14 280)",
     kids: [{ id: "k-suri", name: "Suri", age: 4, initials: "S", color: "oklch(0.74 0.14 280)" }],
     // Ava ↔ Suri
-    friendships: [{ myKidId: "k-ava", theirKidId: "k-suri" }],
+    friendships: [{ myKidId: "k-avery", theirKidId: "k-suri" }],
   },
 ];
 
 // Derive today's matches strictly from friendships
 const matchSeeds = [
-  { familyId: "f-marcus", myKidId: "k-ava", theirKidId: "k-liam", window: "Sat 2–5pm", pct: 94 },
-  { familyId: "f-elena", myKidId: "k-ava", theirKidId: "k-sophie", window: "This afternoon", pct: 81 },
-  { familyId: "f-henderson", myKidId: "k-theo", theirKidId: "k-maya", window: "Sun 9–11am", pct: 88 },
+  { familyId: "f-marcus", myKidId: "k-avery", theirKidId: "k-liam", window: "Sat 2–5pm", pct: 94 },
+  { familyId: "f-elena", myKidId: "k-avery", theirKidId: "k-sophie", window: "This afternoon", pct: 81 },
+  { familyId: "f-henderson", myKidId: "k-emmy", theirKidId: "k-maya", window: "Sun 9–11am", pct: 88 },
 ];
 
 export const todayMatches: Match[] = matchSeeds
@@ -162,19 +164,26 @@ export const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
 
 // Per-kid schedules. 0 = busy, 1 = maybe, 2 = free
 export const initialSchedules: Record<string, number[][]> = {
-  "k-ava": [
+  "k-avery": [
     [0, 0, 0, 0, 0, 2, 2],
     [0, 1, 0, 0, 0, 2, 1],
     [0, 2, 0, 1, 0, 2, 0],
     [0, 0, 0, 0, 0, 0, 0],
   ],
-  "k-theo": [
+  "k-emmy": [
     [0, 0, 1, 0, 0, 2, 2],
     [0, 0, 2, 0, 0, 2, 0],
     [0, 0, 0, 0, 2, 0, 0],
     [0, 0, 0, 0, 1, 0, 0],
   ],
+  "k-nick": [
+    [0, 1, 0, 0, 0, 2, 2],
+    [0, 0, 0, 1, 0, 2, 2],
+    [0, 0, 2, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+  ],
 };
+
 
 // Helper: who is my kid friends with (across all families)?
 export function friendsOfMyKid(myKidId: string) {
