@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Sparkles, ChevronRight } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
-import { me, todayMatches } from "@/lib/mockData";
+import { me, families, type Kid, type Match } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
 import { kidsBackground } from "@/lib/kidColors";
 
@@ -12,11 +12,41 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const matchTemplates = [
+  { familyId: "f-marcus", window: "Sat 2–5pm", pct: 94 },
+  { familyId: "f-henderson", window: "Sun 9–11am", pct: 88 },
+  { familyId: "f-elena", window: "This afternoon", pct: 81 },
+  { familyId: "f-jisoo", window: "Tomorrow 10am", pct: 76 },
+];
+
+function buildMatches(kids: Kid[]): Match[] {
+  return kids
+    .map((myKid, i): Match | null => {
+      const tpl = matchTemplates[i % matchTemplates.length];
+      const family = families.find((f) => f.id === tpl.familyId);
+      const theirKid = family?.kids.find(
+        (k) => Math.abs(k.age - myKid.age) <= 2,
+      ) ?? family?.kids[0];
+      if (!family || !theirKid) return null;
+      return {
+        id: `m-${family.id}-${myKid.id}-${theirKid.id}`,
+        family,
+        myKid,
+        theirKid,
+        windowLabel: tpl.window,
+        fullLabel: `${myKid.name} & ${theirKid.name} both free ${tpl.window}`,
+        matchPct: tpl.pct,
+      };
+    })
+    .filter((m): m is Match => m !== null);
+}
+
 function Home() {
   const { kids } = useKids();
   const [playNowOpen, setPlayNowOpen] = useState(false);
   const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
   const activeKids = kids.filter((k) => activeKidIds.includes(k.id));
+  const todayMatches = useMemo(() => buildMatches(kids), [kids]);
   const isLive = activeKids.length > 0;
   const ctaBg = isLive ? kidsBackground(activeKids) : "var(--accent)";
   const toggleKid = (kidId: string) =>
