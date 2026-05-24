@@ -95,7 +95,7 @@ function CalendarPage() {
     else addRecurrence(rule);
   }
 
-  if (!activeKid) {
+  if (!activeKid || !weekStart) {
     return (
       <PhoneFrame>
         <div className="p-8 text-center text-sm text-muted-foreground">
