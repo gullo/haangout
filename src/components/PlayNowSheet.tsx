@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { X, MapPin, Phone, MessageCircle, Check, Clock, Sunrise, Sun, Sunset } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { X, MapPin, Phone, MessageCircle, Check, Clock, Sunrise, Sun, Sunset, Bell } from "lucide-react";
 import { Avatar } from "./Avatar";
 import { playNowFamilies, type Kid } from "@/lib/mockData";
 import { kidsBackground } from "@/lib/kidColors";
@@ -28,6 +28,20 @@ const DEFAULT_AVAIL: KidAvail = { mode: "now", hours: 2, dayParts: ["afternoon"]
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
   const { kids } = useKids();
   const [avail, setAvail] = useState<Record<string, KidAvail>>({});
+  const [pingedKidIds, setPingedKidIds] = useState<string[]>([]);
+  const [notice, setNotice] = useState<{ kidName: string; parentName: string } | null>(null);
+  const noticeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function pingKid(kidName: string, parentName: string, kidId: string) {
+    setPingedKidIds((prev) => (prev.includes(kidId) ? prev : [...prev, kidId]));
+    setNotice({ kidName, parentName });
+    if (noticeTimer.current) clearTimeout(noticeTimer.current);
+    noticeTimer.current = setTimeout(() => setNotice(null), 3800);
+  }
+
+  useEffect(() => () => {
+    if (noticeTimer.current) clearTimeout(noticeTimer.current);
+  }, []);
   const getAvail = (id: string): KidAvail => avail[id] ?? DEFAULT_AVAIL;
   const updateAvail = (id: string, patch: Partial<KidAvail>) =>
     setAvail((cur) => ({ ...cur, [id]: { ...getAvail(id), ...patch } }));
@@ -67,6 +81,30 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
+
+      {/* Faux push-notification banner */}
+      <div
+        className={`pointer-events-none absolute inset-x-3 top-3 z-50 transition-all duration-300 ${
+          notice ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
+        }`}
+      >
+        <div className="flex items-start gap-3 rounded-2xl bg-white/85 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5 backdrop-blur-xl">
+          <div className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-accent text-white">
+            <Bell className="size-4" fill="currentColor" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-[12px] font-semibold text-zinc-900">Hangout</p>
+              <p className="text-[10px] text-zinc-500">now</p>
+            </div>
+            <p className="mt-0.5 text-[12px] leading-snug text-zinc-700">
+              <span className="font-semibold">Ping sent to {notice?.parentName}</span> — asking
+              if {notice?.kidName} wants to hang out.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Sheet */}
       <div
         className={`absolute inset-x-0 bottom-0 z-30 overflow-hidden rounded-t-[2rem] bg-page pb-10 shadow-2xl transition-transform duration-300 ease-out ${
@@ -250,8 +288,16 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                       </p>
                     </div>
                     {status === "free" ? (
-                      <button className="rounded-full bg-accent-soft px-3.5 py-2 text-[11px] font-bold uppercase tracking-wider text-accent">
-                        Ping
+                      <button
+                        onClick={() => pingKid(kid.name, family.parentName, kid.id)}
+                        disabled={pingedKidIds.includes(kid.id)}
+                        className={`rounded-full px-3.5 py-2 text-[11px] font-bold uppercase tracking-wider transition ${
+                          pingedKidIds.includes(kid.id)
+                            ? "bg-success/15 text-success"
+                            : "bg-accent-soft text-accent active:scale-95"
+                        }`}
+                      >
+                        {pingedKidIds.includes(kid.id) ? "Pinged" : "Ping"}
                       </button>
                     ) : (
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
