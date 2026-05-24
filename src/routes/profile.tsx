@@ -210,7 +210,9 @@ function ProfilePage() {
         onClose={() => setManagerOpen(false)}
         kids={kids}
         onChange={setKids}
+        initialEditKidId={editKidId}
       />
+
     </PhoneFrame>
   );
 }
