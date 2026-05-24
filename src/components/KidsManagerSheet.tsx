@@ -8,6 +8,7 @@ type Props = {
   onClose: () => void;
   kids: Kid[];
   onChange: (kids: Kid[]) => void;
+  initialEditKidId?: string | null;
 };
 
 type Draft = {
@@ -21,12 +22,20 @@ function emptyDraft(): Draft {
   return { id: null, name: "", age: "", color: kidColorPalette[0] };
 }
 
-export function KidsManagerSheet({ open, onClose, kids, onChange }: Props) {
+export function KidsManagerSheet({ open, onClose, kids, onChange, initialEditKidId }: Props) {
   const [draft, setDraft] = useState<Draft | null>(null);
 
   useEffect(() => {
-    if (!open) setDraft(null);
-  }, [open]);
+    if (!open) {
+      setDraft(null);
+      return;
+    }
+    if (initialEditKidId) {
+      const k = kids.find((x) => x.id === initialEditKidId);
+      if (k) setDraft({ id: k.id, name: k.name, age: String(k.age), color: k.color });
+    }
+  }, [open, initialEditKidId]);
+
 
   if (!open) return null;
 
