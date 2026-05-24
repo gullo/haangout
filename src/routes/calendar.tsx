@@ -42,9 +42,10 @@ function CalendarPage() {
 
   const activeKid = kids.find((k) => k.id === activeKidId) ?? kids[0];
 
+  const isAll = activeKidId === "all";
   const kidRecurrences = useMemo(
-    () => recurrences.filter((r) => r.kidId === activeKid?.id),
-    [recurrences, activeKid?.id],
+    () => (isAll ? recurrences : recurrences.filter((r) => r.kidId === activeKid?.id)),
+    [recurrences, activeKid?.id, isAll],
   );
 
   function cycleCell(row: number, col: number) {
@@ -132,8 +133,28 @@ function CalendarPage() {
 
         {/* Kid switcher */}
         <div className="mt-5 flex flex-wrap gap-2">
+          <button
+            onClick={() => setActiveKidId("all")}
+            className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors"
+            style={
+              activeKidId === "all"
+                ? { background: "oklch(0.25 0.02 270)", color: "white" }
+                : { background: "oklch(0.95 0.005 270)", color: "oklch(0.4 0.02 270)" }
+            }
+          >
+            <span className="flex -space-x-1">
+              {kids.slice(0, 3).map((k) => (
+                <span
+                  key={k.id}
+                  className="size-4 rounded-full ring-2 ring-white"
+                  style={{ background: k.color }}
+                />
+              ))}
+            </span>
+            All
+          </button>
           {kids.map((k) => {
-            const active = k.id === activeKid.id;
+            const active = k.id === activeKidId;
             return (
               <button
                 key={k.id}
@@ -157,7 +178,9 @@ function CalendarPage() {
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground">
-          Tap a block to mark {activeKid.name}&apos;s free time. Striped cells come from recurring rules.
+          {activeKidId === "all"
+            ? "Showing all kids. Tap a kid above to edit their schedule."
+            : `Tap a block to mark ${activeKid.name}'s free time. Striped cells come from recurring rules.`}
         </p>
       </header>
 
@@ -185,6 +208,39 @@ function CalendarPage() {
                 {blockName}
               </span>
               {dayLabels.map((_, ci) => {
+                if (activeKidId === "all") {
+                  const present = kids
+                    .map((k) => ({ k, r: resolveCell(k.id, weekStart, ri, ci) }))
+                    .filter((x) => x.r.value > 0);
+                  return (
+                    <div
+                      key={ci}
+                      className="grid h-11 grid-cols-3 gap-0.5 rounded-lg bg-zinc-50 p-1 ring-1 ring-zinc-100"
+                      aria-label={`${blockName} ${dayFull[ci]}`}
+                    >
+                      {kids.map((k) => {
+                        const hit = present.find((p) => p.k.id === k.id);
+                        if (!hit) return <span key={k.id} className="rounded-sm bg-transparent" />;
+                        const bg =
+                          hit.r.value === 2
+                            ? k.color
+                            : `color-mix(in oklab, ${k.color} 35%, transparent)`;
+                        return (
+                          <span
+                            key={k.id}
+                            className="rounded-sm"
+                            style={{
+                              background: bg,
+                              backgroundImage: hit.r.fromRecurrence
+                                ? "repeating-linear-gradient(135deg, rgba(255,255,255,0.5) 0 2px, transparent 2px 6px)"
+                                : undefined,
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
                 const { value, fromRecurrence } = resolveCell(activeKid.id, weekStart, ri, ci);
                 return (
                   <button
@@ -258,19 +314,22 @@ function CalendarPage() {
           </button>
         ) : (
           <ul className="space-y-2">
-            {kidRecurrences.map((r) => (
+            {kidRecurrences.map((r) => {
+              const ruleKid = kids.find((k) => k.id === r.kidId) ?? activeKid;
+              return (
               <li
                 key={r.id}
                 className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
               >
                 <span
                   className="grid size-9 shrink-0 place-items-center rounded-xl text-[10px] font-bold uppercase text-white"
-                  style={{ background: activeKid.color }}
+                  style={{ background: ruleKid.color }}
                 >
                   {r.status === 2 ? "Free" : "Maybe"}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold">
+                    {isAll && <span className="text-zinc-400">{ruleKid.name} · </span>}
                     {r.days.map((d) => dayFull[d]).join(" · ")}
                   </p>
                   <p className="truncate text-[11px] text-muted-foreground">
@@ -296,7 +355,8 @@ function CalendarPage() {
                   <Trash2 className="size-3.5 text-destructive" />
                 </button>
               </li>
-            ))}
+              );
+            })}
           </ul>
         )}
       </section>
