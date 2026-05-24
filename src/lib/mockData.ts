@@ -164,19 +164,26 @@ export const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
 
 // Per-kid schedules. 0 = busy, 1 = maybe, 2 = free
 export const initialSchedules: Record<string, number[][]> = {
-  "k-ava": [
+  "k-avery": [
     [0, 0, 0, 0, 0, 2, 2],
     [0, 1, 0, 0, 0, 2, 1],
     [0, 2, 0, 1, 0, 2, 0],
     [0, 0, 0, 0, 0, 0, 0],
   ],
-  "k-theo": [
+  "k-emmy": [
     [0, 0, 1, 0, 0, 2, 2],
     [0, 0, 2, 0, 0, 2, 0],
     [0, 0, 0, 0, 2, 0, 0],
     [0, 0, 0, 0, 1, 0, 0],
   ],
+  "k-nick": [
+    [0, 1, 0, 0, 0, 2, 2],
+    [0, 0, 0, 1, 0, 2, 2],
+    [0, 0, 2, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+  ],
 };
+
 
 // Helper: who is my kid friends with (across all families)?
 export function friendsOfMyKid(myKidId: string) {
