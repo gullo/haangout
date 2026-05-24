@@ -10,6 +10,7 @@ import {
   addDays,
   getWeekStart,
   formatWeekRange,
+  formatTimeLabel,
   type Recurrence,
 } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
