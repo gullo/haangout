@@ -42,9 +42,10 @@ function CalendarPage() {
 
   const activeKid = kids.find((k) => k.id === activeKidId) ?? kids[0];
 
+  const isAll = activeKidId === "all";
   const kidRecurrences = useMemo(
-    () => recurrences.filter((r) => r.kidId === activeKid?.id),
-    [recurrences, activeKid?.id],
+    () => (isAll ? recurrences : recurrences.filter((r) => r.kidId === activeKid?.id)),
+    [recurrences, activeKid?.id, isAll],
   );
 
   function cycleCell(row: number, col: number) {
