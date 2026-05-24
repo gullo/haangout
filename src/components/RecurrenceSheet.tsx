@@ -299,21 +299,22 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
               </div>
             </div>
 
-            <div className="flex gap-2 pt-1">
-              <button
-                onClick={onClose}
-                className="flex-1 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold ring-1 ring-black/5"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={save}
-                disabled={!canSave}
-                className="flex-1 rounded-2xl bg-accent py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-pop)] disabled:opacity-40"
-              >
-                {editing ? "Save" : "Add rule"}
-              </button>
-            </div>
+          </div>
+
+          <div className="flex gap-2 border-t border-black/5 bg-card px-5 pb-8 pt-3">
+            <button
+              onClick={onClose}
+              className="flex-1 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold ring-1 ring-black/5"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={save}
+              disabled={!canSave}
+              className="flex-1 rounded-2xl bg-accent py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-pop)] disabled:opacity-40"
+            >
+              {editing ? "Save" : "Add rule"}
+            </button>
           </div>
         </div>
       </div>
