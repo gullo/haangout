@@ -90,7 +90,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       phone: phone.trim() || "—",
       address: address.trim() || "—",
       distanceMi: Math.round(Math.random() * 18) / 10 + 0.2,
-      color,
+      color: familyKids[0]?.color ?? kidColorPalette[3],
       kids: familyKids,
       friendships,
     };
