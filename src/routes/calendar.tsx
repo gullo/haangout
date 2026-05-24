@@ -112,7 +112,7 @@ function CalendarPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Schedule</h1>
           <div className="flex items-center gap-1">
             <button
-              onClick={() => setWeekStart((d) => addDays(d, -7))}
+              onClick={() => setWeekStart((d) => addDays(d ?? new Date(), -7))}
               className="grid size-8 place-items-center rounded-full bg-zinc-100"
               aria-label="Previous week"
             >
@@ -120,7 +120,7 @@ function CalendarPage() {
             </button>
             <span className="text-sm font-medium">{formatWeekRange(weekStart)}</span>
             <button
-              onClick={() => setWeekStart((d) => addDays(d, 7))}
+              onClick={() => setWeekStart((d) => addDays(d ?? new Date(), 7))}
               className="grid size-8 place-items-center rounded-full bg-zinc-100"
               aria-label="Next week"
             >
