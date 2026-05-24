@@ -40,6 +40,12 @@ function CalendarPage() {
   }, []);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [editing, setEditing] = useState<Recurrence | null>(null);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+  useEffect(() => {
+    if (savedAt === null) return;
+    const t = setTimeout(() => setSavedAt(null), 2000);
+    return () => clearTimeout(t);
+  }, [savedAt]);
 
   const activeKid = kids.find((k) => k.id === activeKidId) ?? kids[0];
 
