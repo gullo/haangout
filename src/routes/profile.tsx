@@ -123,7 +123,7 @@ function ProfilePage() {
         <div className="mb-3 flex items-center justify-between px-1">
           <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-400">My kids</h2>
           <button
-            onClick={() => setManagerOpen(true)}
+            onClick={() => openManager()}
             className="text-xs font-semibold text-accent"
           >
             Manage
@@ -131,26 +131,29 @@ function ProfilePage() {
         </div>
         <ul className="space-y-2">
           {kids.map((k) => (
-            <li
-              key={k.id}
-              className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
-            >
-              <Avatar initials={k.initials} color={k.color} size={40} />
-              <div className="flex-1">
-                <p className="text-sm font-semibold">{k.name}</p>
-                <p className="text-xs text-muted-foreground">Age {k.age}</p>
-              </div>
-              <span
-                className="mr-1 size-3 rounded-full ring-2 ring-white"
-                style={{ background: k.color }}
-                title="Kid color"
-              />
-              <ChevronRight className="size-4 text-zinc-300" />
+            <li key={k.id}>
+              <button
+                onClick={() => openManager(k.id)}
+                className="flex w-full items-center gap-3 rounded-2xl bg-card p-3 text-left ring-1 ring-black/5 transition active:scale-[0.99]"
+              >
+                <Avatar initials={k.initials} color={k.color} size={40} />
+                <div className="flex-1">
+                  <p className="text-sm font-semibold">{k.name}</p>
+                  <p className="text-xs text-muted-foreground">Age {k.age}</p>
+                </div>
+                <span
+                  className="mr-1 size-3 rounded-full ring-2 ring-white"
+                  style={{ background: k.color }}
+                  title="Kid color"
+                />
+                <ChevronRight className="size-4 text-zinc-300" />
+              </button>
             </li>
           ))}
           <li>
             <button
-              onClick={() => setManagerOpen(true)}
+              onClick={() => openManager()}
+
               className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-zinc-200 p-3 text-left"
             >
               <div className="grid size-10 place-items-center rounded-full bg-zinc-50">
