@@ -108,11 +108,21 @@ function FamiliesPage() {
                 <button className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5">
                   <Phone className="size-3.5" /> Call
                 </button>
+                <button
+                  onClick={() => removeFamily(f.id)}
+                  className="grid size-10 place-items-center rounded-xl bg-zinc-100 ring-1 ring-black/5"
+                  aria-label={`Remove ${f.parentName}`}
+                >
+                  <Trash2 className="size-3.5 text-destructive" />
+                </button>
               </div>
             </li>
           );
         })}
       </ul>
+
+      <AddFamilySheet open={addOpen} onClose={() => setAddOpen(false)} onAdd={addFamily} />
     </PhoneFrame>
   );
 }
+
