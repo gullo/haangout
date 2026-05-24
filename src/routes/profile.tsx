@@ -16,7 +16,7 @@ export const Route = createFileRoute("/profile")({
   component: ProfilePage,
 });
 
-const INVITE_LINK = "playdate.app/i/sarah-2X9F";
+const INVITE_LINK = "haangout.app/i/sarah-2X9F";
 
 function ProfilePage() {
   const [copied, setCopied] = useState(false);
