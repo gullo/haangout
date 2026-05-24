@@ -149,6 +149,61 @@ export const initialSchedules: Record<string, number[][]> = {
   ],
 };
 
+// Recurring availability rules. status 1 = maybe, 2 = free.
+export type Recurrence = {
+  id: string;
+  kidId: string;
+  status: 1 | 2;
+  days: number[];   // 0..6, Mon-first to match dayLabels
+  blocks: number[]; // 0..3, indices into blockLabels
+  startDate: string;       // ISO yyyy-mm-dd
+  endDate: string | null;  // null = forever
+};
+
+export function isoDate(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+// Monday-based week start
+export function getWeekStart(d: Date): Date {
+  const out = new Date(d);
+  out.setHours(0, 0, 0, 0);
+  const dow = out.getDay(); // 0 = Sun
+  const delta = dow === 0 ? -6 : 1 - dow;
+  out.setDate(out.getDate() + delta);
+  return out;
+}
+
+export function addDays(d: Date, n: number): Date {
+  const out = new Date(d);
+  out.setDate(out.getDate() + n);
+  return out;
+}
+
+export function formatWeekRange(weekStart: Date): string {
+  const end = addDays(weekStart, 6);
+  const monthFmt = (x: Date) => x.toLocaleDateString("en-US", { month: "short" });
+  if (weekStart.getMonth() === end.getMonth()) {
+    return `${monthFmt(weekStart)} ${weekStart.getDate()} – ${end.getDate()}`;
+  }
+  return `${monthFmt(weekStart)} ${weekStart.getDate()} – ${monthFmt(end)} ${end.getDate()}`;
+}
+
+export const initialRecurrences: Recurrence[] = [
+  {
+    id: "r-avery-mwf-pm",
+    kidId: "k-avery",
+    status: 2,
+    days: [0, 2, 4], // Mon, Wed, Fri
+    blocks: [2],     // Afternoon
+    startDate: "2025-01-01",
+    endDate: null,
+  },
+];
+
 
 // Helper: who is my kid friends with (across all families)?
 export function friendsOfMyKid(myKidId: string) {
