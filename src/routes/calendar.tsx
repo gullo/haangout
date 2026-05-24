@@ -317,44 +317,44 @@ function CalendarPage() {
             {kidRecurrences.map((r) => {
               const ruleKid = kids.find((k) => k.id === r.kidId) ?? activeKid;
               return (
-              <li
-                key={r.id}
-                className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
-              >
-                <span
-                  className="grid size-9 shrink-0 place-items-center rounded-xl text-[10px] font-bold uppercase text-white"
-                  style={{ background: ruleKid.color }}
+                <li
+                  key={r.id}
+                  className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
                 >
-                  {r.status === 2 ? "Free" : "Maybe"}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-semibold">
-                    {isAll && <span className="text-zinc-400">{ruleKid.name} · </span>}
-                    {r.days.map((d) => dayFull[d]).join(" · ")}
-                  </p>
-                  <p className="truncate text-[11px] text-muted-foreground">
-                    {r.timeRange
-                      ? `${formatTimeLabel(r.timeRange.start)}–${formatTimeLabel(r.timeRange.end)}`
-                      : r.blocks.map((b) => blockLabels[b]).join(", ")}{" "}
-                    · From {formatDate(r.startDate)} ·{" "}
-                    {r.endDate ? `Until ${formatDate(r.endDate)}` : "Forever"}
-                  </p>
-                </div>
-                <button
-                  onClick={() => openEdit(r)}
-                  className="grid size-8 place-items-center rounded-full bg-zinc-50 ring-1 ring-black/5"
-                  aria-label="Edit rule"
-                >
-                  <Pencil className="size-3.5 text-zinc-600" />
-                </button>
-                <button
-                  onClick={() => removeRecurrence(r.id)}
-                  className="grid size-8 place-items-center rounded-full bg-zinc-50 ring-1 ring-black/5"
-                  aria-label="Delete rule"
-                >
-                  <Trash2 className="size-3.5 text-destructive" />
-                </button>
-              </li>
+                  <span
+                    className="grid size-9 shrink-0 place-items-center rounded-xl text-[10px] font-bold uppercase text-white"
+                    style={{ background: ruleKid.color }}
+                  >
+                    {r.status === 2 ? "Free" : "Maybe"}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold">
+                      {isAll ? <span className="text-zinc-400">{ruleKid.name} · </span> : null}
+                      {r.days.map((d) => dayFull[d]).join(" · ")}
+                    </p>
+                    <p className="truncate text-[11px] text-muted-foreground">
+                      {r.timeRange
+                        ? `${formatTimeLabel(r.timeRange.start)}–${formatTimeLabel(r.timeRange.end)}`
+                        : r.blocks.map((b) => blockLabels[b]).join(", ")}{" "}
+                      · From {formatDate(r.startDate)} ·{" "}
+                      {r.endDate ? `Until ${formatDate(r.endDate)}` : "Forever"}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => openEdit(r)}
+                    className="grid size-8 place-items-center rounded-full bg-zinc-50 ring-1 ring-black/5"
+                    aria-label="Edit rule"
+                  >
+                    <Pencil className="size-3.5 text-zinc-600" />
+                  </button>
+                  <button
+                    onClick={() => removeRecurrence(r.id)}
+                    className="grid size-8 place-items-center rounded-full bg-zinc-50 ring-1 ring-black/5"
+                    aria-label="Delete rule"
+                  >
+                    <Trash2 className="size-3.5 text-destructive" />
+                  </button>
+                </li>
               );
             })}
           </ul>
