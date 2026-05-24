@@ -13,11 +13,12 @@ export const Route = createFileRoute("/")({
 });
 
 const matchTemplates = [
-  { familyId: "f-marcus", window: "Sat 2–5pm", pct: 94 },
-  { familyId: "f-henderson", window: "Sun 9–11am", pct: 88 },
-  { familyId: "f-elena", window: "This afternoon", pct: 81 },
-  { familyId: "f-jisoo", window: "Tomorrow 10am", pct: 76 },
+  { familyId: "f-nina-alex", window: "Sat 2–5pm", pct: 94 },
+  { familyId: "f-nina-alex", window: "This afternoon", pct: 88 },
+  { familyId: "f-nina-alex", window: "Sun 9–11am", pct: 81 },
+  { familyId: "f-nina-alex", window: "Tomorrow 10am", pct: 76 },
 ];
+
 
 function buildMatches(kids: Kid[]): Match[] {
   return kids
