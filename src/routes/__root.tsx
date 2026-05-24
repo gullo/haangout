@@ -125,6 +125,7 @@ function RootComponent() {
         <KidsProvider>
           <FamiliesProvider>
             <Outlet />
+            <Toaster position="top-center" />
           </FamiliesProvider>
         </KidsProvider>
       </ProfileProvider>
