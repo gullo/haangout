@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Plus, Pencil, Trash2, Repeat } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
@@ -16,7 +16,6 @@ import { useKids } from "@/lib/kidsContext";
 
 export const Route = createFileRoute("/calendar")({
   component: CalendarPage,
-  ssr: false,
 });
 
 const dayFull = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -33,7 +32,10 @@ function CalendarPage() {
     resolveCell,
   } = useKids();
   const [activeKidId, setActiveKidId] = useState<string>(kids[0]?.id ?? "");
-  const [weekStart, setWeekStart] = useState<Date>(() => getWeekStart(new Date()));
+  const [weekStart, setWeekStart] = useState<Date | null>(null);
+  useEffect(() => {
+    setWeekStart(getWeekStart(new Date()));
+  }, []);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [editing, setEditing] = useState<Recurrence | null>(null);
 
