@@ -176,7 +176,7 @@ function Home() {
                 <button className="flex-1 rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5">
                   Message
                 </button>
-                <button className="flex-1 rounded-xl bg-accent py-2.5 text-xs font-semibold text-accent-foreground ring-1 ring-accent-ring">
+                <button className="flex-1 rounded-xl bg-transparent py-2.5 text-xs font-semibold text-accent ring-1 ring-accent/60 hover:bg-accent/5">
                   Call
                 </button>
               </div>
