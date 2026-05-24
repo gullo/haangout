@@ -314,19 +314,22 @@ function CalendarPage() {
           </button>
         ) : (
           <ul className="space-y-2">
-            {kidRecurrences.map((r) => (
+            {kidRecurrences.map((r) => {
+              const ruleKid = kids.find((k) => k.id === r.kidId) ?? activeKid;
+              return (
               <li
                 key={r.id}
                 className="flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-black/5"
               >
                 <span
                   className="grid size-9 shrink-0 place-items-center rounded-xl text-[10px] font-bold uppercase text-white"
-                  style={{ background: activeKid.color }}
+                  style={{ background: ruleKid.color }}
                 >
                   {r.status === 2 ? "Free" : "Maybe"}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold">
+                    {isAll && <span className="text-zinc-400">{ruleKid.name} · </span>}
                     {r.days.map((d) => dayFull[d]).join(" · ")}
                   </p>
                   <p className="truncate text-[11px] text-muted-foreground">
