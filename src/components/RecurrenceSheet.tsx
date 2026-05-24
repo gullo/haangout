@@ -107,6 +107,7 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
             </button>
           </div>
 
+          <div className="flex-1 overflow-y-auto">
           <div className="px-6">
             <h2 className="text-xl font-semibold tracking-tight">
               {editing ? "Edit recurring" : "Add recurring"}
