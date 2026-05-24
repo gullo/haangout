@@ -54,8 +54,9 @@ export const kidColorPalette: string[] = [
 ];
 
 export const me = {
-  name: "Sarah",
-  initials: "S",
+  name: "Erika",
+  initials: "E",
+
   color: "oklch(0.72 0.13 250)",
   kids: [
     { id: "k-ava", name: "Ava", age: 4, initials: "A", color: kidColorPalette[0] },
