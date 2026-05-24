@@ -81,6 +81,30 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
+
+      {/* Faux push-notification banner */}
+      <div
+        className={`pointer-events-none absolute inset-x-3 top-3 z-50 transition-all duration-300 ${
+          notice ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
+        }`}
+      >
+        <div className="flex items-start gap-3 rounded-2xl bg-white/85 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5 backdrop-blur-xl">
+          <div className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-accent text-white">
+            <Bell className="size-4" fill="currentColor" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-[12px] font-semibold text-zinc-900">Hangout</p>
+              <p className="text-[10px] text-zinc-500">now</p>
+            </div>
+            <p className="mt-0.5 text-[12px] leading-snug text-zinc-700">
+              <span className="font-semibold">Ping sent to {notice?.parentName}</span> — asking
+              if {notice?.kidName} wants to hang out.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Sheet */}
       <div
         className={`absolute inset-x-0 bottom-0 z-30 overflow-hidden rounded-t-[2rem] bg-page pb-10 shadow-2xl transition-transform duration-300 ease-out ${
