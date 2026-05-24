@@ -235,24 +235,58 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                       </div>
 
                       {a.mode === "now" ? (
-                        <div className="mt-3 flex gap-1.5">
-                          {HOUR_OPTIONS.map((h) => {
-                            const active = a.hours === h;
-                            return (
-                              <button
-                                key={h}
-                                onClick={() => updateAvail(k.id, { hours: h })}
-                                className={`flex-1 rounded-xl py-2 text-xs font-semibold ring-1 transition ${
-                                  active
-                                    ? "text-white ring-transparent"
-                                    : "bg-page text-zinc-700 ring-black/5"
-                                }`}
-                                style={active ? { background: k.color } : undefined}
-                              >
-                                {h}h
-                              </button>
-                            );
-                          })}
+                        <div className="mt-3 space-y-1.5">
+                          <div className="grid grid-cols-2 gap-1.5">
+                            {HOUR_OPTIONS.map((h) => {
+                              const active = a.customUntil === null && a.hours === h;
+                              return (
+                                <button
+                                  key={h}
+                                  onClick={() => updateAvail(k.id, { hours: h, customUntil: null })}
+                                  className={`rounded-xl py-2 text-xs font-semibold ring-1 transition ${
+                                    active
+                                      ? "text-white ring-transparent"
+                                      : "bg-page text-zinc-700 ring-black/5"
+                                  }`}
+                                  style={active ? { background: k.color } : undefined}
+                                >
+                                  {untilLabel(h)}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <button
+                              onClick={() => {
+                                if (a.customUntil) {
+                                  updateAvail(k.id, { customUntil: null });
+                                } else {
+                                  const d = new Date();
+                                  d.setHours(d.getHours() + 2);
+                                  d.setMinutes(0, 0, 0);
+                                  const hh = String(d.getHours()).padStart(2, "0");
+                                  const mm = String(d.getMinutes()).padStart(2, "0");
+                                  updateAvail(k.id, { customUntil: `${hh}:${mm}` });
+                                }
+                              }}
+                              className={`flex-1 rounded-xl py-2 text-xs font-semibold ring-1 transition ${
+                                a.customUntil !== null
+                                  ? "text-white ring-transparent"
+                                  : "bg-page text-zinc-700 ring-black/5"
+                              }`}
+                              style={a.customUntil !== null ? { background: k.color } : undefined}
+                            >
+                              {a.customUntil ? formatCustomUntil(a.customUntil) : "Custom time"}
+                            </button>
+                            {a.customUntil !== null && (
+                              <input
+                                type="time"
+                                value={a.customUntil}
+                                onChange={(e) => updateAvail(k.id, { customUntil: e.target.value })}
+                                className="rounded-xl bg-page px-2.5 py-2 text-xs font-semibold ring-1 ring-black/5 outline-none focus:ring-accent"
+                              />
+                            )}
+                          </div>
                         </div>
                       ) : (
                         <div className="mt-3 grid grid-cols-3 gap-1.5">
