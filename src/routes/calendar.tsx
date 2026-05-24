@@ -355,7 +355,8 @@ function CalendarPage() {
                   <Trash2 className="size-3.5 text-destructive" />
                 </button>
               </li>
-            ))}
+              );
+            })}
           </ul>
         )}
       </section>
