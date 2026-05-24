@@ -23,6 +23,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
   const { kids: myKids } = useKids();
   const [parentName, setParentName] = useState("");
   const [partnerName, setPartnerName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [color, setColor] = useState(kidColorPalette[3]);
@@ -32,6 +33,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
     if (!open) {
       setParentName("");
       setPartnerName("");
+      setLastName("");
       setAddress("");
       setPhone("");
       setColor(kidColorPalette[3]);
@@ -85,6 +87,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       id,
       parentName: p,
       partnerName: partner || undefined,
+      lastName: lastName.trim() || undefined,
       initials: initials || p.charAt(0).toUpperCase(),
       phone: phone.trim() || "—",
       address: address.trim() || "—",
@@ -134,6 +137,9 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
                   {partnerName.trim() && (
                     <span className="font-normal text-zinc-400"> & {partnerName.trim()}</span>
                   )}
+                  {lastName.trim() && (
+                    <span className="text-zinc-500"> {lastName.trim()}</span>
+                  )}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {address.trim() || "Add address"}
@@ -160,6 +166,15 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
                 />
               </Field>
             </div>
+
+            <Field label="Last name">
+              <input
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Rivera"
+                className="w-full rounded-xl bg-zinc-50 px-3 py-2.5 text-sm ring-1 ring-black/5 outline-none focus:ring-accent"
+              />
+            </Field>
 
             <Field label="Address">
               <input
