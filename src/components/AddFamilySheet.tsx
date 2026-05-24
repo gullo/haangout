@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X, Plus, Trash2, Check } from "lucide-react";
+import { X, Plus, Trash2 } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { kidColorPalette, type Family, type Kid } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
