@@ -363,7 +363,15 @@ function CalendarPage() {
       </section>
 
       <section className="mt-6 px-6">
-        <button className="w-full rounded-2xl bg-zinc-900 py-4 text-sm font-semibold text-white">
+        <button
+          onClick={() =>
+            toast.success("Schedule saved", {
+              description: `${isAll ? "All kids" : activeKid.name} · ${formatWeekRange(weekStart)}`,
+              icon: <Check className="size-4" />,
+            })
+          }
+          className="w-full rounded-2xl bg-zinc-900 py-4 text-sm font-semibold text-white active:scale-[0.99] transition-transform"
+        >
           Save schedule
         </button>
       </section>
