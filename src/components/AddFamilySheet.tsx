@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X, Plus, Trash2, Check } from "lucide-react";
+import { X, Plus, Trash2 } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { kidColorPalette, type Family, type Kid } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
@@ -26,7 +26,6 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [color, setColor] = useState(kidColorPalette[3]);
   const [kids, setKids] = useState<KidDraft[]>([emptyKid(kidColorPalette[4])]);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       setLastName("");
       setAddress("");
       setPhone("");
-      setColor(kidColorPalette[3]);
       setKids([emptyKid(kidColorPalette[4])]);
     }
   }, [open]);
@@ -92,7 +90,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       phone: phone.trim() || "—",
       address: address.trim() || "—",
       distanceMi: Math.round(Math.random() * 18) / 10 + 0.2,
-      color,
+      color: familyKids[0]?.color ?? kidColorPalette[3],
       kids: familyKids,
       friendships,
     };
@@ -128,7 +126,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
             <div className="flex items-center gap-4 rounded-2xl bg-zinc-50 p-4 ring-1 ring-black/5">
               <Avatar
                 initials={(parentName.trim()[0] || "?").toUpperCase()}
-                color={color}
+                color={kids[0]?.color ?? kidColorPalette[3]}
                 size={52}
               />
               <div className="flex-1">
@@ -195,28 +193,6 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
               />
             </Field>
 
-            <div>
-              <span className="mb-2 block text-[11px] font-bold uppercase tracking-wider text-zinc-500">
-                Family color
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {kidColorPalette.map((c) => {
-                  const active = color === c;
-                  return (
-                    <button
-                      key={c}
-                      onClick={() => setColor(c)}
-                      style={{ background: c }}
-                      className={`grid size-9 place-items-center rounded-full ring-2 transition ${
-                        active ? "ring-zinc-900 scale-110" : "ring-white"
-                      }`}
-                    >
-                      {active && <Check className="size-3.5 text-white" />}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
 
             <div>
               <div className="mb-2 flex items-center justify-between">
