@@ -298,8 +298,10 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
                 </div>
               </div>
             </div>
-
           </div>
+          </div>
+
+
 
           <div className="flex gap-2 border-t border-black/5 bg-card px-5 pb-8 pt-3">
             <button
