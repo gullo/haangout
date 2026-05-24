@@ -53,8 +53,9 @@ function ProfilePage() {
           <div className="flex items-center gap-4">
             <Avatar initials={me.initials} color={me.color} size={64} />
             <div>
-              <p className="text-lg font-semibold">Sarah Mitchell</p>
-              <p className="text-xs text-muted-foreground">sarah@example.com</p>
+              <p className="text-lg font-semibold">Erika Gullo</p>
+              <p className="text-xs text-muted-foreground">erika@example.com</p>
+
               <p className="text-xs text-muted-foreground">(415) 555-2018</p>
             </div>
           </div>
