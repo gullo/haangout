@@ -4,31 +4,32 @@ import { Sparkles, ChevronRight } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
-import { me, families, type Kid, type Match } from "@/lib/mockData";
+import { me, type Family, type Kid, type Match } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
+import { useFamilies } from "@/lib/familiesContext";
 import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const matchTemplates = [
-  { familyId: "f-nina-alex", window: "Sat 2–5pm", pct: 94 },
-  { familyId: "f-nina-alex", window: "This afternoon", pct: 88 },
-  { familyId: "f-nina-alex", window: "Sun 9–11am", pct: 81 },
-  { familyId: "f-nina-alex", window: "Tomorrow 10am", pct: 76 },
+const matchWindows = [
+  { window: "Sat 2–5pm", pct: 94 },
+  { window: "This afternoon", pct: 88 },
+  { window: "Sun 9–11am", pct: 81 },
+  { window: "Tomorrow 10am", pct: 76 },
 ];
 
 
-function buildMatches(kids: Kid[]): Match[] {
+function buildMatches(kids: Kid[], families: Family[]): Match[] {
+  if (families.length === 0) return [];
   return kids
     .map((myKid, i): Match | null => {
-      const tpl = matchTemplates[i % matchTemplates.length];
-      const family = families.find((f) => f.id === tpl.familyId);
-      const theirKid = family?.kids.find(
-        (k) => Math.abs(k.age - myKid.age) <= 2,
-      ) ?? family?.kids[0];
-      if (!family || !theirKid) return null;
+      const tpl = matchWindows[i % matchWindows.length];
+      const family = families[i % families.length];
+      const theirKid =
+        family.kids.find((k) => Math.abs(k.age - myKid.age) <= 2) ?? family.kids[0];
+      if (!theirKid) return null;
       return {
         id: `m-${family.id}-${myKid.id}-${theirKid.id}`,
         family,
@@ -44,10 +45,11 @@ function buildMatches(kids: Kid[]): Match[] {
 
 function Home() {
   const { kids } = useKids();
+  const { families } = useFamilies();
   const [playNowOpen, setPlayNowOpen] = useState(false);
   const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
   const activeKids = kids.filter((k) => activeKidIds.includes(k.id));
-  const todayMatches = useMemo(() => buildMatches(kids), [kids]);
+  const todayMatches = useMemo(() => buildMatches(kids, families), [kids, families]);
   const isLive = activeKids.length > 0;
   const ctaBg = isLive ? kidsBackground(activeKids) : "var(--accent)";
   const toggleKid = (kidId: string) =>
@@ -111,7 +113,7 @@ function Home() {
           <p className="text-xs text-muted-foreground">Matches today</p>
         </div>
         <div className="rounded-2xl bg-card p-4 ring-1 ring-black/5">
-          <p className="text-2xl font-semibold tracking-tight">4</p>
+          <p className="text-2xl font-semibold tracking-tight">{families.length}</p>
           <p className="text-xs text-muted-foreground">Trusted families</p>
         </div>
       </section>

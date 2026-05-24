@@ -1,23 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Plus, Phone, MapPin, MessageCircle, Heart } from "lucide-react";
+import { useState } from "react";
+import { Plus, Phone, MapPin, MessageCircle, Heart, Trash2 } from "lucide-react";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
-import { families, myKidsInFamily } from "@/lib/mockData";
+import { AddFamilySheet } from "@/components/AddFamilySheet";
+import { useFamilies } from "@/lib/familiesContext";
+import { useKids } from "@/lib/kidsContext";
+import type { Family, Kid } from "@/lib/mockData";
 
 export const Route = createFileRoute("/families")({
   component: FamiliesPage,
 });
 
+function myKidsInFamilyFor(family: Family, myKids: Kid[]): Kid[] {
+  return family.friendships
+    .map((fr) => myKids.find((k) => k.id === fr.myKidId))
+    .filter((k): k is Kid => Boolean(k));
+}
+
 function FamiliesPage() {
+  const { families, addFamily, removeFamily } = useFamilies();
+  const { kids: myKids } = useKids();
+  const [addOpen, setAddOpen] = useState(false);
   return (
     <PhoneFrame>
       <header className="px-6 pt-4">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Families</h1>
-            <p className="text-sm text-muted-foreground">{families.length} trusted parents</p>
+            <p className="text-sm text-muted-foreground">
+              {families.length} trusted parent{families.length === 1 ? "" : "s"}
+            </p>
           </div>
-          <button className="grid size-11 place-items-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-pop)]">
+          <button
+            onClick={() => setAddOpen(true)}
+            className="grid size-11 place-items-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-pop)]"
+            aria-label="Add family"
+          >
             <Plus className="size-5" />
           </button>
         </div>
@@ -30,7 +49,7 @@ function FamiliesPage() {
 
       <ul className="mt-5 space-y-3 px-5">
         {families.map((f) => {
-          const myKidsFriends = myKidsInFamily(f);
+          const myKidsFriends = myKidsInFamilyFor(f, myKids);
           return (
             <li key={f.id} className="rounded-3xl bg-card p-5 ring-1 ring-black/5">
               <div className="flex items-start gap-4">
@@ -89,11 +108,21 @@ function FamiliesPage() {
                 <button className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5">
                   <Phone className="size-3.5" /> Call
                 </button>
+                <button
+                  onClick={() => removeFamily(f.id)}
+                  className="grid size-10 place-items-center rounded-xl bg-zinc-100 ring-1 ring-black/5"
+                  aria-label={`Remove ${f.parentName}`}
+                >
+                  <Trash2 className="size-3.5 text-destructive" />
+                </button>
               </div>
             </li>
           );
         })}
       </ul>
+
+      <AddFamilySheet open={addOpen} onClose={() => setAddOpen(false)} onAdd={addFamily} />
     </PhoneFrame>
   );
 }
+
