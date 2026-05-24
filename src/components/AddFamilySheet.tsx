@@ -23,6 +23,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
   const { kids: myKids } = useKids();
   const [parentName, setParentName] = useState("");
   const [partnerName, setPartnerName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [color, setColor] = useState(kidColorPalette[3]);
@@ -32,6 +33,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
     if (!open) {
       setParentName("");
       setPartnerName("");
+      setLastName("");
       setAddress("");
       setPhone("");
       setColor(kidColorPalette[3]);
@@ -85,6 +87,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       id,
       parentName: p,
       partnerName: partner || undefined,
+      lastName: lastName.trim() || undefined,
       initials: initials || p.charAt(0).toUpperCase(),
       phone: phone.trim() || "—",
       address: address.trim() || "—",

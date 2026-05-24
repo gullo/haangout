@@ -15,6 +15,7 @@ export type Family = {
   id: string;
   parentName: string;
   partnerName?: string;
+  lastName?: string;
   initials: string;
   phone: string;
   address: string;
