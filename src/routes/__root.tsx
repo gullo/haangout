@@ -10,6 +10,7 @@ import {
 import { KidsProvider } from "@/lib/kidsContext";
 import { FamiliesProvider } from "@/lib/familiesContext";
 import { ProfileProvider } from "@/lib/profileContext";
+import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 
