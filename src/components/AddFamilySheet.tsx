@@ -26,7 +26,6 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [color, setColor] = useState(kidColorPalette[3]);
   const [kids, setKids] = useState<KidDraft[]>([emptyKid(kidColorPalette[4])]);
 
   useEffect(() => {
