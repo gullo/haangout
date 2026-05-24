@@ -126,7 +126,7 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
             <div className="flex items-center gap-4 rounded-2xl bg-zinc-50 p-4 ring-1 ring-black/5">
               <Avatar
                 initials={(parentName.trim()[0] || "?").toUpperCase()}
-                color={color}
+                color={kids[0]?.color ?? kidColorPalette[3]}
                 size={52}
               />
               <div className="flex-1">
