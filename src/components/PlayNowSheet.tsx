@@ -92,7 +92,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                 </span>
               </div>
               <h2 className="mt-1 text-2xl font-semibold tracking-tight">
-                {isLive ? "Who's free now?" : "Activate Play Now"}
+                {isLive ? "Who's free now?" : "Activate Hangout Now"}
               </h2>
               <p className="text-sm text-white/80">
                 {isLive ? windowLabel : "Pick which kids are free to play"}
@@ -278,7 +278,7 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
                 }}
                 className="mt-3 w-full rounded-2xl border border-accent/20 bg-accent-soft py-3 text-sm font-bold text-accent"
               >
-                End Play Now
+                End Hangout Now
               </button>
             </>
           ) : (

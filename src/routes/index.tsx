@@ -86,11 +86,11 @@ function Home() {
                 </>
               ) : (
                 <>
-                  <Sparkles className="size-3.5" /> Spontaneous play
+                  <Sparkles className="size-3.5" /> Spontaneous hangout
                 </>
               )}
             </span>
-            <span className="mt-0.5 text-xl font-semibold">Play Now</span>
+            <span className="mt-0.5 text-xl font-semibold">Hangout Now</span>
           </div>
           <div className="flex -space-x-3">
             {kids.map((k) => (
