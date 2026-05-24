@@ -27,6 +27,13 @@ function ProfilePage() {
   const [copied, setCopied] = useState(false);
   const { kids, setKids } = useKids();
   const [managerOpen, setManagerOpen] = useState(false);
+  const [editKidId, setEditKidId] = useState<string | null>(null);
+
+  function openManager(kidId: string | null = null) {
+    setEditKidId(kidId);
+    setManagerOpen(true);
+  }
+
 
   function copyLink() {
     navigator.clipboard?.writeText(`https://${INVITE_LINK}`);
