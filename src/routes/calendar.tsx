@@ -10,6 +10,7 @@ import {
   addDays,
   getWeekStart,
   formatWeekRange,
+  formatTimeLabel,
   type Recurrence,
 } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
@@ -273,8 +274,10 @@ function CalendarPage() {
                     {r.days.map((d) => dayFull[d]).join(" · ")}
                   </p>
                   <p className="truncate text-[11px] text-muted-foreground">
-                    {r.blocks.map((b) => blockLabels[b]).join(", ")} · From{" "}
-                    {formatDate(r.startDate)} ·{" "}
+                    {r.timeRange
+                      ? `${formatTimeLabel(r.timeRange.start)}–${formatTimeLabel(r.timeRange.end)}`
+                      : r.blocks.map((b) => blockLabels[b]).join(", ")}{" "}
+                    · From {formatDate(r.startDate)} ·{" "}
                     {r.endDate ? `Until ${formatDate(r.endDate)}` : "Forever"}
                   </p>
                 </div>

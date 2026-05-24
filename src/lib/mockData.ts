@@ -159,7 +159,41 @@ export type Recurrence = {
   blocks: number[]; // 0..3, indices into blockLabels
   startDate: string;       // ISO yyyy-mm-dd
   endDate: string | null;  // null = forever
+  timeRange?: { start: string; end: string } | null; // optional specific time "HH:MM"
 };
+
+// Map a "HH:MM" time range to overlapping block indices
+// Blocks: Morning 6-11, Midday 11-13, Afternoon 13-17, Evening 17-21
+const blockHours: Array<[number, number]> = [
+  [6, 11],
+  [11, 13],
+  [13, 17],
+  [17, 21],
+];
+
+export function blocksForTimeRange(start: string, end: string): number[] {
+  const toMin = (t: string) => {
+    const [h, m] = t.split(":").map(Number);
+    return (h ?? 0) * 60 + (m ?? 0);
+  };
+  const s = toMin(start);
+  const e = toMin(end);
+  if (!(e > s)) return [];
+  const out: number[] = [];
+  blockHours.forEach(([bs, be], i) => {
+    if (s < be * 60 && e > bs * 60) out.push(i);
+  });
+  return out;
+}
+
+export function formatTimeLabel(t: string): string {
+  const [hStr, mStr] = t.split(":");
+  let h = Number(hStr);
+  const m = Number(mStr);
+  const ampm = h >= 12 ? "pm" : "am";
+  h = h % 12 || 12;
+  return m === 0 ? `${h}${ampm}` : `${h}:${String(m).padStart(2, "0")}${ampm}`;
+}
 
 export function isoDate(d: Date): string {
   const y = d.getFullYear();
