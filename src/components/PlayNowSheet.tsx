@@ -88,7 +88,10 @@ export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props
 
   const summarizeKid = (k: Kid) => {
     const a = getAvail(k.id);
-    if (a.mode === "now") return `${k.name} · ${a.hours}h`;
+    if (a.mode === "now") {
+      const label = a.customUntil ? formatCustomUntil(a.customUntil) : untilLabel(a.hours);
+      return `${k.name} · ${label.toLowerCase()}`;
+    }
     if (a.dayParts.length === 0) return `${k.name} · pick time`;
     return `${k.name} · ${a.dayParts.map((d) => d.slice(0, 3)).join("+")}`;
   };
