@@ -7,27 +7,31 @@ import {
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { Avatar } from "@/components/Avatar";
 import { KidsManagerSheet } from "@/components/KidsManagerSheet";
-import { me, kidColorPalette } from "@/lib/mockData";
+import { EditProfileSheet } from "@/components/EditProfileSheet";
+import { kidColorPalette } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
+import { useProfile, profileInitials } from "@/lib/profileContext";
 
 export const Route = createFileRoute("/profile")({
   component: ProfilePage,
 });
-
-const settings = [
-  { Icon: Bell, label: "Notifications", value: "On" },
-  { Icon: MapPin, label: "Location & address", value: "248 Oak St" },
-  { Icon: Lock, label: "Privacy & sharing", value: "Trusted only" },
-  { Icon: HelpCircle, label: "Help & support" },
-];
 
 const INVITE_LINK = "playdate.app/i/sarah-2X9F";
 
 function ProfilePage() {
   const [copied, setCopied] = useState(false);
   const { kids, setKids } = useKids();
+  const { profile } = useProfile();
   const [managerOpen, setManagerOpen] = useState(false);
   const [editKidId, setEditKidId] = useState<string | null>(null);
+  const [editProfileOpen, setEditProfileOpen] = useState(false);
+
+  const settings = [
+    { Icon: Bell, label: "Notifications", value: "On" },
+    { Icon: MapPin, label: "Location & address", value: profile.address || "Add address" },
+    { Icon: Lock, label: "Privacy & sharing", value: "Trusted only" },
+    { Icon: HelpCircle, label: "Help & support" as string | undefined, value: undefined as string | undefined },
+  ];
 
   function openManager(kidId: string | null = null) {
     setEditKidId(kidId);
@@ -51,15 +55,22 @@ function ProfilePage() {
       <section className="mt-5 px-5">
         <div className="rounded-3xl bg-card p-5 ring-1 ring-black/5">
           <div className="flex items-center gap-4">
-            <Avatar initials={me.initials} color={me.color} size={64} />
-            <div>
-              <p className="text-lg font-semibold">Erika Gullo</p>
-              <p className="text-xs text-muted-foreground">erika@example.com</p>
-
-              <p className="text-xs text-muted-foreground">(415) 555-2018</p>
+            <Avatar initials={profileInitials(profile.name)} color="oklch(0.72 0.13 250)" size={64} />
+            <div className="min-w-0">
+              <p className="truncate text-lg font-semibold">
+                {profile.name}
+                {profile.spouseName && (
+                  <span className="font-normal text-zinc-400"> & {profile.spouseName}</span>
+                )}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">{profile.email}</p>
+              <p className="text-xs text-muted-foreground">{profile.phone}</p>
             </div>
           </div>
-          <button className="mt-4 w-full rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5">
+          <button
+            onClick={() => setEditProfileOpen(true)}
+            className="mt-4 w-full rounded-xl bg-zinc-100 py-2.5 text-xs font-semibold ring-1 ring-black/5 transition active:scale-[0.99]"
+          >
             Edit profile
           </button>
         </div>
