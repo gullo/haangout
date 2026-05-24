@@ -225,6 +225,12 @@ function ProfilePage() {
         initialEditKidId={editKidId}
       />
 
+      <EditProfileSheet
+        open={editProfileOpen}
+        onClose={() => setEditProfileOpen(false)}
+      />
+
+
     </PhoneFrame>
   );
 }
