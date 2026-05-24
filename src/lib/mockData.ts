@@ -199,7 +199,7 @@ export const initialRecurrences: Recurrence[] = [
     status: 2,
     days: [0, 2, 4], // Mon, Wed, Fri
     blocks: [2],     // Afternoon
-    startDate: isoDate(new Date()),
+    startDate: "2025-01-01",
     endDate: null,
   },
 ];
