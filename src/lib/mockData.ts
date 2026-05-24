@@ -120,9 +120,9 @@ export const todayMatches: Match[] = matchSeeds
 
 export const playNowFamilies: PlayNowCandidate[] = [
   { kid: families[0].kids[0], family: families[0], status: "free", detail: "At Cedar Park · 15 min ago" },
-  { kid: families[2].kids[1], family: families[2], status: "free", detail: "At home · 0.5 mi" },
-  { kid: families[3].kids[0], family: families[3], status: "soon-busy", detail: "Leaving in 20 min" },
+  { kid: families[0].kids[1], family: families[0], status: "soon-busy", detail: "Leaving in 20 min" },
 ];
+
 
 export const blockLabels = ["Morning", "Midday", "Afternoon", "Evening"];
 export const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
