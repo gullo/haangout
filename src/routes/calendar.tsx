@@ -132,8 +132,28 @@ function CalendarPage() {
 
         {/* Kid switcher */}
         <div className="mt-5 flex flex-wrap gap-2">
+          <button
+            onClick={() => setActiveKidId("all")}
+            className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors"
+            style={
+              activeKidId === "all"
+                ? { background: "oklch(0.25 0.02 270)", color: "white" }
+                : { background: "oklch(0.95 0.005 270)", color: "oklch(0.4 0.02 270)" }
+            }
+          >
+            <span className="flex -space-x-1">
+              {kids.slice(0, 3).map((k) => (
+                <span
+                  key={k.id}
+                  className="size-4 rounded-full ring-2 ring-white"
+                  style={{ background: k.color }}
+                />
+              ))}
+            </span>
+            All
+          </button>
           {kids.map((k) => {
-            const active = k.id === activeKid.id;
+            const active = k.id === activeKidId;
             return (
               <button
                 key={k.id}
@@ -157,7 +177,9 @@ function CalendarPage() {
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground">
-          Tap a block to mark {activeKid.name}&apos;s free time. Striped cells come from recurring rules.
+          {activeKidId === "all"
+            ? "Showing all kids. Tap a kid above to edit their schedule."
+            : `Tap a block to mark ${activeKid.name}'s free time. Striped cells come from recurring rules.`}
         </p>
       </header>
 
