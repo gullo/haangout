@@ -22,8 +22,30 @@ const DAYPARTS: { id: DayPart; label: string; range: string; icon: typeof Sunris
   { id: "evening", label: "Evening", range: "5p–8p", icon: Sunset },
 ];
 
-type KidAvail = { mode: Mode; hours: number; dayParts: DayPart[] };
-const DEFAULT_AVAIL: KidAvail = { mode: "now", hours: 2, dayParts: ["afternoon"] };
+type KidAvail = { mode: Mode; hours: number; dayParts: DayPart[]; customUntil: string | null };
+const DEFAULT_AVAIL: KidAvail = { mode: "now", hours: 2, dayParts: ["afternoon"], customUntil: null };
+
+function formatClock(d: Date): string {
+  let h = d.getHours();
+  const m = d.getMinutes();
+  const ampm = h >= 12 ? "pm" : "am";
+  h = h % 12 || 12;
+  return m === 0 ? `${h}${ampm}` : `${h}:${String(m).padStart(2, "0")}${ampm}`;
+}
+
+function untilLabel(hoursFromNow: number): string {
+  const d = new Date();
+  d.setHours(d.getHours() + hoursFromNow);
+  d.setMinutes(0, 0, 0);
+  return `Until ${formatClock(d)}`;
+}
+
+function formatCustomUntil(time: string): string {
+  const [h, m] = time.split(":").map(Number);
+  const d = new Date();
+  d.setHours(h ?? 0, m ?? 0, 0, 0);
+  return `Until ${formatClock(d)}`;
+}
 
 export function PlayNowSheet({ open, onClose, activeKidIds, onToggleKid }: Props) {
   const { kids } = useKids();
