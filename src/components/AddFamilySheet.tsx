@@ -35,7 +35,6 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       setLastName("");
       setAddress("");
       setPhone("");
-      setColor(kidColorPalette[3]);
       setKids([emptyKid(kidColorPalette[4])]);
     }
   }, [open]);
