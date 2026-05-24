@@ -246,6 +246,11 @@ function Home() {
         contactColor={callMatch?.family.color ?? "var(--accent)"}
         phone={callMatch?.family.phone ?? ""}
       />
+
+      <EditProfileSheet
+        open={editProfileOpen}
+        onClose={() => setEditProfileOpen(false)}
+      />
     </PhoneFrame>
   );
 }
