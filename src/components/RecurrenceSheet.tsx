@@ -94,8 +94,8 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
       className="absolute inset-0 z-50 flex flex-col bg-black/40 backdrop-blur-sm"
       onClick={onClose}
     >
-      <div className="mt-auto" onClick={(e) => e.stopPropagation()}>
-        <div className="max-h-[90%] overflow-y-auto rounded-t-3xl bg-card pb-8 shadow-[0_-12px_40px_rgba(0,0,0,0.18)]">
+      <div className="mt-auto flex max-h-[90%] flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="flex max-h-full flex-col rounded-t-3xl bg-card shadow-[0_-12px_40px_rgba(0,0,0,0.18)]">
           <div className="flex items-center justify-between px-6 pt-4 pb-2">
             <div className="size-8" />
             <span className="h-1 w-10 rounded-full bg-zinc-200" />
