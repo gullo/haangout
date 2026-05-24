@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { KidsProvider } from "@/lib/kidsContext";
 import { FamiliesProvider } from "@/lib/familiesContext";
+import { ProfileProvider } from "@/lib/profileContext";
 
 import appCss from "../styles.css?url";
 
@@ -119,11 +120,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <KidsProvider>
-        <FamiliesProvider>
-          <Outlet />
-        </FamiliesProvider>
-      </KidsProvider>
+      <ProfileProvider>
+        <KidsProvider>
+          <FamiliesProvider>
+            <Outlet />
+          </FamiliesProvider>
+        </KidsProvider>
+      </ProfileProvider>
     </QueryClientProvider>
   );
 }

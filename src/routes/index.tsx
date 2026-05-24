@@ -6,9 +6,11 @@ import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
 import { FakeMessageSheet } from "@/components/FakeMessageSheet";
 import { FakeCallSheet } from "@/components/FakeCallSheet";
+import { EditProfileSheet } from "@/components/EditProfileSheet";
 import { me, type Family, type Kid, type Match } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
 import { useFamilies } from "@/lib/familiesContext";
+import { useProfile, profileInitials } from "@/lib/profileContext";
 import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
@@ -51,7 +53,10 @@ function Home() {
   const [playNowOpen, setPlayNowOpen] = useState(false);
   const [messageMatch, setMessageMatch] = useState<Match | null>(null);
   const [callMatch, setCallMatch] = useState<Match | null>(null);
+  const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [activeKidIds, setActiveKidIds] = useState<string[]>([]);
+  const { profile } = useProfile();
+  const firstName = profile.name.trim().split(/\s+/)[0] || me.name;
   const activeKids = kids.filter((k) => activeKidIds.includes(k.id));
   const todayMatches = useMemo(() => buildMatches(kids, families), [kids, families]);
   const isLive = activeKids.length > 0;
@@ -68,9 +73,15 @@ function Home() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">Good morning</p>
-            <h1 className="text-2xl font-semibold tracking-tight">Hi, {me.name}</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Hi, {firstName}</h1>
           </div>
-          <Avatar initials={me.initials} color="oklch(0.72 0.13 250)" size={48} />
+          <button
+            onClick={() => setEditProfileOpen(true)}
+            className="rounded-full transition active:scale-95"
+            aria-label="Edit profile"
+          >
+            <Avatar initials={profileInitials(profile.name)} color="oklch(0.72 0.13 250)" size={48} />
+          </button>
         </div>
       </header>
 
@@ -234,6 +245,11 @@ function Home() {
         contactInitials={callMatch?.family.initials ?? ""}
         contactColor={callMatch?.family.color ?? "var(--accent)"}
         phone={callMatch?.family.phone ?? ""}
+      />
+
+      <EditProfileSheet
+        open={editProfileOpen}
+        onClose={() => setEditProfileOpen(false)}
       />
     </PhoneFrame>
   );
