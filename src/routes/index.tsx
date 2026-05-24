@@ -6,9 +6,11 @@ import { Avatar } from "@/components/Avatar";
 import { PlayNowSheet } from "@/components/PlayNowSheet";
 import { FakeMessageSheet } from "@/components/FakeMessageSheet";
 import { FakeCallSheet } from "@/components/FakeCallSheet";
+import { EditProfileSheet } from "@/components/EditProfileSheet";
 import { me, type Family, type Kid, type Match } from "@/lib/mockData";
 import { useKids } from "@/lib/kidsContext";
 import { useFamilies } from "@/lib/familiesContext";
+import { useProfile, profileInitials } from "@/lib/profileContext";
 import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/")({
