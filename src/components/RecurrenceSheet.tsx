@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { X, Check } from "lucide-react";
-import { blockLabels, dayLabels, isoDate, type Recurrence } from "@/lib/mockData";
+import {
+  blockLabels,
+  dayLabels,
+  isoDate,
+  blocksForTimeRange,
+  type Recurrence,
+} from "@/lib/mockData";
 
 type Props = {
   open: boolean;
@@ -13,10 +19,15 @@ type Props = {
 
 const dayFullLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+type Mode = "blocks" | "time";
+
 export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSave }: Props) {
   const [status, setStatus] = useState<1 | 2>(2);
   const [days, setDays] = useState<number[]>([]);
   const [blocks, setBlocks] = useState<number[]>([]);
+  const [mode, setMode] = useState<Mode>("blocks");
+  const [startTime, setStartTime] = useState<string>("15:00");
+  const [endTime, setEndTime] = useState<string>("17:00");
   const [startDate, setStartDate] = useState<string>(isoDate(new Date()));
   const [forever, setForever] = useState(true);
   const [endDate, setEndDate] = useState<string>("");
@@ -30,10 +41,22 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
       setStartDate(editing.startDate);
       setForever(editing.endDate === null);
       setEndDate(editing.endDate ?? "");
+      if (editing.timeRange) {
+        setMode("time");
+        setStartTime(editing.timeRange.start);
+        setEndTime(editing.timeRange.end);
+      } else {
+        setMode("blocks");
+        setStartTime("15:00");
+        setEndTime("17:00");
+      }
     } else {
       setStatus(2);
       setDays([]);
       setBlocks([]);
+      setMode("blocks");
+      setStartTime("15:00");
+      setEndTime("17:00");
       setStartDate(isoDate(new Date()));
       setForever(true);
       setEndDate("");
@@ -42,7 +65,9 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
 
   if (!open) return null;
 
-  const canSave = days.length > 0 && blocks.length > 0;
+  const derivedBlocks = mode === "time" ? blocksForTimeRange(startTime, endTime) : blocks;
+  const timeValid = mode === "blocks" || (endTime > startTime && derivedBlocks.length > 0);
+  const canSave = days.length > 0 && derivedBlocks.length > 0 && timeValid;
 
   function toggle<T>(arr: T[], v: T): T[] {
     return arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v];
@@ -54,9 +79,10 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
       kidId,
       status,
       days: [...days].sort((a, b) => a - b),
-      blocks: [...blocks].sort((a, b) => a - b),
+      blocks: [...derivedBlocks].sort((a, b) => a - b),
       startDate,
       endDate: forever ? null : endDate || null,
+      timeRange: mode === "time" ? { start: startTime, end: endTime } : null,
     };
     if (editing) onSave({ ...payload, id: editing.id });
     else onSave(payload);
@@ -86,7 +112,7 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
               {editing ? "Edit recurring" : "Add recurring"}
             </h2>
             <p className="mt-1 text-xs text-muted-foreground">
-              Auto-fill the calendar for the days and time blocks you pick.
+              Auto-fill the calendar for the days and times you pick.
             </p>
           </div>
 
@@ -149,28 +175,87 @@ export function RecurrenceSheet({ open, onClose, kidId, kidColor, editing, onSav
               </div>
             </div>
 
-            {/* Blocks */}
+            {/* When */}
             <div>
-              <Label>Time blocks</Label>
-              <div className="grid grid-cols-2 gap-2">
-                {blockLabels.map((b, i) => {
-                  const active = blocks.includes(i);
-                  return (
-                    <button
-                      key={b}
-                      onClick={() => setBlocks(toggle(blocks, i))}
-                      className="rounded-xl py-2.5 text-sm font-semibold ring-1 transition"
-                      style={
-                        active
-                          ? { background: kidColor, color: "white", boxShadow: `inset 0 0 0 1px ${kidColor}` }
-                          : { background: "white", color: "oklch(0.4 0.02 270)" }
-                      }
-                    >
-                      {b}
-                    </button>
-                  );
-                })}
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">
+                  When
+                </span>
+                <div className="flex rounded-full bg-zinc-100 p-0.5 text-[11px] font-semibold">
+                  <button
+                    onClick={() => setMode("blocks")}
+                    className={`rounded-full px-3 py-1 transition ${
+                      mode === "blocks" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+                    }`}
+                  >
+                    Time blocks
+                  </button>
+                  <button
+                    onClick={() => setMode("time")}
+                    className={`rounded-full px-3 py-1 transition ${
+                      mode === "time" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500"
+                    }`}
+                  >
+                    Specific time
+                  </button>
+                </div>
               </div>
+
+              {mode === "blocks" ? (
+                <div className="grid grid-cols-2 gap-2">
+                  {blockLabels.map((b, i) => {
+                    const active = blocks.includes(i);
+                    return (
+                      <button
+                        key={b}
+                        onClick={() => setBlocks(toggle(blocks, i))}
+                        className="rounded-xl py-2.5 text-sm font-semibold ring-1 transition"
+                        style={
+                          active
+                            ? { background: kidColor, color: "white", boxShadow: `inset 0 0 0 1px ${kidColor}` }
+                            : { background: "white", color: "oklch(0.4 0.02 270)" }
+                        }
+                      >
+                        {b}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                        From
+                      </span>
+                      <input
+                        type="time"
+                        value={startTime}
+                        onChange={(e) => setStartTime(e.target.value)}
+                        className="w-full rounded-xl bg-zinc-50 px-3 py-2.5 text-sm ring-1 ring-black/5 outline-none focus:ring-accent"
+                      />
+                    </div>
+                    <div>
+                      <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                        To
+                      </span>
+                      <input
+                        type="time"
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)}
+                        className="w-full rounded-xl bg-zinc-50 px-3 py-2.5 text-sm ring-1 ring-black/5 outline-none focus:ring-accent"
+                      />
+                    </div>
+                  </div>
+                  {!timeValid ? (
+                    <p className="text-[11px] text-destructive">End time must be after start time.</p>
+                  ) : (
+                    <p className="text-[11px] text-muted-foreground">
+                      Covers: {derivedBlocks.map((i) => blockLabels[i]).join(", ")}
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Dates */}
