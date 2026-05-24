@@ -314,7 +314,10 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
                   </li>
                 ))}
               </ul>
+            </div>
         </div>
+
+
 
         <div className="flex gap-2 border-t border-black/5 bg-card px-5 pb-8 pt-3">
           <button
