@@ -207,6 +207,39 @@ function CalendarPage() {
                 {blockName}
               </span>
               {dayLabels.map((_, ci) => {
+                if (activeKidId === "all") {
+                  const present = kids
+                    .map((k) => ({ k, r: resolveCell(k.id, weekStart, ri, ci) }))
+                    .filter((x) => x.r.value > 0);
+                  return (
+                    <div
+                      key={ci}
+                      className="grid h-11 grid-cols-3 gap-0.5 rounded-lg bg-zinc-50 p-1 ring-1 ring-zinc-100"
+                      aria-label={`${blockName} ${dayFull[ci]}`}
+                    >
+                      {kids.map((k) => {
+                        const hit = present.find((p) => p.k.id === k.id);
+                        if (!hit) return <span key={k.id} className="rounded-sm bg-transparent" />;
+                        const bg =
+                          hit.r.value === 2
+                            ? k.color
+                            : `color-mix(in oklab, ${k.color} 35%, transparent)`;
+                        return (
+                          <span
+                            key={k.id}
+                            className="rounded-sm"
+                            style={{
+                              background: bg,
+                              backgroundImage: hit.r.fromRecurrence
+                                ? "repeating-linear-gradient(135deg, rgba(255,255,255,0.5) 0 2px, transparent 2px 6px)"
+                                : undefined,
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
                 const { value, fromRecurrence } = resolveCell(activeKid.id, weekStart, ri, ci);
                 return (
                   <button
