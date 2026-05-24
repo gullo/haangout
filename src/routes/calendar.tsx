@@ -368,19 +368,28 @@ function CalendarPage() {
         )}
       </section>
 
-      <section className="mt-6 px-6">
+      <section className="mt-6 px-6 pb-2">
         <button
-          onClick={() =>
-            toast.success("Schedule saved", {
-              description: `${isAll ? "All kids" : activeKid.name} · ${formatWeekRange(weekStart)}`,
-              icon: <Check className="size-4" />,
-            })
-          }
+          onClick={() => setSavedAt(Date.now())}
           className="w-full rounded-2xl bg-zinc-900 py-4 text-sm font-semibold text-white active:scale-[0.99] transition-transform"
         >
           Save schedule
         </button>
       </section>
+
+      {/* In-frame saved toast */}
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-24 z-30 flex justify-center px-6 transition-all duration-300 ${
+          savedAt ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+        }`}
+      >
+        <div className="flex items-center gap-2 rounded-full bg-zinc-900/95 px-4 py-2.5 text-xs font-semibold text-white shadow-lg ring-1 ring-white/10 backdrop-blur">
+          <span className="grid size-5 place-items-center rounded-full bg-emerald-500">
+            <Check className="size-3" />
+          </span>
+          Schedule saved
+        </div>
+      </div>
 
       <RecurrenceSheet
         open={sheetOpen}
