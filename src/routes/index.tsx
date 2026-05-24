@@ -70,14 +70,19 @@ function Home() {
         </div>
       </header>
 
-      {/* Play Now CTA */}
+      {/* Hangout Now CTA */}
       <section className="px-6 pt-7">
         <button
           onClick={() => setPlayNowOpen(true)}
           style={{ background: ctaBg }}
-          className="group relative flex w-full items-center justify-between overflow-hidden rounded-3xl px-6 py-5 text-white shadow-[var(--shadow-pop)] transition-[background] duration-500 active:scale-[0.98]"
+          className="group relative flex w-full items-center justify-between overflow-hidden rounded-3xl px-6 py-5 text-white shadow-[var(--shadow-pop)] ring-1 ring-white/15 ring-inset transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.35)] active:translate-y-0 active:scale-[0.985]"
         >
-          <div className="flex flex-col items-start">
+          {/* sheen */}
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent" />
+          {/* shimmer on hover */}
+          <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-all duration-700 group-hover:left-full group-hover:opacity-100" />
+
+          <div className="relative flex flex-col items-start">
             <span className="flex items-center gap-1.5 text-xs font-medium opacity-90">
               {isLive ? (
                 <>
@@ -90,20 +95,24 @@ function Home() {
                 </>
               )}
             </span>
-            <span className="mt-0.5 text-xl font-semibold">Hangout Now</span>
+            <span className="mt-0.5 flex items-center gap-1.5 text-xl font-semibold">
+              Hangout Now
+              <ChevronRight className="size-5 -translate-x-0.5 opacity-80 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
+            </span>
           </div>
-          <div className="flex -space-x-3">
+          <div className="relative flex -space-x-3 transition-transform duration-300 group-hover:scale-105">
             {kids.map((k) => (
               <Avatar
                 key={k.id}
                 initials={k.initials}
                 color={k.color}
                 size={40}
-                className="border-2 border-accent"
+                className="border-2 border-white/90 shadow-sm"
               />
             ))}
           </div>
         </button>
+
       </section>
 
       {/* Quick stats */}
