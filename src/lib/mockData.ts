@@ -59,9 +59,11 @@ export const me = {
 
   color: "oklch(0.72 0.13 250)",
   kids: [
-    { id: "k-ava", name: "Ava", age: 4, initials: "A", color: kidColorPalette[0] },
-    { id: "k-theo", name: "Theo", age: 6, initials: "T", color: kidColorPalette[1] },
+    { id: "k-avery", name: "Avery", age: 11, initials: "A", color: kidColorPalette[0] },
+    { id: "k-emmy", name: "Emmy", age: 9, initials: "E", color: kidColorPalette[1] },
+    { id: "k-nick", name: "Nick", age: 7, initials: "N", color: kidColorPalette[2] },
   ] as Kid[],
+
 };
 
 export const families: Family[] = [
