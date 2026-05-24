@@ -68,67 +68,32 @@ export const me = {
 
 export const families: Family[] = [
   {
-    id: "f-marcus",
-    parentName: "Marcus Lee",
-    partnerName: "Jen",
-    initials: "ML",
+    id: "f-nina-alex",
+    parentName: "Nina",
+    partnerName: "Alex",
+    initials: "NA",
     phone: "(415) 555-0129",
     address: "248 Oak St",
     distanceMi: 0.4,
     color: "oklch(0.78 0.13 30)",
-    kids: [{ id: "k-liam", name: "Liam", age: 4, initials: "L", color: "oklch(0.78 0.13 30)" }],
-    // Ava ↔ Liam
-    friendships: [{ myKidId: "k-avery", theirKidId: "k-liam" }],
-  },
-  {
-    id: "f-elena",
-    parentName: "Elena Park",
-    partnerName: "David",
-    initials: "EP",
-    phone: "(415) 555-8821",
-    address: "1102 Castro",
-    distanceMi: 1.2,
-    color: "oklch(0.78 0.14 330)",
-    kids: [{ id: "k-sophie", name: "Sophie", age: 5, initials: "S", color: "oklch(0.78 0.14 330)" }],
-    // Ava ↔ Sophie
-    friendships: [{ myKidId: "k-avery", theirKidId: "k-sophie" }],
-  },
-  {
-    id: "f-henderson",
-    parentName: "Emma Henderson",
-    partnerName: "Mark",
-    initials: "EH",
-    phone: "(415) 555-0144",
-    address: "55 Buena Vista",
-    distanceMi: 2.4,
-    color: "oklch(0.76 0.13 145)",
     kids: [
-      { id: "k-oliver", name: "Oliver", age: 3, initials: "O", color: "oklch(0.76 0.13 145)" },
-      { id: "k-maya", name: "Maya", age: 6, initials: "M", color: "oklch(0.76 0.13 250)" },
+      { id: "k-alex-kid", name: "Alex", age: 7, initials: "A", color: "oklch(0.78 0.13 30)" },
+      { id: "k-adrianna", name: "Adrianna", age: 9, initials: "A", color: "oklch(0.78 0.14 330)" },
     ],
-    // Theo ↔ Maya only
-    friendships: [{ myKidId: "k-emmy", theirKidId: "k-maya" }],
-  },
-  {
-    id: "f-jisoo",
-    parentName: "Ji-Soo Choi",
-    initials: "JC",
-    phone: "(415) 555-6620",
-    address: "812 Hayes",
-    distanceMi: 0.8,
-    color: "oklch(0.74 0.14 280)",
-    kids: [{ id: "k-suri", name: "Suri", age: 4, initials: "S", color: "oklch(0.74 0.14 280)" }],
-    // Ava ↔ Suri
-    friendships: [{ myKidId: "k-avery", theirKidId: "k-suri" }],
+    // Nick ↔ Alex, Emmy ↔ Adrianna
+    friendships: [
+      { myKidId: "k-nick", theirKidId: "k-alex-kid" },
+      { myKidId: "k-emmy", theirKidId: "k-adrianna" },
+    ],
   },
 ];
 
 // Derive today's matches strictly from friendships
 const matchSeeds = [
-  { familyId: "f-marcus", myKidId: "k-avery", theirKidId: "k-liam", window: "Sat 2–5pm", pct: 94 },
-  { familyId: "f-elena", myKidId: "k-avery", theirKidId: "k-sophie", window: "This afternoon", pct: 81 },
-  { familyId: "f-henderson", myKidId: "k-emmy", theirKidId: "k-maya", window: "Sun 9–11am", pct: 88 },
+  { familyId: "f-nina-alex", myKidId: "k-nick", theirKidId: "k-alex-kid", window: "Sat 2–5pm", pct: 94 },
+  { familyId: "f-nina-alex", myKidId: "k-emmy", theirKidId: "k-adrianna", window: "This afternoon", pct: 88 },
 ];
+
 
 export const todayMatches: Match[] = matchSeeds
   .map((s): Match | null => {
@@ -155,9 +120,9 @@ export const todayMatches: Match[] = matchSeeds
 
 export const playNowFamilies: PlayNowCandidate[] = [
   { kid: families[0].kids[0], family: families[0], status: "free", detail: "At Cedar Park · 15 min ago" },
-  { kid: families[2].kids[1], family: families[2], status: "free", detail: "At home · 0.5 mi" },
-  { kid: families[3].kids[0], family: families[3], status: "soon-busy", detail: "Leaving in 20 min" },
+  { kid: families[0].kids[1], family: families[0], status: "soon-busy", detail: "Leaving in 20 min" },
 ];
+
 
 export const blockLabels = ["Morning", "Midday", "Afternoon", "Evening"];
 export const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
