@@ -102,27 +102,26 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
       className="absolute inset-0 z-50 flex flex-col bg-black/40 backdrop-blur-sm"
       onClick={onClose}
     >
-      <div className="mt-auto" onClick={(e) => e.stopPropagation()}>
-        <div className="max-h-[88%] overflow-y-auto rounded-t-3xl bg-card pb-8 shadow-[0_-12px_40px_rgba(0,0,0,0.18)]">
-          <div className="flex items-center justify-between px-6 pt-4 pb-2">
-            <div className="size-8" />
-            <span className="h-1 w-10 rounded-full bg-zinc-200" />
-            <button
-              onClick={onClose}
-              className="grid size-8 place-items-center rounded-full bg-zinc-100"
-            >
-              <X className="size-4" />
-            </button>
-          </div>
+      <div className="mt-auto flex max-h-[88%] flex-col rounded-t-3xl bg-card shadow-[0_-12px_40px_rgba(0,0,0,0.18)]" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-6 pt-4 pb-2">
+          <div className="size-8" />
+          <span className="h-1 w-10 rounded-full bg-zinc-200" />
+          <button
+            onClick={onClose}
+            className="grid size-8 place-items-center rounded-full bg-zinc-100"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
 
-          <div className="px-6">
-            <h2 className="text-xl font-semibold tracking-tight">Add a family</h2>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Parents, kids, and which of your kids they're friends with.
-            </p>
-          </div>
+        <div className="px-6">
+          <h2 className="text-xl font-semibold tracking-tight">Add a family</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Parents, kids, and which of your kids they're friends with.
+          </p>
+        </div>
 
-          <div className="mt-5 space-y-4 px-5">
+        <div className="mt-5 flex-1 space-y-4 overflow-y-auto px-5 pb-4">
             <div className="flex items-center gap-4 rounded-2xl bg-zinc-50 p-4 ring-1 ring-black/5">
               <Avatar
                 initials={(parentName.trim()[0] || "?").toUpperCase()}
@@ -316,23 +315,24 @@ export function AddFamilySheet({ open, onClose, onAdd }: Props) {
                 ))}
               </ul>
             </div>
+        </div>
 
-            <div className="flex gap-2 pt-2">
-              <button
-                onClick={onClose}
-                className="flex-1 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold ring-1 ring-black/5"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={save}
-                disabled={!canSave}
-                className="flex-1 rounded-2xl bg-accent py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-pop)] disabled:opacity-40"
-              >
-                Add family
-              </button>
-            </div>
-          </div>
+
+
+        <div className="flex gap-2 border-t border-black/5 bg-card px-5 pb-8 pt-3">
+          <button
+            onClick={onClose}
+            className="flex-1 rounded-2xl bg-zinc-100 py-3 text-sm font-semibold ring-1 ring-black/5"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={save}
+            disabled={!canSave}
+            className="flex-1 rounded-2xl bg-accent py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-pop)] disabled:opacity-40"
+          >
+            Add family
+          </button>
         </div>
       </div>
     </div>
