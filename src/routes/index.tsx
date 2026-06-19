@@ -430,7 +430,7 @@ function HowItWorks() {
             <Reveal delay={0.05}>
               <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,5rem)] font-black leading-[0.95] tracking-[-0.03em]">
                 Three taps from couch to{" "}
-                <span className="italic font-light opacity-80">curb.</span>
+                <span className="italic font-light opacity-80">haang.</span>
               </h2>
             </Reveal>
           </div>
