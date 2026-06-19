@@ -14,14 +14,12 @@ import {
   Play as PlayIcon,
   Bike,
   DoorOpen,
-  PhoneCall,
   Sun,
   Check,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
 import kidsRunning from "@/assets/kids-running.jpg";
-import doorbell from "@/assets/doorbell.jpg";
 import logoMark from "@/assets/brand/logo-mark.png";
 import screenHome from "@/assets/brand/screen-home.png";
 import screenLive from "@/assets/brand/screen-live.png";
