@@ -14,14 +14,16 @@ import {
   Play as PlayIcon,
   Bike,
   DoorOpen,
-  PhoneCall,
   Sun,
   Check,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
 import kidsRunning from "@/assets/kids-running.jpg";
-import doorbell from "@/assets/doorbell.jpg";
+import logoMark from "@/assets/brand/logo-mark.png";
+import screenHome from "@/assets/brand/screen-home.png";
+import screenLive from "@/assets/brand/screen-live.png";
+import screenUpcoming from "@/assets/brand/screen-upcoming.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -134,9 +136,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-black/5 bg-[oklch(0.985_0.003_90/0.7)] px-5 py-3 backdrop-blur-xl sm:px-7">
         <Link to="/" className="group flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-full bg-foreground text-[var(--color-page)]">
-            <Sun className="size-4" />
-          </span>
+          <img src={logoMark} alt="Haangout" className="size-9 rounded-xl" />
           <span className="font-display text-xl font-black tracking-tight">
             haang<span className="italic text-accent">out</span>
           </span>
@@ -588,23 +588,11 @@ function AppPreview() {
         <motion.div style={{ rotate, y }} className="relative mx-auto w-full max-w-[420px]">
           <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[3rem] border border-foreground/10 bg-foreground/95 p-3 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.35)]">
             <img
-              src={doorbell}
-              alt="Hand pressing a yellow doorbell"
+              src={screenHome}
+              alt="Haangout app home screen"
               loading="lazy"
-              className="size-full rounded-[2.3rem] object-cover"
+              className="size-full rounded-[2.3rem] object-cover object-top"
             />
-            <div className="absolute inset-3 rounded-[2.3rem] bg-gradient-to-b from-transparent via-transparent to-foreground/70" />
-            <div className="absolute inset-x-6 bottom-7 flex items-center justify-between text-[var(--color-page)]">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.25em] opacity-70">Live now</p>
-                <p className="font-display text-2xl font-black leading-tight">
-                  3 friends free
-                </p>
-              </div>
-              <div className="grid size-12 place-items-center rounded-full bg-accent text-accent-foreground">
-                <PhoneCall className="size-5" />
-              </div>
-            </div>
           </div>
           {/* floating chip */}
           <motion.div
@@ -630,7 +618,70 @@ function AppPreview() {
   );
 }
 
-/* Manifesto strip */
+/* Screens gallery — three real app screens, staggered */
+function Screens() {
+  const shots = [
+    { src: screenLive, label: "Live now", tone: "bg-[oklch(0.74_0.14_280)]" },
+    { src: screenHome, label: "Today's matches", tone: "bg-accent" },
+    { src: screenUpcoming, label: "Upcoming hangouts", tone: "bg-foreground" },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-[oklch(0.96_0.01_75)] px-5 py-28 sm:px-10 sm:py-36">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <Reveal>
+              <p className="text-xs uppercase tracking-[0.25em] text-foreground/60">
+                Inside the app
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,5rem)] font-black leading-[0.95] tracking-[-0.03em]">
+                One tap to{" "}
+                <span className="italic font-light text-accent">live.</span>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.15}>
+            <p className="max-w-sm text-base text-foreground/70">
+              Go live for an afternoon, see who's free, line up the next hang.
+              The whole loop in three screens.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-20 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+          {shots.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.1}>
+              <div
+                className="group relative mx-auto w-full max-w-[340px]"
+                style={{
+                  transform: `translateY(${i === 1 ? "-2rem" : "0"}) rotate(${
+                    i === 0 ? "-3deg" : i === 2 ? "3deg" : "0deg"
+                  })`,
+                }}
+              >
+                <div className={`absolute -inset-3 -z-10 rounded-[2.6rem] ${s.tone} opacity-20 blur-2xl transition group-hover:opacity-40`} />
+                <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[2.2rem] border border-foreground/10 bg-foreground p-2 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.3)] transition duration-500 group-hover:-translate-y-2">
+                  <img
+                    src={s.src}
+                    alt={s.label}
+                    loading="lazy"
+                    className="size-full rounded-[1.7rem] object-cover object-top"
+                  />
+                </div>
+                <p className="mt-5 text-center text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70">
+                  {s.label}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Manifesto() {
   const lines = [
     "Bring back the street.",
@@ -789,8 +840,11 @@ function Footer() {
     <footer className="border-t border-foreground/10 bg-[var(--color-page)] px-5 py-12 sm:px-10">
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 md:grid-cols-4">
         <div className="col-span-2">
-          <Link to="/" className="font-display text-3xl font-black tracking-tight">
-            haang<span className="italic text-accent">out</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logoMark} alt="Haangout" className="size-12 rounded-2xl" />
+            <span className="font-display text-3xl font-black tracking-tight">
+              haang<span className="italic text-accent">out</span>
+            </span>
           </Link>
           <p className="mt-3 max-w-sm text-sm text-foreground/60">
             A return to the doorbell era. Made for kids, quietly useful for
@@ -854,6 +908,7 @@ function Marketing() {
         <HowItWorks />
         <Numbers />
         <AppPreview />
+        <Screens />
         <Manifesto />
         <Download />
         <Feedback />
