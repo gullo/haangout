@@ -192,15 +192,9 @@ function Hero() {
       }}
       className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)]"
     >
-      <motion.video
-        src={heroVideo.url}
-        poster={heroStreet}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-label="Kids riding bikes down a suburban street at golden hour"
+      <motion.img
+        src={heroStreet}
+        alt="Kids riding bikes down a suburban street at golden hour"
         style={{ y: imgY, scale: imgScale }}
         className="absolute inset-0 size-full object-cover"
       />
