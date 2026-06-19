@@ -288,7 +288,7 @@ function KineticWord({
   accent?: boolean;
 }) {
   return (
-    <span className="inline-block overflow-hidden align-bottom">
+    <span className="inline-block overflow-hidden pb-[0.15em] align-bottom">
       <motion.span
         initial={{ y: "110%", rotate: 8 }}
         animate={{ y: "0%", rotate: 0 }}
