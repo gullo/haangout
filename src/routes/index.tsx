@@ -16,6 +16,11 @@ import {
   DoorOpen,
   Sun,
   Check,
+  Radio,
+  Users,
+  Lock,
+  Globe2,
+  Hand,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
