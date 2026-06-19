@@ -914,6 +914,7 @@ function Marketing() {
         <Numbers />
         <AppPreview />
         <Screens />
+        <BatSignal />
         <Manifesto />
         <Download />
         <Feedback />
