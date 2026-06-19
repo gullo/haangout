@@ -22,6 +22,10 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
 import kidsRunning from "@/assets/kids-running.jpg";
 import doorbell from "@/assets/doorbell.jpg";
+import logoMark from "@/assets/brand/logo-mark.png";
+import screenHome from "@/assets/brand/screen-home.png";
+import screenLive from "@/assets/brand/screen-live.png";
+import screenUpcoming from "@/assets/brand/screen-upcoming.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -134,9 +138,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-black/5 bg-[oklch(0.985_0.003_90/0.7)] px-5 py-3 backdrop-blur-xl sm:px-7">
         <Link to="/" className="group flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-full bg-foreground text-[var(--color-page)]">
-            <Sun className="size-4" />
-          </span>
+          <img src={logoMark} alt="Haangout" className="size-9 rounded-xl" />
           <span className="font-display text-xl font-black tracking-tight">
             haang<span className="italic text-accent">out</span>
           </span>
@@ -588,23 +590,11 @@ function AppPreview() {
         <motion.div style={{ rotate, y }} className="relative mx-auto w-full max-w-[420px]">
           <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[3rem] border border-foreground/10 bg-foreground/95 p-3 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.35)]">
             <img
-              src={doorbell}
-              alt="Hand pressing a yellow doorbell"
+              src={screenHome}
+              alt="Haangout app home screen"
               loading="lazy"
-              className="size-full rounded-[2.3rem] object-cover"
+              className="size-full rounded-[2.3rem] object-cover object-top"
             />
-            <div className="absolute inset-3 rounded-[2.3rem] bg-gradient-to-b from-transparent via-transparent to-foreground/70" />
-            <div className="absolute inset-x-6 bottom-7 flex items-center justify-between text-[var(--color-page)]">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.25em] opacity-70">Live now</p>
-                <p className="font-display text-2xl font-black leading-tight">
-                  3 friends free
-                </p>
-              </div>
-              <div className="grid size-12 place-items-center rounded-full bg-accent text-accent-foreground">
-                <PhoneCall className="size-5" />
-              </div>
-            </div>
           </div>
           {/* floating chip */}
           <motion.div
@@ -789,8 +779,11 @@ function Footer() {
     <footer className="border-t border-foreground/10 bg-[var(--color-page)] px-5 py-12 sm:px-10">
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 md:grid-cols-4">
         <div className="col-span-2">
-          <Link to="/" className="font-display text-3xl font-black tracking-tight">
-            haang<span className="italic text-accent">out</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logoMark} alt="Haangout" className="size-12 rounded-2xl" />
+            <span className="font-display text-3xl font-black tracking-tight">
+              haang<span className="italic text-accent">out</span>
+            </span>
           </Link>
           <p className="mt-3 max-w-sm text-sm text-foreground/60">
             A return to the doorbell era. Made for kids, quietly useful for
