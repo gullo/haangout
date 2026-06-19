@@ -908,6 +908,7 @@ function Marketing() {
         <HowItWorks />
         <Numbers />
         <AppPreview />
+        <Screens />
         <Manifesto />
         <Download />
         <Feedback />
