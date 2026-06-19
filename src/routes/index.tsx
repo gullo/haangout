@@ -200,17 +200,6 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.94_0.01_75/0.2)] via-transparent to-[oklch(0.18_0.02_270/0.6)]" />
       <motion.div style={{ background: bg }} className="absolute inset-0" />
 
-      {/* Top meta line */}
-      <div className="absolute inset-x-0 top-24 z-10 px-5 sm:px-10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between text-[11px] uppercase tracking-[0.2em]">
-          <span className="rounded-full bg-[var(--color-page)]/85 px-3.5 py-1.5 text-foreground/90 backdrop-blur-md">
-            Est. 2026 · A return to outside
-          </span>
-          <span className="hidden sm:inline rounded-full bg-[var(--color-page)]/85 px-3.5 py-1.5 text-foreground/90 backdrop-blur-md">
-            No calendars · No group chats
-          </span>
-        </div>
-      </div>
 
       <motion.div
         style={{ y: titleY, opacity: titleOpacity }}
