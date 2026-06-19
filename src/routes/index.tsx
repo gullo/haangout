@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
-import heroVideo from "@/assets/hero-street.mp4.asset.json";
+import heroVideo from "@/assets/hero-street-loop.mp4.asset.json";
 import kidsRunning from "@/assets/kids-running.jpg";
 import logoMark from "@/assets/brand/logo-mark.png";
 import screenHome from "@/assets/brand/screen-home.png";
