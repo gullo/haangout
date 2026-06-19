@@ -16,6 +16,11 @@ import {
   DoorOpen,
   Sun,
   Check,
+  Radio,
+  Users,
+  Lock,
+  Globe2,
+  Hand,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
@@ -896,6 +901,163 @@ function Footer() {
   );
 }
 
+/* BatSignal — neighborhood/group broadcast */
+function BatSignal() {
+  const responders = [
+    { name: "Mia", note: "I'm in! Bringing a ball.", color: "oklch(0.78 0.13 30)", initials: "M" },
+    { name: "Theo", note: "Walking over now.", color: "oklch(0.72 0.14 200)", initials: "T" },
+    { name: "Ada", note: "Can play til 5.", color: "oklch(0.74 0.14 280)", initials: "A" },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-foreground px-5 py-28 text-[var(--color-page)] sm:px-10 sm:py-36">
+      {/* radar pulse backdrop */}
+      <div className="pointer-events-none absolute inset-0 grid place-items-center opacity-30">
+        {[0, 1, 2, 3].map((i) => (
+          <motion.span
+            key={i}
+            className="absolute aspect-square w-[28rem] rounded-full border border-accent/40"
+            initial={{ scale: 0.4, opacity: 0.8 }}
+            animate={{ scale: 2.2, opacity: 0 }}
+            transition={{ duration: 4, repeat: Infinity, delay: i * 1, ease: "easeOut" }}
+          />
+        ))}
+      </div>
+
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-6">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.25em] text-accent">
+              Neighborhood &amp; groups
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,5.4rem)] font-black leading-[0.95] tracking-[-0.03em]">
+              Send up the{" "}
+              <span className="italic font-light text-accent">bat signal.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-6 max-w-xl text-base text-[var(--color-page)]/70 sm:text-lg">
+              The family landline is gone. Kids can't ring a house and ask if
+              Joey's around. So we built the modern version: one tap broadcasts
+              "I'm looking to play" to your whole group. Block, soccer team,
+              homeschool co-op, cousins. Anyone in can wave back.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <Reveal delay={0.18}>
+              <div className="rounded-2xl border border-[var(--color-page)]/10 bg-white/[0.04] p-5">
+                <Globe2 className="size-5 text-accent" />
+                <p className="mt-3 text-sm font-semibold">Public groups</p>
+                <p className="mt-1 text-xs text-[var(--color-page)]/60">
+                  Neighborhoods, parks, school grades. Anyone nearby can join.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.22}>
+              <div className="rounded-2xl border border-[var(--color-page)]/10 bg-white/[0.04] p-5">
+                <Lock className="size-5 text-accent" />
+                <p className="mt-3 text-sm font-semibold">Private / invite-only</p>
+                <p className="mt-1 text-xs text-[var(--color-page)]/60">
+                  Cousins, close friends, the soccer carpool. You hold the door.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.26}>
+              <div className="rounded-2xl border border-[var(--color-page)]/10 bg-white/[0.04] p-5">
+                <Radio className="size-5 text-accent" />
+                <p className="mt-3 text-sm font-semibold">One-tap broadcast</p>
+                <p className="mt-1 text-xs text-[var(--color-page)]/60">
+                  "Volleyball at the park, 3pm." Everyone in the group sees it.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="rounded-2xl border border-[var(--color-page)]/10 bg-white/[0.04] p-5">
+                <Hand className="size-5 text-accent" />
+                <p className="mt-3 text-sm font-semibold">Wave to join</p>
+                <p className="mt-1 text-xs text-[var(--color-page)]/60">
+                  Others see who's in, pile on, and head out together.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Signal mock */}
+        <div className="lg:col-span-6">
+          <Reveal delay={0.1}>
+            <div className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-[var(--color-page)]/10 bg-white/[0.03] p-6 backdrop-blur-sm sm:p-8">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[var(--color-page)]/50">
+                <span className="flex items-center gap-2">
+                  <Users className="size-3.5" /> Noe Valley · 248
+                </span>
+                <span className="flex items-center gap-2 text-accent">
+                  <motion.span
+                    className="size-2 rounded-full bg-accent"
+                    animate={{ opacity: [1, 0.2, 1] }}
+                    transition={{ duration: 1.4, repeat: Infinity }}
+                  />
+                  Live
+                </span>
+              </div>
+
+              <div className="mt-6 flex items-start gap-4">
+                <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground">
+                  <Radio className="size-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm text-[var(--color-page)]/60">
+                    Avery, 11 · 4 min ago
+                  </p>
+                  <p className="mt-1 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+                    Looking to play volleyball at Douglass Park, 3–5pm 🏐
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-2xl bg-accent/15 px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                3 kids waved back
+              </div>
+
+              <ul className="mt-3 space-y-2">
+                {responders.map((r, i) => (
+                  <motion.li
+                    key={r.name}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: 0.4 + i * 0.15, ease }}
+                    className="flex items-center gap-3 rounded-xl border border-[var(--color-page)]/10 bg-white/[0.04] px-3 py-2.5"
+                  >
+                    <span
+                      className="grid size-9 place-items-center rounded-full text-sm font-bold text-foreground"
+                      style={{ background: r.color }}
+                    >
+                      {r.initials}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-semibold">{r.name}</p>
+                      <p className="truncate text-xs text-[var(--color-page)]/60">
+                        {r.note}
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
+                      In
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function Marketing() {
   return (
     <>
@@ -909,6 +1071,7 @@ function Marketing() {
         <Numbers />
         <AppPreview />
         <Screens />
+        <BatSignal />
         <Manifesto />
         <Download />
         <Feedback />
