@@ -200,9 +200,13 @@ function Hero() {
 
       {/* Top meta line */}
       <div className="absolute inset-x-0 top-24 z-10 px-5 sm:px-10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between text-[11px] uppercase tracking-[0.2em] text-foreground/85 sm:text-[var(--color-page)]/80">
-          <span className="drop-shadow-sm">Est. 2026 · A return to outside</span>
-          <span className="hidden sm:inline">No calendars · No group chats</span>
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between text-[11px] uppercase tracking-[0.2em]">
+          <span className="rounded-full bg-[var(--color-page)]/85 px-3.5 py-1.5 text-foreground/90 backdrop-blur-md">
+            Est. 2026 · A return to outside
+          </span>
+          <span className="hidden sm:inline rounded-full bg-[var(--color-page)]/85 px-3.5 py-1.5 text-foreground/90 backdrop-blur-md">
+            No calendars · No group chats
+          </span>
         </div>
       </div>
 
