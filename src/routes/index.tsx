@@ -21,6 +21,8 @@ import {
   Lock,
   Globe2,
   Hand,
+  MessageCircle,
+  Plus,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
@@ -1061,6 +1063,129 @@ function BatSignal() {
   );
 }
 
+/* Chat — talk with people in the Haang, add others */
+function Chat() {
+  const messages = [
+    {
+      name: "Joey's mom",
+      note: "Joey can play after 4. Want us to bring the wiffle ball set?",
+      color: "oklch(0.76 0.13 145)",
+      initials: "JM",
+      time: "2m ago",
+    },
+    {
+      name: "Avery",
+      note: "Yes please! We'll be at the park.",
+      color: "oklch(0.78 0.13 70)",
+      initials: "A",
+      time: "1m ago",
+    },
+  ];
+  return (
+    <section className="relative overflow-hidden bg-[var(--color-page)] px-5 py-28 sm:px-10 sm:py-36">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.25em] text-accent">
+              Chat in the Haang
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,5rem)] font-black leading-[0.95] tracking-[-0.03em]">
+              Talk to the people{" "}
+              <span className="italic font-light text-accent">already in it.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-6 max-w-xl text-base text-foreground/70 sm:text-lg">
+              When the bat signal goes up, the conversation starts right in the
+              app. Chat with parents and kids in the Haang — then add more friends,
+              neighbors, or teammates into the thread with one tap.
+            </p>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <ul className="mt-8 space-y-3 text-foreground/80">
+              {[
+                "Group chat for every hangout or broadcast",
+                "Add new people to the Haang as plans grow",
+                "Parents looped in, kids in the driver's seat",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-3">
+                  <span className="mt-1.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground">
+                    <Check className="size-3" strokeWidth={3} />
+                  </span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+
+        <div className="lg:col-span-7">
+          <Reveal delay={0.1}>
+            <div className="relative mx-auto w-full max-w-lg rounded-[2.5rem] border border-foreground/10 bg-card p-5 shadow-[var(--shadow-soft)] sm:p-7">
+              <div className="flex items-center justify-between border-b border-foreground/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="grid size-10 place-items-center rounded-2xl bg-accent text-accent-foreground">
+                    <MessageCircle className="size-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">Volleyball at Douglass Park</p>
+                    <p className="text-xs text-foreground/50">4 people in the Haang</p>
+                  </div>
+                </div>
+                <button className="flex items-center gap-1 rounded-full bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-page)]">
+                  <Plus className="size-3" /> Add
+                </button>
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {messages.map((m, i) => (
+                  <motion.div
+                    key={m.name}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: 0.2 + i * 0.12, ease }}
+                    className="flex items-start gap-3"
+                  >
+                    <span
+                      className="grid size-9 place-items-center rounded-full text-sm font-bold text-foreground"
+                      style={{ background: m.color }}
+                    >
+                      {m.initials}
+                    </span>
+                    <div className="min-w-0 flex-1 rounded-2xl bg-zinc-50 px-4 py-3 ring-1 ring-black/5">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <p className="text-sm font-semibold">{m.name}</p>
+                        <p className="text-[10px] text-foreground/40">{m.time}</p>
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-foreground/80">
+                        {m.note}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex items-center gap-2 rounded-2xl bg-zinc-50 px-4 py-3 ring-1 ring-black/5">
+                <input
+                  readOnly
+                  placeholder="Type a message..."
+                  className="w-full bg-transparent text-sm text-foreground/70 placeholder:text-foreground/40 focus:outline-none"
+                />
+                <button className="grid size-8 place-items-center rounded-full bg-accent text-accent-foreground">
+                  <ArrowUpRight className="size-4" />
+                </button>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function Marketing() {
   return (
@@ -1076,6 +1201,7 @@ function Marketing() {
         <AppPreview />
         <Screens />
         <BatSignal />
+        <Chat />
         <Manifesto />
         <Download />
         <Feedback />
