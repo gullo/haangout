@@ -1201,6 +1201,7 @@ function Marketing() {
         <AppPreview />
         <Screens />
         <BatSignal />
+        <Chat />
         <Manifesto />
         <Download />
         <Feedback />
