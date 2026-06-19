@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
+import heroVideo from "@/assets/hero-street.mp4.asset.json";
 import kidsRunning from "@/assets/kids-running.jpg";
 import logoMark from "@/assets/brand/logo-mark.png";
 import screenHome from "@/assets/brand/screen-home.png";
@@ -191,9 +192,15 @@ function Hero() {
       }}
       className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)]"
     >
-      <motion.img
-        src={heroStreet}
-        alt="Kids riding bikes down a suburban street at golden hour"
+      <motion.video
+        src={heroVideo.url}
+        poster={heroStreet}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="Kids riding bikes down a suburban street at golden hour"
         style={{ y: imgY, scale: imgScale }}
         className="absolute inset-0 size-full object-cover"
       />
