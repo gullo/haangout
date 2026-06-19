@@ -21,6 +21,8 @@ import {
   Lock,
   Globe2,
   Hand,
+  MessageCircle,
+  Plus,
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
