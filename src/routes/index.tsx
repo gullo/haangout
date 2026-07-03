@@ -331,7 +331,90 @@ function Ticker() {
   );
 }
 
+/* Safety — early reassurance for parents */
+function Safety() {
+  const pillars = [
+    {
+      icon: Users,
+      title: "You approve the circle",
+      body: "Every friend, family, and group is vetted by you first. Kids can't be reached by anyone outside the circle you build.",
+    },
+    {
+      icon: Lock,
+      title: "Private by design",
+      body: "Kid profiles, availability, and location are only visible to the trusted families and groups you invite. Public groups are interest-only until you join.",
+    },
+    {
+      icon: Eye,
+      title: "Parents stay in the loop",
+      body: "Every bat signal and hangout sends a clear, lightweight heads-up. You're never removed from the picture — you're just not the dispatcher.",
+    },
+    {
+      icon: Fingerprint,
+      title: "No contact info exposed",
+      body: "No phone numbers, emails, or addresses shared with other kids or parents. Communication happens safely inside the app.",
+    },
+  ];
+  return (
+    <section id="safety" className="relative bg-[var(--color-page)] px-5 py-28 sm:px-10 sm:py-36">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-accent">
+                <Shield className="size-3.5" /> For parents
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-black leading-[0.95] tracking-[-0.03em]">
+                Built for kid freedom,{" "}
+                <span className="italic font-light text-accent">
+                  with you in control.
+                </span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-md text-base text-foreground/70 sm:text-lg">
+                Safety isn't a footnote. Haangout is designed so kids can be
+                spontaneous, and parents can be confident about who they connect
+                with and where they are.
+              </p>
+            </Reveal>
+            <Reveal delay={0.18}>
+              <Link
+                to="/safety"
+                className="mt-8 inline-flex items-center gap-2 rounded-full border border-foreground/15 px-5 py-3 text-sm font-semibold text-foreground hover:bg-foreground/5"
+              >
+                Read our safety promise <ArrowUpRight className="size-4" />
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8">
+            {pillars.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06}>
+                <div className="h-full rounded-[1.75rem] border border-foreground/10 bg-card p-6 shadow-[var(--shadow-soft)] sm:p-7">
+                  <div className="grid size-11 place-items-center rounded-2xl bg-accent text-accent-foreground">
+                    <p.icon className="size-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold tracking-tight">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                    {p.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Story section: large editorial text with image inset */
+
 function Story() {
   return (
     <section id="story" className="relative bg-[var(--color-page)] px-5 py-28 sm:px-10 sm:py-40">
