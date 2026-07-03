@@ -952,12 +952,14 @@ function Footer() {
           <p className="text-xs uppercase tracking-[0.2em] text-foreground/50">
             Product
           </p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><a href="#story" className="hover:text-accent">Story</a></li>
-            <li><a href="#how" className="hover:text-accent">How it works</a></li>
-            <li><Link to="/app" className="hover:text-accent">Try the app</Link></li>
-            <li><a href="#feedback" className="hover:text-accent">Feedback</a></li>
-          </ul>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#story" className="hover:text-accent">Story</a></li>
+              <li><a href="#how" className="hover:text-accent">How it works</a></li>
+              <li><a href="#safety" className="hover:text-accent">Safety</a></li>
+              <li><Link to="/app" className="hover:text-accent">Try the app</Link></li>
+              <li><a href="#feedback" className="hover:text-accent">Feedback</a></li>
+            </ul>
+
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-foreground/50">
