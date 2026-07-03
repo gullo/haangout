@@ -23,6 +23,11 @@ import {
   Hand,
   MessageCircle,
   Plus,
+  Shield,
+  Eye,
+  Fingerprint,
+
+
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
@@ -153,9 +158,11 @@ function Nav() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
           <a href="#story" className="hover:text-foreground">The story</a>
           <a href="#how" className="hover:text-foreground">How it works</a>
+          <a href="#safety" className="hover:text-foreground">Safety</a>
           <a href="#preview" className="hover:text-foreground">The app</a>
           <a href="#feedback" className="hover:text-foreground">Feedback</a>
         </nav>
+
         <MagneticButton
           href="#download"
           className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-[var(--color-page)] sm:text-sm"
@@ -326,7 +333,90 @@ function Ticker() {
   );
 }
 
+/* Safety — early reassurance for parents */
+function Safety() {
+  const pillars = [
+    {
+      icon: Users,
+      title: "You approve the circle",
+      body: "Every friend, family, and group is vetted by you first. Kids can't be reached by anyone outside the circle you build.",
+    },
+    {
+      icon: Lock,
+      title: "Private by design",
+      body: "Kid profiles, availability, and location are only visible to the trusted families and groups you invite. Public groups are interest-only until you join.",
+    },
+    {
+      icon: Eye,
+      title: "Parents stay in the loop",
+      body: "Every bat signal and hangout sends a clear, lightweight heads-up. You're never removed from the picture — you're just not the dispatcher.",
+    },
+    {
+      icon: Fingerprint,
+      title: "No contact info exposed",
+      body: "No phone numbers, emails, or addresses shared with other kids or parents. Communication happens safely inside the app.",
+    },
+  ];
+  return (
+    <section id="safety" className="relative bg-[var(--color-page)] px-5 py-28 sm:px-10 sm:py-36">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-accent">
+                <Shield className="size-3.5" /> For parents
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-black leading-[0.95] tracking-[-0.03em]">
+                Built for kid freedom,{" "}
+                <span className="italic font-light text-accent">
+                  with you in control.
+                </span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-md text-base text-foreground/70 sm:text-lg">
+                Safety isn't a footnote. Haangout is designed so kids can be
+                spontaneous, and parents can be confident about who they connect
+                with and where they are.
+              </p>
+            </Reveal>
+            <Reveal delay={0.18}>
+              <Link
+                to="/safety"
+                className="mt-8 inline-flex items-center gap-2 rounded-full border border-foreground/15 px-5 py-3 text-sm font-semibold text-foreground hover:bg-foreground/5"
+              >
+                Read our safety promise <ArrowUpRight className="size-4" />
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8">
+            {pillars.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06}>
+                <div className="h-full rounded-[1.75rem] border border-foreground/10 bg-card p-6 shadow-[var(--shadow-soft)] sm:p-7">
+                  <div className="grid size-11 place-items-center rounded-2xl bg-accent text-accent-foreground">
+                    <p.icon className="size-5" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold tracking-tight">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                    {p.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Story section: large editorial text with image inset */
+
 function Story() {
   return (
     <section id="story" className="relative bg-[var(--color-page)] px-5 py-28 sm:px-10 sm:py-40">
@@ -357,9 +447,10 @@ function Story() {
                 three-week RSVP threads for two kids to ride bikes.
               </p>
               <p className="font-medium text-foreground">
-                Haangout is the spontaneous layer. Kids find kids — parents
-                stay out of it.
+                Haangout is the spontaneous layer. Kids find kids — with the
+                trusted circle and visibility you set up.
               </p>
+
             </div>
           </Reveal>
         </div>
@@ -415,11 +506,12 @@ function HowItWorks() {
     {
       n: "03",
       title: "Knock & go",
-      body: "Tap Hangout Now. Parents get the lightest possible heads-up. Then the kids handle the rest.",
+      body: "Tap Haangout Now. The app sends the lightest possible heads-up to parents, so kids can head out with your confidence.",
       Icon: DoorOpen,
     },
   ];
   return (
+
     <section id="how" className="relative bg-foreground px-5 py-28 text-[var(--color-page)] sm:px-10 sm:py-40">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -438,9 +530,10 @@ function HowItWorks() {
           </div>
           <Reveal delay={0.15}>
             <p className="max-w-sm text-base opacity-70">
-              We removed every step a parent has to take. Permissions stay on,
-              location stays private, kids run their own social calendar.
+              We removed the coordination, not the parenting. You approve the
+              circle, set visibility, and stay in the loop — kids get the freedom.
             </p>
+
           </Reveal>
         </div>
 
@@ -859,12 +952,14 @@ function Footer() {
           <p className="text-xs uppercase tracking-[0.2em] text-foreground/50">
             Product
           </p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><a href="#story" className="hover:text-accent">Story</a></li>
-            <li><a href="#how" className="hover:text-accent">How it works</a></li>
-            <li><Link to="/app" className="hover:text-accent">Try the app</Link></li>
-            <li><a href="#feedback" className="hover:text-accent">Feedback</a></li>
-          </ul>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#story" className="hover:text-accent">Story</a></li>
+              <li><a href="#how" className="hover:text-accent">How it works</a></li>
+              <li><a href="#safety" className="hover:text-accent">Safety</a></li>
+              <li><Link to="/app" className="hover:text-accent">Try the app</Link></li>
+              <li><a href="#feedback" className="hover:text-accent">Feedback</a></li>
+            </ul>
+
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-foreground/50">
@@ -1101,8 +1196,9 @@ function Chat() {
               {[
                 "Group chat for every hangout or broadcast",
                 "Add new people to the Haang as plans grow",
-                "Parents looped in, kids in the driver's seat",
+                "Parents stay in the loop, kids can lead the plan",
               ].map((f) => (
+
                 <li key={f} className="flex items-start gap-3">
                   <span className="mt-1.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground">
                     <Check className="size-3" strokeWidth={3} />
@@ -1188,6 +1284,7 @@ function Marketing() {
         <Nav />
         <Hero />
         <Ticker />
+        <Safety />
         <Story />
         <HowItWorks />
         <Numbers />
@@ -1199,6 +1296,7 @@ function Marketing() {
         <Download />
         <Feedback />
         <Footer />
+
       </main>
     </>
   );
