@@ -143,7 +143,9 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-black/5 bg-[oklch(0.985_0.003_90/0.7)] px-5 py-3 backdrop-blur-xl sm:px-7">
         <Link to="/" className="group flex items-center gap-2">
-          <img src={logoMark} alt="Haangout" className="size-9 rounded-xl" />
+          <div className="flex items-center justify-center size-10 rounded-xl bg-page p-1.5">
+            <img src={logoMark} alt="Haangout" className="size-7 object-contain" />
+          </div>
           <span className="font-display text-xl font-black tracking-tight">
             haang<span className="italic text-accent">out</span>
           </span>
@@ -841,7 +843,9 @@ function Footer() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 md:grid-cols-4">
         <div className="col-span-2">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logoMark} alt="Haangout" className="size-12 rounded-2xl" />
+            <div className="flex items-center justify-center size-14 rounded-2xl bg-page p-2">
+              <img src={logoMark} alt="Haangout" className="size-10 object-contain" />
+            </div>
             <span className="font-display text-3xl font-black tracking-tight">
               haang<span className="italic text-accent">out</span>
             </span>
