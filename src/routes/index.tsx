@@ -1196,8 +1196,9 @@ function Chat() {
               {[
                 "Group chat for every hangout or broadcast",
                 "Add new people to the Haang as plans grow",
-                "Parents looped in, kids in the driver's seat",
+                "Parents stay in the loop, kids can lead the plan",
               ].map((f) => (
+
                 <li key={f} className="flex items-start gap-3">
                   <span className="mt-1.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground">
                     <Check className="size-3" strokeWidth={3} />
