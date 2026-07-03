@@ -158,9 +158,11 @@ function Nav() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
           <a href="#story" className="hover:text-foreground">The story</a>
           <a href="#how" className="hover:text-foreground">How it works</a>
+          <a href="#safety" className="hover:text-foreground">Safety</a>
           <a href="#preview" className="hover:text-foreground">The app</a>
           <a href="#feedback" className="hover:text-foreground">Feedback</a>
         </nav>
+
         <MagneticButton
           href="#download"
           className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-[var(--color-page)] sm:text-sm"
