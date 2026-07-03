@@ -1196,6 +1196,7 @@ function Marketing() {
         <Nav />
         <Hero />
         <Ticker />
+        <Safety />
         <Story />
         <HowItWorks />
         <Numbers />
@@ -1207,6 +1208,7 @@ function Marketing() {
         <Download />
         <Feedback />
         <Footer />
+
       </main>
     </>
   );
