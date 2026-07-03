@@ -843,7 +843,9 @@ function Footer() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 md:grid-cols-4">
         <div className="col-span-2">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logoMark} alt="Haangout" className="size-12 rounded-2xl" />
+            <div className="flex items-center justify-center size-14 rounded-2xl bg-page p-2">
+              <img src={logoMark} alt="Haangout" className="size-10 object-contain" />
+            </div>
             <span className="font-display text-3xl font-black tracking-tight">
               haang<span className="italic text-accent">out</span>
             </span>
