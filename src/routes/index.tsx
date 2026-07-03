@@ -445,9 +445,10 @@ function HowItWorks() {
           </div>
           <Reveal delay={0.15}>
             <p className="max-w-sm text-base opacity-70">
-              We removed every step a parent has to take. Permissions stay on,
-              location stays private, kids run their own social calendar.
+              We removed the coordination, not the parenting. You approve the
+              circle, set visibility, and stay in the loop — kids get the freedom.
             </p>
+
           </Reveal>
         </div>
 
