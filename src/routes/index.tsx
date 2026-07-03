@@ -421,11 +421,12 @@ function HowItWorks() {
     {
       n: "03",
       title: "Knock & go",
-      body: "Tap Hangout Now. Parents get the lightest possible heads-up. Then the kids handle the rest.",
+      body: "Tap Haangout Now. The app sends the lightest possible heads-up to parents, so kids can head out with your confidence.",
       Icon: DoorOpen,
     },
   ];
   return (
+
     <section id="how" className="relative bg-foreground px-5 py-28 text-[var(--color-page)] sm:px-10 sm:py-40">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
