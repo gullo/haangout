@@ -22,7 +22,10 @@ import {
   Globe2,
   Hand,
   MessageCircle,
-  Plus,
+  Shield,
+  Eye,
+  Fingerprint,
+
 } from "lucide-react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import heroStreet from "@/assets/hero-street.jpg";
