@@ -362,9 +362,10 @@ function Story() {
                 three-week RSVP threads for two kids to ride bikes.
               </p>
               <p className="font-medium text-foreground">
-                Haangout is the spontaneous layer. Kids find kids — parents
-                stay out of it.
+                Haangout is the spontaneous layer. Kids find kids — with the
+                trusted circle and visibility you set up.
               </p>
+
             </div>
           </Reveal>
         </div>
