@@ -143,7 +143,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between rounded-full border border-black/5 bg-[oklch(0.985_0.003_90/0.7)] px-5 py-3 backdrop-blur-xl sm:px-7">
         <Link to="/" className="group flex items-center gap-2">
-          <div className="flex items-center justify-center size-10 rounded-xl bg-page p-1.5">
+          <div className="flex items-center justify-center size-10 rounded-xl bg-accent p-1.5">
             <img src={logoMark} alt="Haangout" className="size-7 object-contain" />
           </div>
           <span className="font-display text-xl font-black tracking-tight">
