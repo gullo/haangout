@@ -198,7 +198,7 @@ function Hero() {
         mx.set(((e.clientX - r.left) / r.width) * 100);
         my.set(((e.clientY - r.top) / r.height) * 100);
       }}
-      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)]"
+      className="relative h-[100svh] min-h-[760px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)] pt-24 sm:pt-28"
     >
       <motion.img
         src={heroStreet}
@@ -215,7 +215,7 @@ function Hero() {
         className="absolute inset-x-0 bottom-0 z-10 px-5 pb-14 sm:px-10 sm:pb-20"
       >
         <div className="mx-auto max-w-[1400px]">
-          <h1 className="font-display text-[clamp(3.5rem,11vw,11rem)] font-black leading-[0.85] tracking-[-0.04em] text-[var(--color-page)]">
+          <h1 className="font-display text-[clamp(3rem,9vw,8.5rem)] font-black leading-[0.85] tracking-[-0.04em] text-[var(--color-page)]">
             <KineticWord text="Knock." delay={0} />
             <br />
             <KineticWord text="Ring." delay={0.15} />
@@ -258,20 +258,6 @@ function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-[var(--color-page)]/70"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          Scroll
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
