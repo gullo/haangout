@@ -198,7 +198,7 @@ function Hero() {
         mx.set(((e.clientX - r.left) / r.width) * 100);
         my.set(((e.clientY - r.top) / r.height) * 100);
       }}
-      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)]"
+      className="relative h-[100svh] min-h-[760px] w-full overflow-hidden bg-[oklch(0.94_0.01_75)] pt-24 sm:pt-28"
     >
       <motion.img
         src={heroStreet}
