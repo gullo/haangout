@@ -1284,8 +1284,8 @@ function Marketing() {
         <Nav />
         <Hero />
         <Ticker />
-        <Safety />
         <Story />
+        <Safety />
         <HowItWorks />
         <Numbers />
         <AppPreview />
