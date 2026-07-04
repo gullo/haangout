@@ -215,7 +215,7 @@ function Hero() {
         className="absolute inset-x-0 bottom-0 z-10 px-5 pb-14 sm:px-10 sm:pb-20"
       >
         <div className="mx-auto max-w-[1400px]">
-          <h1 className="font-display text-[clamp(3.5rem,11vw,11rem)] font-black leading-[0.85] tracking-[-0.04em] text-[var(--color-page)]">
+          <h1 className="font-display text-[clamp(3rem,9vw,8.5rem)] font-black leading-[0.85] tracking-[-0.04em] text-[var(--color-page)]">
             <KineticWord text="Knock." delay={0} />
             <br />
             <KineticWord text="Ring." delay={0.15} />
