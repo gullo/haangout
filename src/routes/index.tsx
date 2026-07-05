@@ -328,9 +328,19 @@ function Safety() {
       body: "Every friend, family, and group is vetted by you first. Kids can't be reached by anyone outside the circle you build.",
     },
     {
+      icon: Fingerprint,
+      title: "No contact info exposed",
+      body: "No phone numbers, emails, or home addresses shared with other kids or parents. Communication happens safely inside the app.",
+    },
+    {
+      icon: Shield,
+      title: "COPPA-compliant, always",
+      body: "We follow the Children's Online Privacy Protection Act: real parental consent before we collect a kid's info, no targeted ads to kids, and delete requests actually delete the data.",
+    },
+    {
       icon: Lock,
-      title: "Private by design",
-      body: "Kid profiles, availability, and location are only visible to the trusted families and groups you invite. Public groups are interest-only until you join.",
+      title: "Honest about what's shared",
+      body: "When Maya posts \"Volleyball at Douglass Park, 3–5pm,\" that's what her approved circle sees — the place and time she chose to share. Her home address and background location are never shown.",
     },
     {
       icon: Eye,
@@ -338,9 +348,9 @@ function Safety() {
       body: "Every bat signal and hangout sends a clear, lightweight heads-up. You're never removed from the picture — you're just not the dispatcher.",
     },
     {
-      icon: Fingerprint,
-      title: "No contact info exposed",
-      body: "No phone numbers, emails, or addresses shared with other kids or parents. Communication happens safely inside the app.",
+      icon: MessageCircle,
+      title: "Chat with boundaries",
+      body: "Chat is tied to a specific hangout or an approved group. No one-on-one messages with strangers. No public inbox.",
     },
   ];
   return (
