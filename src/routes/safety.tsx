@@ -205,7 +205,6 @@ function SafetyPage() {
             </section>
           ))}
         </div>
-        {/* A few things we don't do */}
 
         {/* A few things we don't do */}
         <div className="mt-16 rounded-[1.75rem] border border-foreground/10 bg-foreground px-6 py-8 text-[var(--color-page)] sm:px-10 sm:py-10">
