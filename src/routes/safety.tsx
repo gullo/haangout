@@ -205,24 +205,7 @@ function SafetyPage() {
             </section>
           ))}
         </div>
-
-        {/* Third-party / credibility */}
-        <section className="mt-20 rounded-[1.75rem] border border-dashed border-foreground/20 bg-card/60 p-6 sm:p-8">
-          <div className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/60">
-            Outside review
-          </div>
-          <h2 className="mt-4 font-display text-2xl font-bold tracking-tight">
-            Who's checking our work
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/70">
-            We don't want you to take our word for it. This section will name the
-            independent child-safety advisor, review body, and any partner
-            organizations who have reviewed Haangout's product and policies.
-          </p>
-          <p className="mt-4 rounded-xl bg-[oklch(0.95_0.06_85)] px-4 py-3 text-xs font-medium uppercase tracking-[0.15em] text-foreground/70">
-            [TODO: confirm with Frances before publishing]
-          </p>
-        </section>
+        {/* A few things we don't do */}
 
         {/* A few things we don't do */}
         <div className="mt-16 rounded-[1.75rem] border border-foreground/10 bg-foreground px-6 py-8 text-[var(--color-page)] sm:px-10 sm:py-10">
