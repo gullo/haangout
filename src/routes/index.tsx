@@ -330,17 +330,12 @@ function Safety() {
     {
       icon: Fingerprint,
       title: "No contact info exposed",
-      body: "No phone numbers, emails, or home addresses shared with other kids or parents. Communication happens safely inside the app.",
+      body: "Your kid's home address and background location are never shown — only what they choose to post. When Maya sends a bat signal, her circle sees the specific place and time so friends can actually meet up, not a live pin or private address.",
     },
     {
       icon: Shield,
       title: "COPPA-compliant, always",
       body: "We follow the Children's Online Privacy Protection Act: real parental consent before we collect a kid's info, no targeted ads to kids, and delete requests actually delete the data.",
-    },
-    {
-      icon: Lock,
-      title: "Honest about what's shared",
-      body: "When Maya posts \"Volleyball at Douglass Park, 3–5pm,\" that's what her approved circle sees — the place and time she chose to share. Her home address and background location are never shown.",
     },
     {
       icon: Eye,
