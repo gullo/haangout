@@ -957,7 +957,7 @@ function Footer() {
             Legal
           </p>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/terms" className="hover:text-accent">Terms &amp; Conditions</Link></li>
+            <li><Link to="/terms" className="hover:text-accent">Terms of Service</Link></li>
             <li><Link to="/privacy" className="hover:text-accent">Privacy Policy</Link></li>
             <li>
               <a
