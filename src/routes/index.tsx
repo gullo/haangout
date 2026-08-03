@@ -814,8 +814,9 @@ function Download() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,7rem)] font-black leading-[0.9] tracking-[-0.04em]">
-            Tell your kid to{" "}
-            <span className="italic font-light opacity-80">put on shoes.</span>
+            Shoes on.{" "}
+            <span className="italic font-light opacity-80">Out the door.</span>
+
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
