@@ -819,10 +819,9 @@ function Download() {
           <p className="text-xs uppercase tracking-[0.25em] opacity-60">Get it</p>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,7rem)] font-black leading-[0.9] tracking-[-0.04em]">
+          <h2 className="mt-5 max-w-none whitespace-nowrap font-display text-[clamp(1.6rem,5.2vw,6rem)] font-black leading-[1.05] tracking-[-0.04em]">
             Shoes on.{" "}
             <span className="italic font-light opacity-80">Out the door.</span>
-
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
