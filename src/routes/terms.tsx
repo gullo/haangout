@@ -18,9 +18,9 @@ export const Route = createFileRoute("/terms")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://haangout.lovable.app/terms" },
+      { property: "og:url", content: "https://haangoutapp.com/terms" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/terms" }],
   }),
   component: TermsPage,
 });

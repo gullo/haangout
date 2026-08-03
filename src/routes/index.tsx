@@ -52,9 +52,9 @@ export const Route = createFileRoute("/")({
         content:
           "Bring back the doorbell-ring era. Less coordination, more outside.",
       },
-      { property: "og:url", content: "https://haangout.lovable.app/" },
+      { property: "og:url", content: "https://haangoutapp.com/" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/" }],
   }),
   component: Marketing,
 });

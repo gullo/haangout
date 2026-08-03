@@ -31,9 +31,9 @@ export const Route = createFileRoute("/safety")({
         content:
           "Parent-approved circles, COPPA compliance, honest location practices, and same-day safety report reviews.",
       },
-      { property: "og:url", content: "https://haangout.lovable.app/safety" },
+      { property: "og:url", content: "https://haangoutapp.com/safety" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/safety" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/safety" }],
   }),
   component: SafetyPage,
 });

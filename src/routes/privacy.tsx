@@ -18,9 +18,9 @@ export const Route = createFileRoute("/privacy")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://haangout.lovable.app/privacy" },
+      { property: "og:url", content: "https://haangoutapp.com/privacy" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/privacy" }],
   }),
   component: PrivacyPage,
 });
