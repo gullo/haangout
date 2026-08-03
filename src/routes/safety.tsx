@@ -136,7 +136,7 @@ const tiers: Tier[] = [
       {
         icon: Bug,
         title: "We invite people to try to break in",
-        body: "We run regular security testing and welcome vulnerability reports from independent researchers. If you find something, email security@haangout.app — we respond, we fix, and we credit you.",
+        body: "We run regular security testing and welcome vulnerability reports from independent researchers. If you find something, email security@haangoutapp.com — we respond, we fix, and we credit you.",
       },
     ],
   },

@@ -239,10 +239,10 @@ function TermsPage() {
             responsible for monitoring all user-generated content. Please report
             violations to{" "}
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             .
           </P>
@@ -384,10 +384,10 @@ function TermsPage() {
           <div className="mt-5 rounded-[1.25rem] border border-foreground/10 bg-card p-6 shadow-[var(--shadow-soft)]">
             <p className="text-sm text-foreground/60">Email</p>
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="font-display text-lg font-bold text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             <p className="mt-4 text-sm leading-relaxed text-foreground/60">
               Response time: we will respond to inquiries within 5 business
