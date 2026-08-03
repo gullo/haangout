@@ -781,7 +781,7 @@ function Manifesto() {
       <div className="mx-auto max-w-[1400px]">
         {lines.map((l, i) => (
           <Reveal key={l} delay={i * 0.04}>
-            <p className="font-display text-[clamp(2.5rem,8vw,8rem)] font-black leading-[0.95] tracking-[-0.04em]">
+            <p className="font-display text-[clamp(2.5rem,8vw,8rem)] font-black leading-[1.06] tracking-[-0.04em]">
               <span className={i % 2 === 0 ? "" : "italic font-light text-foreground/60"}>
                 {l}
               </span>
