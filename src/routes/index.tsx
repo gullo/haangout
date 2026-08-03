@@ -271,13 +271,19 @@ function KineticWord({
   delay: number;
   accent?: boolean;
 }) {
+  const [done, setDone] = useState(false);
   return (
-    <span className="inline-block overflow-hidden pb-[0.32em] -mb-[0.12em] align-bottom">
+    <span
+      className={`inline-block align-bottom pb-[0.06em] -mb-[0.06em] ${
+        done ? "overflow-visible" : "overflow-hidden"
+      }`}
+    >
       <motion.span
         initial={{ y: "110%", rotate: 8 }}
         animate={{ y: "0%", rotate: 0 }}
         transition={{ duration: 1.05, ease, delay }}
-        className={`inline-block ${accent ? "text-accent" : ""}`}
+        onAnimationComplete={() => setDone(true)}
+        className={`inline-block pr-[0.06em] ${accent ? "text-accent" : ""}`}
       >
         {text}
       </motion.span>
@@ -813,10 +819,9 @@ function Download() {
           <p className="text-xs uppercase tracking-[0.25em] opacity-60">Get it</p>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,7rem)] font-black leading-[0.9] tracking-[-0.04em]">
+          <h2 className="mt-5 max-w-none whitespace-nowrap font-display text-[clamp(1.6rem,5.2vw,6rem)] font-black leading-[1.05] tracking-[-0.04em]">
             Shoes on.{" "}
             <span className="italic font-light opacity-80">Out the door.</span>
-
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
