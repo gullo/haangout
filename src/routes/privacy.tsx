@@ -284,10 +284,10 @@ function PrivacyPage() {
             To exercise these rights, go to Settings &gt; Privacy &amp; Data in
             the Haangout app or contact us at{" "}
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             .
           </P>
@@ -363,10 +363,10 @@ function PrivacyPage() {
           <div className="mt-5 rounded-[1.25rem] border border-foreground/10 bg-card p-6 shadow-[var(--shadow-soft)]">
             <p className="text-sm text-foreground/60">Email</p>
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="font-display text-lg font-bold text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             <p className="mt-4 text-sm text-foreground/60">Mailing address</p>
             <p className="leading-relaxed text-foreground/80">

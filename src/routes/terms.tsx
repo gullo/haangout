@@ -347,10 +347,10 @@ function TermsPage() {
             </strong>{" "}
             Before initiating legal proceedings, please contact us at{" "}
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>{" "}
             to resolve disputes.
           </P>
