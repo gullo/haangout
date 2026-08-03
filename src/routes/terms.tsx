@@ -18,9 +18,9 @@ export const Route = createFileRoute("/terms")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://haangout.lovable.app/terms" },
+      { property: "og:url", content: "https://haangoutapp.com/terms" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/terms" }],
   }),
   component: TermsPage,
 });
@@ -239,10 +239,10 @@ function TermsPage() {
             responsible for monitoring all user-generated content. Please report
             violations to{" "}
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             .
           </P>
@@ -347,10 +347,10 @@ function TermsPage() {
             </strong>{" "}
             Before initiating legal proceedings, please contact us at{" "}
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>{" "}
             to resolve disputes.
           </P>
@@ -384,10 +384,10 @@ function TermsPage() {
           <div className="mt-5 rounded-[1.25rem] border border-foreground/10 bg-card p-6 shadow-[var(--shadow-soft)]">
             <p className="text-sm text-foreground/60">Email</p>
             <a
-              href="mailto:support@haangout.app"
+              href="mailto:support@haangoutapp.com"
               className="font-display text-lg font-bold text-accent hover:underline"
             >
-              support@haangout.app
+              support@haangoutapp.com
             </a>
             <p className="mt-4 text-sm leading-relaxed text-foreground/60">
               Response time: we will respond to inquiries within 5 business

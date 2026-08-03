@@ -31,9 +31,9 @@ export const Route = createFileRoute("/safety")({
         content:
           "Parent-approved circles, COPPA compliance, honest location practices, and same-day safety report reviews.",
       },
-      { property: "og:url", content: "https://haangout.lovable.app/safety" },
+      { property: "og:url", content: "https://haangoutapp.com/safety" },
     ],
-    links: [{ rel: "canonical", href: "https://haangout.lovable.app/safety" }],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/safety" }],
   }),
   component: SafetyPage,
 });
@@ -136,7 +136,7 @@ const tiers: Tier[] = [
       {
         icon: Bug,
         title: "We invite people to try to break in",
-        body: "We run regular security testing and welcome vulnerability reports from independent researchers. If you find something, email security@haangout.app — we respond, we fix, and we credit you.",
+        body: "We run regular security testing and welcome vulnerability reports from independent researchers. If you find something, email security@haangoutapp.com — we respond, we fix, and we credit you.",
       },
     ],
   },
