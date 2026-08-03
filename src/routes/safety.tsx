@@ -146,14 +146,16 @@ function SafetyPage() {
   return (
     <main className="min-h-screen bg-[var(--color-page)] px-5 py-16 text-foreground sm:px-10 sm:py-24">
       <div className="mx-auto max-w-4xl">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-accent"
-        >
-          <ArrowLeft className="size-4" /> Back home
-        </Link>
+        <div>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-accent"
+          >
+            <ArrowLeft className="size-4" /> Back home
+          </Link>
+        </div>
 
-        <div className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-accent">
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-accent">
           <Shield className="size-3.5" /> For parents
         </div>
 

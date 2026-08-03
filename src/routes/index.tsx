@@ -272,7 +272,7 @@ function KineticWord({
   accent?: boolean;
 }) {
   return (
-    <span className="inline-block overflow-hidden pb-[0.2em] align-bottom">
+    <span className="inline-block overflow-hidden pb-[0.32em] -mb-[0.12em] align-bottom">
       <motion.span
         initial={{ y: "110%", rotate: 8 }}
         animate={{ y: "0%", rotate: 0 }}
@@ -781,7 +781,7 @@ function Manifesto() {
       <div className="mx-auto max-w-[1400px]">
         {lines.map((l, i) => (
           <Reveal key={l} delay={i * 0.04}>
-            <p className="font-display text-[clamp(2.5rem,8vw,8rem)] font-black leading-[0.95] tracking-[-0.04em]">
+            <p className="font-display text-[clamp(2.5rem,8vw,8rem)] font-black leading-[1.06] tracking-[-0.04em]">
               <span className={i % 2 === 0 ? "" : "italic font-light text-foreground/60"}>
                 {l}
               </span>
@@ -814,8 +814,9 @@ function Download() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mt-5 max-w-4xl font-display text-[clamp(2.6rem,7vw,7rem)] font-black leading-[0.9] tracking-[-0.04em]">
-            Tell your kid to{" "}
-            <span className="italic font-light opacity-80">put on shoes.</span>
+            Shoes on.{" "}
+            <span className="italic font-light opacity-80">Out the door.</span>
+
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
