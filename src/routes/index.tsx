@@ -271,13 +271,19 @@ function KineticWord({
   delay: number;
   accent?: boolean;
 }) {
+  const [done, setDone] = useState(false);
   return (
-    <span className="inline-block overflow-hidden pb-[0.32em] -mb-[0.12em] align-bottom">
+    <span
+      className={`inline-block align-bottom pb-[0.06em] -mb-[0.06em] ${
+        done ? "overflow-visible" : "overflow-hidden"
+      }`}
+    >
       <motion.span
         initial={{ y: "110%", rotate: 8 }}
         animate={{ y: "0%", rotate: 0 }}
         transition={{ duration: 1.05, ease, delay }}
-        className={`inline-block ${accent ? "text-accent" : ""}`}
+        onAnimationComplete={() => setDone(true)}
+        className={`inline-block pr-[0.06em] ${accent ? "text-accent" : ""}`}
       >
         {text}
       </motion.span>
