@@ -336,7 +336,7 @@ function Safety() {
     {
       icon: Fingerprint,
       title: "No contact info exposed",
-      body: "Your kid's home address and background location are never shown — only what they choose to post. When Maya sends a bat signal, her circle sees the specific place and time so friends can actually meet up, not a live pin or private address.",
+      body: "Your kid's home address and background location are never shown, only what they choose to post. When Maya sends a Haang, her circle sees the specific place and time so friends can actually meet up, not a live pin or private address.",
     },
     {
       icon: Shield,
