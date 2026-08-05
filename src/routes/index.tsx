@@ -346,7 +346,7 @@ function Safety() {
     {
       icon: Eye,
       title: "Parents stay in the loop",
-      body: "Every bat signal and hangout sends a clear, lightweight heads-up. You're never removed from the picture — you're just not the dispatcher.",
+      body: "Every Haang alert sends a clear, lightweight heads-up. You're never removed from the picture — you're just not the dispatcher.",
     },
     {
       icon: MessageCircle,
