@@ -1067,7 +1067,7 @@ function BatSignal() {
             <Reveal delay={0.3}>
               <div className="rounded-2xl border border-[var(--color-page)]/10 bg-white/[0.04] p-5">
                 <Hand className="size-5 text-accent" />
-                <p className="mt-3 text-sm font-semibold">Wave to join</p>
+                <p className="mt-3 text-sm font-semibold">Easy to join</p>
                 <p className="mt-1 text-xs text-[var(--color-page)]/60">
                   Others see who's in, pile on, and head out together.
                 </p>
