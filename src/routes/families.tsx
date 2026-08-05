@@ -9,6 +9,24 @@ import { useKids } from "@/lib/kidsContext";
 import type { Family, Kid } from "@/lib/mockData";
 
 export const Route = createFileRoute("/families")({
+  head: () => ({
+    meta: [
+      { title: "Your trusted circle of families — Haangout" },
+      {
+        name: "description",
+        content:
+          "Manage the families your kids can haang with. Every connection is parent-approved, so your circle only grows when you say yes.",
+      },
+      { property: "og:title", content: "Your trusted circle of families — Haangout" },
+      {
+        property: "og:description",
+        content:
+          "Add, review, and manage the parent-approved families your kids can haang with.",
+      },
+      { property: "og:url", content: "https://haangoutapp.com/families" },
+    ],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/families" }],
+  }),
   component: FamiliesPage,
 });
 

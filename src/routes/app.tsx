@@ -14,6 +14,24 @@ import { useProfile, profileInitials } from "@/lib/profileContext";
 import { kidsBackground } from "@/lib/kidColors";
 
 export const Route = createFileRoute("/app")({
+  head: () => ({
+    meta: [
+      { title: "Your Haangout dashboard — see who's free now" },
+      {
+        name: "description",
+        content:
+          "The Haangout home screen: start a Haang, see today's matches for each kid, and find a future haang with the families in your circle.",
+      },
+      { property: "og:title", content: "Your Haangout dashboard — see who's free now" },
+      {
+        property: "og:description",
+        content:
+          "Start a Haang, see today's matches for each kid, and find a future haang with your trusted families.",
+      },
+      { property: "og:url", content: "https://haangoutapp.com/app" },
+    ],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/app" }],
+  }),
   component: Home,
 });
 
