@@ -34,6 +34,65 @@ export const Route = createFileRoute("/safety")({
       { property: "og:url", content: "https://haangoutapp.com/safety" },
     ],
     links: [{ rel: "canonical", href: "https://haangoutapp.com/safety" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Are you COPPA compliant?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Before we collect any information from a child under 13, we get verifiable parental consent from you. We don't run targeted ads at kids. And when you ask us to delete your child's data, we actually delete it — profile, posts, hangout history, chat — not archive it.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What happens after I report someone?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "The reported family is paused immediately — they can't reach your kid while the report is open. Our trust team reviews every safety report within 4 hours during U.S. daytime hours, and by the next morning otherwise. Serious concerns get escalated to our head of trust and, when appropriate, law enforcement.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Who can see my kid?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Only the families and groups you explicitly connect with. Your kid's profile, availability, and posts are hidden from the public internet and from unapproved users. Public groups show only the group name to nearby members; your child does not appear in a public list.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What about location? Isn't posting an exact place risky?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Broadcasts show the specific place and time your kid chose to post — because \"meet at the park at 3\" is the whole point of the app. But it only goes to the trusted circle you approved. We never expose home addresses, and the phone is not quietly tracking your kid in the background.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What happens when my kid wants to connect?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Connection requests and group invites route to the parent account first. A kid cannot add a new family, join a private group, or be added to a chat without your approval.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How do I report a concern?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "You can block a family, remove a group, or report a message directly from the app. Safety reports go to a dedicated queue with same-day turnaround. General product feedback can go through the feedback form on the homepage.",
+              },
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: SafetyPage,
 });
