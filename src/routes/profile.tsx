@@ -13,6 +13,24 @@ import { useKids } from "@/lib/kidsContext";
 import { useProfile, profileInitials } from "@/lib/profileContext";
 
 export const Route = createFileRoute("/profile")({
+  head: () => ({
+    meta: [
+      { title: "Profile & settings — Haangout" },
+      {
+        name: "description",
+        content:
+          "Manage your Haangout account: parent details, your kids' profiles, invite links, notification preferences, and privacy controls.",
+      },
+      { property: "og:title", content: "Profile & settings — Haangout" },
+      {
+        property: "og:description",
+        content:
+          "Manage your account, your kids' profiles, invite links, and privacy controls.",
+      },
+      { property: "og:url", content: "https://haangoutapp.com/profile" },
+    ],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/profile" }],
+  }),
   component: ProfilePage,
 });
 

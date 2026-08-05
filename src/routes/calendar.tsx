@@ -17,6 +17,24 @@ import {
 import { useKids } from "@/lib/kidsContext";
 
 export const Route = createFileRoute("/calendar")({
+  head: () => ({
+    meta: [
+      { title: "Availability calendar — Haangout" },
+      {
+        name: "description",
+        content:
+          "Set when each kid is free with recurring rules and specific time blocks, then let Haangout match those windows against the families you trust.",
+      },
+      { property: "og:title", content: "Availability calendar — Haangout" },
+      {
+        property: "og:description",
+        content:
+          "Set recurring free-play windows for each kid and let Haangout do the matching.",
+      },
+      { property: "og:url", content: "https://haangoutapp.com/calendar" },
+    ],
+    links: [{ rel: "canonical", href: "https://haangoutapp.com/calendar" }],
+  }),
   component: CalendarPage,
 });
 
