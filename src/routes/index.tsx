@@ -1109,7 +1109,7 @@ function BatSignal() {
               </div>
 
               <div className="mt-6 rounded-2xl bg-accent/15 px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                3 kids waved back
+                3 kids want in
               </div>
 
               <ul className="mt-3 space-y-2">
