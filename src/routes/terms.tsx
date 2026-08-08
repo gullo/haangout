@@ -192,6 +192,17 @@ function TermsPage() {
             and age-appropriate. Haangout is a coordination tool; users must
             verify safety protocols before arranging activities.
           </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Neutral platform:
+            </strong>{" "}
+            Haangout only provides tools that help families and kids discover
+            and contact one another. We do not supervise, verify, endorse, or
+            guarantee the conduct, background, or intentions of any user. You
+            are solely responsible for deciding whom to connect with, what
+            information to share, and whether to participate in any activity
+            arranged through the Service.
+          </P>
 
           <H2 n="05">Intellectual property rights</H2>
           <List
