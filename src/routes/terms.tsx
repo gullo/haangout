@@ -264,30 +264,48 @@ function TermsPage() {
               Disclaimer:
             </strong>{" "}
             Haangout is provided "as-is" and "as-available" without warranties
-            of any kind. We do not warrant that the Service will be error-free,
-            uninterrupted, or secure.
+            of any kind, whether express or implied. We do not warrant that the
+            Service will be error-free, uninterrupted, secure, or free of harmful
+            or inappropriate content or users.
           </P>
           <P>
             <strong className="font-semibold text-foreground">
-              No liability for user conduct:
+              No liability for user conduct or connections:
             </strong>{" "}
-            We are not responsible for:
+            We are a technology platform only. We are not responsible for:
           </P>
           <List
             items={[
-              "Hangouts arranged through the Service or their outcomes",
-              "Injuries, disputes, or harm resulting from activities coordinated via the Service",
-              "Conduct of other users or their children",
-              "Failure to complete scheduled activities",
+              "Connections, introductions, or matches made through the Service, whether between families, kids, or groups",
+              "Hangouts, activities, meetings, or events arranged through the Service or their outcomes",
+              "Injuries, disputes, property damage, loss, or harm resulting from activities or interactions coordinated via the Service",
+              "Conduct, statements, omissions, or behavior of any user, their children, or any other person encountered through the Service",
+              "Failure to complete scheduled activities, or inaccurate, misleading, or unlawful user content",
+              "Malicious, abusive, fraudulent, or unlawful acts by any user, even if that connection originated through the Service",
+              "Any damage or harm resulting from a user's decision to share personal information, meet in person, or participate in an activity",
             ]}
           />
           <P>
             <strong className="font-semibold text-foreground">
+              No background checks or verification:
+            </strong>{" "}
+            We do not conduct background checks, identity verification, or safety
+            screenings of users. We are under no obligation to monitor, review,
+            or approve any user, post, or activity. You assume all risks
+            associated with connecting with others through the Service.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
               Cap on liability:
             </strong>{" "}
-            To the maximum extent permitted by law, Haangout shall not be liable
-            for any indirect, incidental, special, or consequential damages
-            arising from your use of the Service.
+            To the maximum extent permitted by law, Haangout and its officers,
+            directors, employees, agents, affiliates, licensors, successors, and
+            assigns shall not be liable for any direct, indirect, incidental,
+            special, consequential, punitive, or exemplary damages arising from or
+            relating to your access to or use of (or inability to use) the
+            Service, including any damages resulting from user conduct, content,
+            connections, or offline interactions, even if we have been advised
+            of the possibility of such damages.
           </P>
 
           <H2 n="08">Indemnification</H2>
