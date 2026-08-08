@@ -74,7 +74,7 @@ function TermsPage() {
           Terms of Service
         </h1>
         <p className="mt-3 text-sm text-foreground/60">
-          Last updated August 1, 2026
+          Last updated August 8, 2026
         </p>
 
         <div className="mt-10 text-base">
