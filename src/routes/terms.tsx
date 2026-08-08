@@ -347,7 +347,33 @@ function TermsPage() {
             Service.
           </P>
 
-          <H2 n="09">Privacy &amp; data protection</H2>
+          <H2 n="09">Assumption of risk &amp; release</H2>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Voluntary participation:
+            </strong>{" "}
+            You acknowledge that your use of the Service, including any
+            communication, connection, or in-person interaction with another
+            user, is at your sole risk. You are responsible for evaluating the
+            suitability, safety, and trustworthiness of any person, activity, or
+            situation you or your children encounter through the Service.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Release of claims:
+            </strong>{" "}
+            To the maximum extent permitted by law, you voluntarily release,
+            waive, acquit, and forever discharge Haangout and the Haangout
+            Parties from any and all claims, demands, actions, causes of
+            action, damages, or liabilities, whether known or unknown, suspected
+            or unsuspected, arising out of or in any way connected with your use
+            of the Service or any interaction you or your children have with
+            any other user. This release includes, without limitation, claims
+            arising from personal injury, property damage, harassment, emotional
+            distress, or any other harm.
+          </P>
+
+          <H2 n="10">Privacy &amp; data protection</H2>
           <List
             items={[
               <>
@@ -362,7 +388,7 @@ function TermsPage() {
             ]}
           />
 
-          <H2 n="10">COPPA compliance</H2>
+          <H2 n="11">COPPA compliance</H2>
           <P>
             Haangout is committed to complying with the Children's Online
             Privacy Protection Act (COPPA). We:
@@ -376,7 +402,7 @@ function TermsPage() {
             ]}
           />
 
-          <H2 n="11">Limitation on collection &amp; use</H2>
+          <H2 n="12">Limitation on collection &amp; use</H2>
           <List
             items={[
               "We collect only information necessary to provide the Service",
@@ -385,51 +411,123 @@ function TermsPage() {
             ]}
           />
 
-          <H2 n="12">Dispute resolution &amp; governing law</H2>
+          <H2 n="13">Dispute resolution &amp; governing law</H2>
           <P>
             <strong className="font-semibold text-foreground">
               Governing law:
             </strong>{" "}
             These Terms are governed by and construed in accordance with the
-            laws of [Your State/Country], without regard to its conflict of law
-            principles.
+            laws of the State of Georgia, United States, without regard to its
+            conflict of law principles.
           </P>
           <P>
             <strong className="font-semibold text-foreground">
-              Dispute resolution:
+              Informal resolution:
             </strong>{" "}
-            Before initiating legal proceedings, please contact us at{" "}
+            Before initiating any formal dispute resolution, please contact us
+            at{" "}
             <a
               href="mailto:support@haangoutapp.com"
               className="text-accent hover:underline"
             >
               support@haangoutapp.com
             </a>{" "}
-            to resolve disputes.
+            to attempt to resolve disputes informally.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Binding individual arbitration:
+            </strong>{" "}
+            To the fullest extent permitted by law, any dispute, claim, or
+            controversy arising out of or relating to these Terms, your use of
+            the Service, or the relationship between you and Haangout shall be
+            resolved by binding arbitration on an individual basis. Arbitration
+            shall be administered by the American Arbitration Association (AAA)
+            under its Consumer Arbitration Rules, with the arbitration hearing to
+            take place in Atlanta, Georgia, unless otherwise agreed by the
+            parties. The arbitrator's decision shall be final and binding.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Class action waiver:
+            </strong>{" "}
+            You agree that any dispute or claim will be brought only in your
+            individual capacity, and not as a class representative, class
+            member, or in any representative or private attorney general
+            capacity. Class actions, collective actions, class-wide arbitrations,
+            and any other proceeding where someone acts in a representative
+            capacity are not permitted.
           </P>
           <P>
             <strong className="font-semibold text-foreground">
               Jurisdiction:
             </strong>{" "}
-            Any legal action or proceeding shall be brought exclusively in the
-            state or federal courts located in [Your State/County], and you
-            irrevocably consent to the jurisdiction and venue of these courts.
+            Any legal action or proceeding that is not subject to arbitration
+            shall be brought exclusively in the state or federal courts located
+            in Georgia, United States, and you irrevocably consent to the
+            personal jurisdiction and venue of these courts.
           </P>
 
-          <H2 n="13">Modifications to Terms</H2>
+          <H2 n="14">No duty to monitor</H2>
+          <P>
+            You agree that Haangout has no obligation, and you do not expect us,
+            to monitor, review, edit, filter, approve, or verify user content,
+            messages, profiles, posts, or conduct on the Service. We may,
+            at our sole discretion, investigate or remove content or users that
+            violate these Terms, but we are not required to do so. We are not
+            liable for any failure to monitor, detect, report, or prevent any user
+            content, conduct, or activity.
+          </P>
+
+          <H2 n="15">Entire agreement</H2>
+          <P>
+            These Terms, together with our Privacy Policy, Safety page, and any
+            other policies or guidelines incorporated by reference, constitute
+            the entire agreement between you and Haangout regarding the Service
+            and supersede all prior or contemporaneous agreements, understandings,
+            negotiations, or representations, whether oral or written, relating
+            to the Service.
+          </P>
+
+          <H2 n="16">Force majeure</H2>
+          <P>
+            Haangout will not be liable for any failure or delay in performing
+            its obligations under these Terms where the failure or delay results
+            from any cause beyond our reasonable control, including but not
+            limited to acts of God, natural disasters, pandemic, government
+            action, war, terrorism, riots, embargoes, sanctions, strikes,
+            lockouts, internet or telecommunications failures, power outages,
+            denial-of-service attacks, or other events beyond our reasonable
+            control.
+          </P>
+
+          <H2 n="17">No third-party beneficiaries</H2>
+          <P>
+            These Terms are for the benefit of you and Haangout only. They do
+            not create any rights, remedies, or obligations for any third party,
+            including any child, family member, friend, neighbor, or other user.
+            Only you and Haangout may enforce these Terms.
+          </P>
+
+          <H2 n="18">Modifications to Terms</H2>
           <P>
             We may modify these Terms at any time. Continued use of the Service
             following notice of material changes constitutes your acceptance of
             the updated Terms.
           </P>
 
-          <H2 n="14">Severability</H2>
+          <H2 n="19">Severability</H2>
           <P>
-            If any provision of these Terms is found to be unenforceable, the
-            remaining provisions shall remain in full force and effect.
+            If any provision of these Terms is found to be unenforceable or
+            invalid for any reason, that provision shall be modified to the
+            minimum extent necessary to make it enforceable, or if that is not
+            possible, it shall be severed from these Terms. The remaining
+            provisions shall remain in full force and effect, and the invalid or
+            unenforceable provision shall be replaced by a valid provision that
+            most closely matches the intent of the original.
           </P>
 
-          <H2 n="15">Contact &amp; support</H2>
+          <H2 n="20">Contact &amp; support</H2>
           <P>
             For questions about these Terms, privacy concerns, or to exercise
             parental rights:
