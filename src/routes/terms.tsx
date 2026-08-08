@@ -310,18 +310,42 @@ function TermsPage() {
 
           <H2 n="08">Indemnification</H2>
           <P>
-            You agree to indemnify and hold harmless Haangout, its officers,
-            employees, and agents from any claims, damages, losses, or expenses
-            arising from:
+            You agree to indemnify, defend, and hold harmless Haangout, Inc. and
+            its parent companies, subsidiaries, affiliates, officers, directors,
+            employees, agents, representatives, licensors, partners, members,
+            successors, and assigns (collectively, the "Haangout Parties") from
+            and against any and all claims, liabilities, damages, losses, costs,
+            expenses, fines, settlements, judgments, and attorneys' fees arising
+            out of or relating to:
           </P>
           <List
             items={[
-              "Your use of the Service",
-              "Your violation of these Terms",
-              "Your violation of any law or third-party rights",
-              "Your arrangements or activities coordinated through the Service",
+              "Your access to or use of the Service",
+              "Your violation of these Terms or any applicable law, regulation, or third-party right",
+              "Your user content, posts, messages, or any information you submit or share through the Service",
+              "Any connection, introduction, interaction, communication, or relationship you form with another user through the Service",
+              "Any hangout, activity, meeting, or event you arrange, join, or facilitate through the Service",
+              "Any harm, injury, loss, property damage, or dispute involving you, your children, or anyone else arising from or connected to your use of the Service",
+              "Any claim by a third party, including another user or a member of their family, that arises from your conduct, content, or connections through the Service",
+              "Any claim that Haangout's connection of you or your children with another user caused or contributed to any harm or wrongdoing",
             ]}
           />
+          <P>
+            You agree to cooperate fully in the defense of any such claim. We
+            reserve the right to assume the exclusive defense and control of any
+            matter otherwise subject to indemnification by you, and you agree not
+            to settle any claim without our prior written consent.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Important:
+            </strong>{" "}
+            Haangout is not a babysitter, supervisor, or guarantor of any user or
+            activity. Our role is limited to providing technology that helps
+            families and kids discover one another. You are solely responsible
+            for the choices you make and the people you connect with through the
+            Service.
+          </P>
 
           <H2 n="09">Privacy &amp; data protection</H2>
           <List
