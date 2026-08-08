@@ -74,7 +74,7 @@ function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="mt-3 text-sm text-foreground/60">
-          Last updated August 1, 2026
+          Last updated August 8, 2026
         </p>
 
         <div className="mt-10 text-base">
@@ -86,19 +86,59 @@ function PrivacyPage() {
             collect, use, disclose, and safeguard information when you use our
             mobile application and website (collectively, the "Service").
           </P>
-          <div className="mt-5 rounded-[1.25rem] border border-accent/25 bg-accent/10 p-5">
+          <div className="mt-5 rounded-[1.5rem] border border-accent/25 bg-accent/10 p-5">
             <p className="leading-relaxed text-foreground/85">
               <strong className="font-bold text-foreground">Important:</strong>{" "}
-              Haangout is designed for families to coordinate children's
-              schedules. We collect personal information about children only
-              with verifiable parental consent. If you are under 13, you may
-              only use Haangout under the direct supervision of a parent or
-              legal guardian who has agreed to this Privacy Policy on your
-              behalf.
+              Haangout is built for parents and guardians to manage their
+              children's social connections. Only adults create accounts,
+              send and accept connection requests, and make decisions about who
+              their family connects with. Children may use Haangout only through
+              a linked account created by, and subject to the supervision of,
+              their parent or legal guardian.
             </p>
           </div>
 
-          <H2 n="02">Information we collect</H2>
+          <H2 n="02">Account roles and child accounts</H2>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Adult accounts:
+            </strong>{" "}
+            A parent or legal guardian creates the primary Haangout account.
+            That adult is the account owner, is responsible for all activity under
+            the account, and controls who the family connects with.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Child accounts:
+            </strong>{" "}
+            An adult may invite their child to create a linked child account.
+            The child account is tied to the adult's account and is not
+            independent. The child cannot connect with other families or share
+            information outside of the controls set by the adult.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Parent visibility:
+            </strong>{" "}
+            The adult who creates and manages a child account can see, review,
+            and delete everything the child does on the Service, including
+            messages, hangout requests, availability, group memberships, and
+            profile information. Haangout does not provide children with any
+            communication, posting, or connection feature that is hidden from
+            their parent or guardian.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Consent:
+            </strong>{" "}
+            By creating a child account or providing a child's information, the
+            adult represents that they are the parent or legal guardian of that
+            child, that they have authority to consent on the child's behalf, and
+            that they consent to this Privacy Policy and our Terms of Service on
+            behalf of the child.
+          </P>
+
+          <H2 n="03">Information we collect</H2>
           <H3>A. Information you provide directly</H3>
           <P>
             <strong className="font-semibold text-foreground">
@@ -111,6 +151,7 @@ function PrivacyPage() {
               "Phone number",
               "Email address (if applicable)",
               "Profile photo (optional)",
+              "Authentication credentials",
             ]}
           />
           <P>
@@ -125,6 +166,7 @@ function PrivacyPage() {
               "Child's photo (optional)",
               "Child's interests and activities (e.g., soccer, painting)",
               "Child's calendar availability and schedule",
+              "Child's account activity, messages, and hangout requests",
             ]}
           />
           <P>
@@ -136,6 +178,7 @@ function PrivacyPage() {
             items={[
               "Information about linked parents/partners and their children",
               "Hangout proposals and confirmed plans",
+              "Group or community memberships",
             ]}
           />
 
@@ -146,6 +189,7 @@ function PrivacyPage() {
               "Usage data (features used, frequency of use)",
               "Calendar and availability patterns",
               "Group/family membership information",
+              "Messages and in-app communication content",
             ]}
           />
 
@@ -168,17 +212,17 @@ function PrivacyPage() {
             </ul>
           </div>
 
-          <H2 n="03">How we use information</H2>
+          <H2 n="04">How we use information</H2>
           <P>We use collected information to:</P>
           <List
             items={[
-              "Create and maintain your family account",
-              "Allow parents/guardians to manage children's profiles",
-              "Facilitate safe connections between families",
+              "Create and maintain the adult account and any linked child accounts",
+              "Allow parents/guardians to manage children's profiles and connections",
+              "Facilitate safe connections between families that adults have chosen to connect with",
               "Suggest hangout opportunities based on shared availability",
-              "Send notifications about upcoming hangouts",
+              "Send notifications about upcoming hangouts to the adult account",
               "Improve app functionality and user experience",
-              "Respond to support requests",
+              "Respond to support requests and verify parental status",
             ]}
           />
           <P>
@@ -192,14 +236,16 @@ function PrivacyPage() {
               "Use children's information for marketing or behavioral targeting",
               "Share children's photos publicly without parental consent",
               "Use information for purposes other than providing the Service",
+              "Allow children to make independent connections or share data without parental visibility",
             ]}
           />
 
-          <H2 n="04">How we share information</H2>
+          <H2 n="05">How we share information</H2>
           <H3>Within your family account</H3>
           <List
             items={[
               "Linked parents/partners can see each other's and their children's information",
+              "Adults can see all activity on any linked child account",
               "This enables joint calendar management and hangout coordination",
             ]}
           />
@@ -208,27 +254,29 @@ function PrivacyPage() {
             items={[
               <>
                 Your child's name, age, and interests are visible to other
-                families <strong className="font-semibold">only if you connect with them</strong>{" "}
-                or they appear in matching suggestions
+                families <strong className="font-semibold">only if an adult in your family has connected with them</strong>{" "}
+                or if you both participate in the same private group or community
               </>,
-              "Photos are shared only with families you actively connect with",
+              "Photos are shared only with families an adult has actively connected with",
               "Contact information (phone number) is shared only to facilitate hangout planning",
+              "Children cannot independently share information with other families or users",
             ]}
           />
           <H3>With service providers</H3>
           <List
             items={[
-              "We use Firebase (Google) for data storage and authentication",
-              "These providers are contractually obligated to protect your data",
+              "We use backend infrastructure providers for data storage, authentication, and messaging",
+              "These providers are contractually obligated to protect your data and only process it on our behalf",
             ]}
           />
           <H3>Legal requirements</H3>
           <P>
             We may disclose information if required by law, court order, or to
-            protect safety.
+            protect safety. We will attempt to notify the adult account owner of
+            any legal request affecting a child account unless prohibited by law.
           </P>
 
-          <H2 n="05">Data security</H2>
+          <H2 n="06">Data security</H2>
           <P>
             We implement reasonable security measures to protect personal
             information:
@@ -236,8 +284,8 @@ function PrivacyPage() {
           <List
             items={[
               "Encrypted data transmission (HTTPS/SSL)",
-              "Secure authentication (phone number, Apple Sign-In)",
-              "Firestore security rules limiting access to authorized users only",
+              "Secure authentication (phone number, Apple Sign-In, Google Sign-In)",
+              "Access controls and security rules limiting data to authorized users",
               "Regular security audits",
             ]}
           />
@@ -246,25 +294,36 @@ function PrivacyPage() {
             absolute security.
           </P>
 
-          <H2 n="06">Parental rights and controls</H2>
-          <P>As a parent or guardian, you have the following rights:</P>
+          <H2 n="07">Parental rights and controls</H2>
+          <P>
+            As the adult account owner, you have the following rights and controls
+            over your own account and any linked child accounts:
+          </P>
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
               {
                 t: "Access & review",
-                b: "You can view all information we have collected about you and your children at any time in the app.",
+                b: "You can view all information we have collected about you and your children, including all child account activity and messages, at any time in the app.",
               },
               {
                 t: "Edit & update",
-                b: "You can edit your profile, children's profiles, and family information.",
+                b: "You can edit your profile, children's profiles, family information, and connection settings.",
               },
               {
                 t: "Delete",
-                b: "You can delete individual children's profiles, or request deletion of your entire account and all associated data.",
+                b: "You can delete individual children's profiles, or request deletion of your entire account and all associated child data.",
               },
               {
                 t: "Opt-out",
-                b: "You can stop sharing availability/calendar data at any time, and remove connections with other families.",
+                b: "You can stop sharing availability/calendar data, remove connections with other families, and revoke a child's access to the Service.",
+              },
+              {
+                t: "Manage connections",
+                b: "Only adults can send, accept, or remove connections with other families. Children cannot initiate connections on their own.",
+              },
+              {
+                t: "Revoke consent",
+                b: "You may withdraw consent for a child's data collection at any time by deleting the child's profile or contacting us.",
               },
             ].map((c) => (
               <div
@@ -292,7 +351,7 @@ function PrivacyPage() {
             .
           </P>
 
-          <H2 n="07">Data retention</H2>
+          <H2 n="08">Data retention</H2>
           <List
             items={[
               <>
@@ -325,21 +384,21 @@ function PrivacyPage() {
             ]}
           />
 
-          <H2 n="08">Third-party links</H2>
+          <H2 n="09">Third-party links</H2>
           <P>
             The Haangout app may contain links to external websites. We are not
             responsible for the privacy practices of third-party sites. Please
             review their privacy policies before providing any information.
           </P>
 
-          <H2 n="09">International users</H2>
+          <H2 n="10">International users</H2>
           <P>
             If you are located outside the United States, your information may
             be transferred to and processed in the United States under COPPA and
             U.S. privacy laws. By using Haangout, you consent to this transfer.
           </P>
 
-          <H2 n="10">Changes to this Privacy Policy</H2>
+          <H2 n="11">Changes to this Privacy Policy</H2>
           <P>
             We may update this Privacy Policy periodically. We will notify you
             of significant changes by:
@@ -355,7 +414,7 @@ function PrivacyPage() {
             updated Privacy Policy.
           </P>
 
-          <H2 n="11">Contact us</H2>
+          <H2 n="12">Contact us</H2>
           <P>
             If you have questions about this Privacy Policy or our privacy
             practices, please contact us:
