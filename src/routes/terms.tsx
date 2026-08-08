@@ -74,7 +74,7 @@ function TermsPage() {
           Terms of Service
         </h1>
         <p className="mt-3 text-sm text-foreground/60">
-          Last updated August 1, 2026
+          Last updated August 8, 2026
         </p>
 
         <div className="mt-10 text-base">
@@ -192,6 +192,17 @@ function TermsPage() {
             and age-appropriate. Haangout is a coordination tool; users must
             verify safety protocols before arranging activities.
           </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Neutral platform:
+            </strong>{" "}
+            Haangout only provides tools that help families and kids discover
+            and contact one another. We do not supervise, verify, endorse, or
+            guarantee the conduct, background, or intentions of any user. You
+            are solely responsible for deciding whom to connect with, what
+            information to share, and whether to participate in any activity
+            arranged through the Service.
+          </P>
 
           <H2 n="05">Intellectual property rights</H2>
           <List
@@ -253,46 +264,88 @@ function TermsPage() {
               Disclaimer:
             </strong>{" "}
             Haangout is provided "as-is" and "as-available" without warranties
-            of any kind. We do not warrant that the Service will be error-free,
-            uninterrupted, or secure.
+            of any kind, whether express or implied. We do not warrant that the
+            Service will be error-free, uninterrupted, secure, or free of harmful
+            or inappropriate content or users.
           </P>
           <P>
             <strong className="font-semibold text-foreground">
-              No liability for user conduct:
+              No liability for user conduct or connections:
             </strong>{" "}
-            We are not responsible for:
+            We are a technology platform only. We are not responsible for:
           </P>
           <List
             items={[
-              "Hangouts arranged through the Service or their outcomes",
-              "Injuries, disputes, or harm resulting from activities coordinated via the Service",
-              "Conduct of other users or their children",
-              "Failure to complete scheduled activities",
+              "Connections, introductions, or matches made through the Service, whether between families, kids, or groups",
+              "Hangouts, activities, meetings, or events arranged through the Service or their outcomes",
+              "Injuries, disputes, property damage, loss, or harm resulting from activities or interactions coordinated via the Service",
+              "Conduct, statements, omissions, or behavior of any user, their children, or any other person encountered through the Service",
+              "Failure to complete scheduled activities, or inaccurate, misleading, or unlawful user content",
+              "Malicious, abusive, fraudulent, or unlawful acts by any user, even if that connection originated through the Service",
+              "Any damage or harm resulting from a user's decision to share personal information, meet in person, or participate in an activity",
             ]}
           />
+          <P>
+            <strong className="font-semibold text-foreground">
+              No background checks or verification:
+            </strong>{" "}
+            We do not conduct background checks, identity verification, or safety
+            screenings of users. We are under no obligation to monitor, review,
+            or approve any user, post, or activity. You assume all risks
+            associated with connecting with others through the Service.
+          </P>
           <P>
             <strong className="font-semibold text-foreground">
               Cap on liability:
             </strong>{" "}
-            To the maximum extent permitted by law, Haangout shall not be liable
-            for any indirect, incidental, special, or consequential damages
-            arising from your use of the Service.
+            To the maximum extent permitted by law, Haangout and its officers,
+            directors, employees, agents, affiliates, licensors, successors, and
+            assigns shall not be liable for any direct, indirect, incidental,
+            special, consequential, punitive, or exemplary damages arising from or
+            relating to your access to or use of (or inability to use) the
+            Service, including any damages resulting from user conduct, content,
+            connections, or offline interactions, even if we have been advised
+            of the possibility of such damages.
           </P>
 
           <H2 n="08">Indemnification</H2>
           <P>
-            You agree to indemnify and hold harmless Haangout, its officers,
-            employees, and agents from any claims, damages, losses, or expenses
-            arising from:
+            You agree to indemnify, defend, and hold harmless Haangout, Inc. and
+            its parent companies, subsidiaries, affiliates, officers, directors,
+            employees, agents, representatives, licensors, partners, members,
+            successors, and assigns (collectively, the "Haangout Parties") from
+            and against any and all claims, liabilities, damages, losses, costs,
+            expenses, fines, settlements, judgments, and attorneys' fees arising
+            out of or relating to:
           </P>
           <List
             items={[
-              "Your use of the Service",
-              "Your violation of these Terms",
-              "Your violation of any law or third-party rights",
-              "Your arrangements or activities coordinated through the Service",
+              "Your access to or use of the Service",
+              "Your violation of these Terms or any applicable law, regulation, or third-party right",
+              "Your user content, posts, messages, or any information you submit or share through the Service",
+              "Any connection, introduction, interaction, communication, or relationship you form with another user through the Service",
+              "Any hangout, activity, meeting, or event you arrange, join, or facilitate through the Service",
+              "Any harm, injury, loss, property damage, or dispute involving you, your children, or anyone else arising from or connected to your use of the Service",
+              "Any claim by a third party, including another user or a member of their family, that arises from your conduct, content, or connections through the Service",
+              "Any claim that Haangout's connection of you or your children with another user caused or contributed to any harm or wrongdoing",
             ]}
           />
+          <P>
+            You agree to cooperate fully in the defense of any such claim. We
+            reserve the right to assume the exclusive defense and control of any
+            matter otherwise subject to indemnification by you, and you agree not
+            to settle any claim without our prior written consent.
+          </P>
+          <P>
+            <strong className="font-semibold text-foreground">
+              Important:
+            </strong>{" "}
+            Haangout is not a babysitter, supervisor, or guarantor of any user or
+            activity. Our role is limited to providing technology that helps
+            families and kids discover one another. You are solely responsible
+            for the choices you make and the people you connect with through the
+            Service.
+          </P>
 
           <H2 n="09">Privacy &amp; data protection</H2>
           <List
